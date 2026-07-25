@@ -26,6 +26,26 @@ body {
 
 
 /* =========================
+   LOGO SVG
+========================= */
+
+.logo_sidebar_img {
+    background-image: url("../images/default/logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+
+    height: 36px;
+    max-width: 198px;
+    width: 198px;
+
+    margin-left: -3px;
+
+    max-height: 50px;
+}
+
+
+/* =========================
    VISTA PC
 ========================= */
 
@@ -41,21 +61,6 @@ body {
 .header {
     height: 110px;
     padding: 30px 25px;
-}
-
-.logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #f47721;
-    color: white;
-    padding: 7px 12px;
-    font-size: 27px;
-    font-weight: bold;
-}
-
-.logo-icon {
-    font-size: 27px;
 }
 
 .subtitle {
@@ -217,15 +222,11 @@ body {
 
     /* LOGO MÓVIL */
 
-    .mobile-logo {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: #f47721;
-        color: white;
-        padding: 6px 10px;
-        font-size: 21px;
-        font-weight: bold;
+    .logo_sidebar_img {
+        width: 165px;
+        height: 32px;
+        max-width: 165px;
+        margin-left: 0;
         margin-bottom: 38px;
     }
 
@@ -322,7 +323,7 @@ body {
 
 
     /*
-    ESPACIO BLANCO GRANDE
+    ESPACIO MUY GRANDE
     ENTRE FORMULARIO E IMAGEN
     */
 
@@ -330,7 +331,6 @@ body {
         width: 100%;
         height: 280px;
 
-        /* ESPACIO BLANCO */
         margin-top: 500px;
 
         overflow: hidden;
@@ -360,8 +360,10 @@ body {
     }
 
 
-    .mobile-logo {
-        font-size: 19px;
+    .logo_sidebar_img {
+        width: 150px;
+        height: 30px;
+        max-width: 150px;
         margin-bottom: 34px;
     }
 
@@ -398,11 +400,11 @@ body {
     }
 
 
-    /* ESPACIO ENTRE FORMULARIO E IMAGEN */
+    /* ESPACIO MUY GRANDE EN MÓVIL PEQUEÑO */
 
     .mobile-image {
         height: 230px;
-        margin-top: 120px;
+        margin-top: 500px;
     }
 
 }
@@ -425,10 +427,11 @@ body {
 
     <header class="header">
 
-        <div class="logo">
-            <span class="logo-icon">✦</span>
-            Mi Banco
-        </div>
+
+        <!-- LOGO SVG -->
+
+        <div class="logo_sidebar_img"></div>
+
 
         <div class="subtitle">
             Banca Online
@@ -559,15 +562,9 @@ body {
 <div class="mobile-layout">
 
 
-    <!-- LOGO -->
+    <!-- LOGO SVG -->
 
-    <div class="mobile-logo">
-
-        <span class="logo-icon">✦</span>
-
-        Mi Banco
-
-    </div>
+    <div class="logo_sidebar_img"></div>
 
 
     <!-- FORMULARIO -->
@@ -649,16 +646,15 @@ body {
     </main>
 
 
-    <!--
-    ESPACIO BLANCO GRANDE
-    Y DESPUÉS LA IMAGEN
-    -->
-<br><br><br><br><br><br>
+    <!-- ESPACIO GRANDE ANTES DE LA IMAGEN -->
+
     <div class="mobile-image">
+
 
         <img
             src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=900&q=80"
             alt="Imagen decorativa">
+
 
     </div>
 
