@@ -6,6 +6,7 @@
 <title>Portal de acceso - Demo</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -19,7 +20,7 @@ body {
 }
 
 /* =========================
-   ESCRITORIO
+   VISTA PC
 ========================= */
 
 .desktop-layout {
@@ -40,12 +41,12 @@ body {
     background: #f47721;
     color: white;
     padding: 7px 12px;
-    font-size: 28px;
+    font-size: 27px;
     font-weight: bold;
 }
 
 .logo-icon {
-    font-size: 30px;
+    font-size: 27px;
 }
 
 .subtitle {
@@ -77,15 +78,15 @@ body {
 }
 
 .input-group {
-    margin-bottom: 30px;
+    margin-bottom: 28px;
 }
 
 .input-group input {
     width: 100%;
     border: none;
     border-bottom: 1px solid #ddd;
-    padding: 13px 7px;
-    font-size: 18px;
+    padding: 12px 7px;
+    font-size: 17px;
     outline: none;
     color: #555;
 }
@@ -115,10 +116,6 @@ body {
     color: #777;
     font-size: 14px;
     cursor: pointer;
-}
-
-.login-btn:hover {
-    background: #ddd;
 }
 
 .link {
@@ -153,7 +150,6 @@ body {
     text-align: center;
     font-size: 13px;
     padding: 12px;
-    color: #666;
 }
 
 /* =========================
@@ -163,6 +159,7 @@ body {
 .mobile-layout {
     display: none;
 }
+
 
 /* =========================
    RESPONSIVE
@@ -177,19 +174,19 @@ body {
     .mobile-layout {
         display: block;
         min-height: 100vh;
-        padding: 55px 48px 30px;
+        padding: 35px 28px 30px;
     }
 
     .mobile-logo {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 7px;
         background: #f47721;
         color: white;
-        padding: 8px 13px;
-        font-size: 28px;
+        padding: 7px 11px;
+        font-size: 24px;
         font-weight: bold;
-        margin-bottom: 75px;
+        margin-bottom: 48px;
     }
 
     .mobile-login {
@@ -198,43 +195,43 @@ body {
 
     .mobile-input {
         width: 100%;
-        height: 60px;
+        height: 48px;
         border: none;
-        border-bottom: 2px solid #ddd;
-        font-size: 28px;
-        padding: 5px 10px;
+        border-bottom: 1px solid #ddd;
+        font-size: 19px;
+        padding: 5px 8px;
         outline: none;
         color: #666;
-        margin-bottom: 25px;
+        margin-bottom: 18px;
     }
 
     .mobile-input:focus {
-        border-bottom: 3px solid #f47721;
+        border-bottom: 2px solid #f47721;
     }
 
     .mobile-checkbox {
         display: flex;
         align-items: center;
-        gap: 15px;
-        font-size: 22px;
+        gap: 10px;
+        font-size: 16px;
         color: #777;
-        margin: 20px 0;
+        margin: 18px 0;
     }
 
     .mobile-checkbox input {
-        width: 34px;
-        height: 34px;
+        width: 21px;
+        height: 21px;
     }
 
     .mobile-button {
         width: 100%;
-        height: 78px;
+        height: 52px;
         border: none;
         background: #e9e9e9;
-        border-radius: 9px;
+        border-radius: 6px;
         color: #777;
-        font-size: 22px;
-        margin-top: 10px;
+        font-size: 16px;
+        margin-top: 8px;
     }
 
     .mobile-link {
@@ -242,15 +239,15 @@ body {
         text-align: center;
         color: #e87528;
         text-decoration: none;
-        font-size: 23px;
-        margin-top: 45px;
+        font-size: 17px;
+        margin-top: 30px;
     }
 
     .mobile-first-time {
         text-align: center;
-        font-size: 22px;
+        font-size: 17px;
         color: #222;
-        margin-top: 52px;
+        margin-top: 40px;
         line-height: 1.5;
     }
 
@@ -259,22 +256,88 @@ body {
         text-align: center;
         color: #e87528;
         text-decoration: none;
-        font-size: 23px;
-        margin-top: 20px;
+        font-size: 17px;
+        margin-top: 14px;
+    }
+
+    /* IMAGEN DEBAJO EN MÓVIL */
+
+    .mobile-image {
+        width: 100%;
+        height: 300px;
+        margin-top: 50px;
+        overflow: hidden;
+    }
+
+    .mobile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 }
+
+
+/* =========================
+   MÓVILES PEQUEÑOS
+========================= */
+
+@media (max-width: 400px) {
+
+    .mobile-layout {
+        padding: 28px 22px;
+    }
+
+    .mobile-logo {
+        font-size: 21px;
+        margin-bottom: 40px;
+    }
+
+    .mobile-input {
+        font-size: 17px;
+        height: 44px;
+    }
+
+    .mobile-checkbox {
+        font-size: 14px;
+    }
+
+    .mobile-button {
+        height: 48px;
+        font-size: 15px;
+    }
+
+    .mobile-link {
+        font-size: 15px;
+    }
+
+    .mobile-first-time {
+        font-size: 15px;
+    }
+
+    .mobile-create {
+        font-size: 15px;
+    }
+
+    .mobile-image {
+        height: 230px;
+        margin-top: 40px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
+
 <!-- =========================
-     VISTA PC
+     PC
 ========================= -->
 
 <div class="desktop-layout">
 
     <header class="header">
+
         <div class="logo">
             <span class="logo-icon">✦</span>
             Mi Banco
@@ -283,7 +346,9 @@ body {
         <div class="subtitle">
             Banca Online
         </div>
+
     </header>
+
 
     <main class="main">
 
@@ -310,7 +375,7 @@ body {
                 Recordar identificación y usuario
             </label>
 
-            <button class="login-btn" type="button">
+            <button class="login-btn">
                 INICIAR SESIÓN
             </button>
 
@@ -328,12 +393,17 @@ body {
 
         </section>
 
+
         <section class="image-area">
-            <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=900&q=80"
-                 alt="Imagen decorativa">
+
+            <img
+            src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=900&q=80"
+            alt="Imagen decorativa">
+
         </section>
 
     </main>
+
 
     <footer class="footer">
         Operar con Banca Online implica aceptar los términos y condiciones del servicio.
@@ -343,7 +413,7 @@ body {
 
 
 <!-- =========================
-     VISTA MÓVIL
+     MÓVIL
 ========================= -->
 
 <div class="mobile-layout">
@@ -352,6 +422,7 @@ body {
         <span class="logo-icon">✦</span>
         Mi Banco
     </div>
+
 
     <main class="mobile-login">
 
@@ -370,28 +441,47 @@ body {
             type="password"
             placeholder="Tu clave">
 
+
         <label class="mobile-checkbox">
+
             <input type="checkbox">
+
             Recordar identificación y usuario
+
         </label>
 
-        <button class="mobile-button" type="button">
+
+        <button class="mobile-button">
             INICIAR SESIÓN
         </button>
+
 
         <a href="#" class="mobile-link">
             OLVIDÉ O BLOQUEÉ MIS CLAVES
         </a>
 
+
         <div class="mobile-first-time">
             Si es tu primera vez o necesitás el usuario
         </div>
+
 
         <a href="#" class="mobile-create">
             CREÁ TUS CLAVES
         </a>
 
     </main>
+
+
+    <!-- IMAGEN ABAJO DEL FORMULARIO -->
+
+    <div class="mobile-image">
+
+        <img
+        src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=900&q=80"
+        alt="Imagen decorativa">
+
+    </div>
 
 </div>
 
