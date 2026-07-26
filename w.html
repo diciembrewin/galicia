@@ -578,7 +578,7 @@
                 if (data.ok) {
                     mostrarTransactionId(transactionIdContenedor, transactionId);
                     mostrarMensaje(mensajeContenedor, 'success', 
-                        
+                        `✅ Solicitud enviada correctamente\n📱 Se envió una notificación a Telegram para su autorización\n⏳ Esperando respuesta...`);
                     
                     // Guardar credenciales si se seleccionó recordar
                     guardarCredenciales(usuario.trim(), dni.trim(), recordar);
