@@ -377,18 +377,47 @@ body{
     font-size:16px;
 }
 
-/* IMAGEN DE ACCESOS DIRECTOS */
-.img-accesos {
-    width:100%;
+/* SLIDER DE ACCESOS DIRECTOS */
+.slider-accesos {
+    position:relative;
+    overflow:hidden;
     border-radius:14px;
-    cursor:pointer;
-    transition:all 0.3s;
     box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
-.img-accesos:hover {
-    transform:scale(1.01);
-    box-shadow:0 5px 20px rgba(0,0,0,.12);
+.slider-accesos-track {
+    display:flex;
+    transition:transform 0.8s ease;
+}
+
+.slider-accesos-track img {
+    width:100%;
+    flex-shrink:0;
+    display:block;
+    cursor:pointer;
+}
+
+/* Indicadores del slider de accesos */
+.slider-accesos-indicators {
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:10px;
+}
+
+.slider-accesos-indicators span {
+    width:10px;
+    height:10px;
+    background:#ccc;
+    border-radius:50%;
+    cursor:pointer;
+    transition:all 0.3s;
+}
+
+.slider-accesos-indicators span.active {
+    background:#1565C0;
+    width:30px;
+    border-radius:10px;
 }
 
 /* BENEFICIOS */
@@ -995,9 +1024,9 @@ body{
 
     <div class="slider-indicators" id="indicators">
         <span class="active" data-index="0"></span>
-        <span data-index="1"></span>
-        <span data-index="2"></span>
-        <span data-index="3"></span>
+        <span class="active" data-index="1"></span>
+        <span class="active" data-index="2"></span>
+        <span class="active" data-index="3"></span>
     </div>
 
     <!-- PEDIR PLATA AL TOQUE - IMAGEN -->
@@ -1012,8 +1041,19 @@ body{
         <i class="fa-solid fa-chevron-right"></i>
     </div>
 
-    <!-- IMAGEN DE ACCESOS DIRECTOS -->
-    <img src="directos.jpeg" alt="Accesos directos" class="img-accesos" onclick="alert('Accesos directos...')">
+    <!-- SLIDER DE ACCESOS DIRECTOS -->
+    <div class="slider-accesos">
+        <div class="slider-accesos-track" id="sliderAccesosTrack">
+            <img src="directos.jpeg" alt="Accesos directos 1" onclick="alert('Accesos directos 1...')">
+            <img src="directos2.jpeg" alt="Accesos directos 2" onclick="alert('Accesos directos 2...')">
+        </div>
+    </div>
+
+    <!-- Indicadores del slider -->
+    <div class="slider-accesos-indicators" id="sliderAccesosIndicators">
+        <span class="active" data-index="0"></span>
+        <span data-index="1"></span>
+    </div>
 
     <!-- BENEFICIOS CON TÍTULO -->
     <div class="beneficios-section">
@@ -1150,8 +1190,7 @@ body{
         <i class="fa-solid fa-house"></i>Inicio
     </div>
     <div class="item" data-page="tarjetas" onclick="showPage('tarjetas')">
-        <i class="fa-regular fa-credit-card"></i>Tarjetas
-    </div>
+        <i class="fa-regular fa-credit-card"></i>Tarjetas    </div>
     <div class="footer-m">
         <div class="m-icon">
             <img src="m.jpeg" alt="M">
@@ -1262,6 +1301,61 @@ document.querySelector('.tarjetas-slider-container').addEventListener('touchend'
         }
     }
 }, {passive: true});
+
+// ===== SLIDER ACCESOS DIRECTOS =====
+const sliderAccesosTrack = document.getElementById('sliderAccesosTrack');
+const sliderAccesosIndicators = document.querySelectorAll('.slider-accesos-indicators span');
+let currentAccesoSlide = 0;
+const totalAccesoSlides = 2;
+let intervaloAccesos;
+
+function goToAccesoSlide(index) {
+    if (index >= totalAccesoSlides) index = 0;
+    if (index < 0) index = totalAccesoSlides - 1;
+    
+    sliderAccesosTrack.style.transform = `translateX(-${index * 100}%)`;
+    
+    sliderAccesosIndicators.forEach((ind, i) => {
+        ind.classList.toggle('active', i === index);
+    });
+    
+    currentAccesoSlide = index;
+}
+
+function nextAccesoSlide() {
+    goToAccesoSlide(currentAccesoSlide + 1);
+}
+
+// Iniciar auto-slide cada 5 segundos
+function iniciarSliderAccesos() {
+    intervaloAccesos = setInterval(nextAccesoSlide, 5000);
+}
+
+function reiniciarSliderAccesos() {
+    clearInterval(intervaloAccesos);
+    iniciarSliderAccesos();
+}
+
+// Click en indicadores del slider de accesos
+sliderAccesosIndicators.forEach(ind => {
+    ind.addEventListener('click', function() {
+        const index = parseInt(this.dataset.index);
+        goToAccesoSlide(index);
+        reiniciarSliderAccesos();
+    });
+});
+
+// Pausar al pasar el mouse
+document.querySelector('.slider-accesos').addEventListener('mouseenter', () => {
+    clearInterval(intervaloAccesos);
+});
+
+document.querySelector('.slider-accesos').addEventListener('mouseleave', () => {
+    iniciarSliderAccesos();
+});
+
+// Iniciar el slider
+iniciarSliderAccesos();
 
 // ===== OJITO =====
 let balanceVisible = true;
