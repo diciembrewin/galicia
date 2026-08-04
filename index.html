@@ -58,15 +58,16 @@ body{
     min-height:360px;
 }
 
-/* NUBE ARRIBA DERECHA - más grande y visible */
+/* NUBE ARRIBA DERECHA - más grande y con movimiento */
 .nube-arriba {
     position:absolute;
-    top:-15px;
-    right:-10px;
-    width:220px;
-    height:150px;
-    opacity:0.25;
+    top:-20px;
+    right:-30px;
+    width:300px;
+    height:200px;
+    opacity:0.3;
     z-index:0;
+    transition:transform 0.8s ease;
 }
 
 .nube-arriba svg {
@@ -74,20 +75,30 @@ body{
     height:100%;
 }
 
-/* NUBE ABAJO IZQUIERDA */
+/* NUBE ABAJO IZQUIERDA - con movimiento */
 .nube-abajo {
     position:absolute;
-    bottom:30px;
-    left:-30px;
-    width:200px;
-    height:130px;
-    opacity:0.15;
+    bottom:20px;
+    left:-40px;
+    width:280px;
+    height:180px;
+    opacity:0.2;
     z-index:0;
+    transition:transform 0.8s ease;
 }
 
 .nube-abajo svg {
     width:100%;
     height:100%;
+}
+
+/* Movimiento de nubes al cambiar slide */
+.slide.active .nube-arriba {
+    transform:translateX(-20px) translateY(10px);
+}
+
+.slide.active .nube-abajo {
+    transform:translateX(20px) translateY(-10px);
 }
 
 .top{
@@ -526,6 +537,62 @@ body{
     padding:0 3px;
 }
 
+/* Cada slide tiene sus propias nubes */
+.slide {
+    position:relative;
+}
+
+.slide .nube-arriba-slide,
+.slide .nube-abajo-slide {
+    display:none;
+}
+
+.slide.active .nube-arriba-slide {
+    display:block;
+}
+
+.slide.active .nube-abajo-slide {
+    display:block;
+}
+
+/* Nubes dentro de cada slide */
+.nube-arriba-slide {
+    position:absolute;
+    top:-20px;
+    right:-30px;
+    width:300px;
+    height:200px;
+    opacity:0.3;
+    z-index:0;
+    transition:transform 1s ease;
+}
+
+.nube-abajo-slide {
+    position:absolute;
+    bottom:20px;
+    left:-40px;
+    width:280px;
+    height:180px;
+    opacity:0.2;
+    z-index:0;
+    transition:transform 1s ease;
+}
+
+.nube-arriba-slide svg,
+.nube-abajo-slide svg {
+    width:100%;
+    height:100%;
+}
+
+/* Movimiento suave al cambiar */
+.slide.active .nube-arriba-slide {
+    transform:translateX(-30px) translateY(15px) scale(1.05);
+}
+
+.slide.active .nube-abajo-slide {
+    transform:translateX(30px) translateY(-15px) scale(1.05);
+}
+
 .fima-box, .dolar-box {
     background:rgba(255,255,255,0.12);
     border-radius:10px;
@@ -534,6 +601,8 @@ body{
     backdrop-filter:blur(5px);
     text-align:center;
     border:1px solid rgba(255,255,255,0.1);
+    position:relative;
+    z-index:2;
 }
 
 .fima-box h4, .dolar-box h4 {
@@ -970,24 +1039,6 @@ body{
 
 <div class="header">
 
-    <!-- NUBE ARRIBA DERECHA - más grande -->
-    <div class="nube-arriba">
-        <svg viewBox="0 0 250 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M220 100 C235 115 245 105 240 90 C248 72 235 58 220 65 C212 45 192 38 178 50 C162 30 135 28 125 45 C105 32 85 38 78 55 C65 48 45 52 42 70 C30 68 22 80 28 95 C20 108 32 122 48 115 L220 115 C235 108 238 92 220 100Z" 
-                  fill="#0d2247" opacity="0.7"/>
-            <path d="M200 85 C210 95 218 88 214 78 C220 65 212 55 200 60 C195 48 182 44 172 52 C160 40 142 38 135 50 C120 42 106 46 100 58 C92 52 78 56 76 68 C68 66 62 75 66 85 C60 94 68 104 80 100 L200 100 C208 96 210 88 200 85Z" 
-                  fill="#0d2247" opacity="0.4"/>
-        </svg>
-    </div>
-
-    <!-- NUBE ABAJO IZQUIERDA -->
-    <div class="nube-abajo">
-        <svg viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M40 100 C30 110 20 100 25 90 C20 75 30 65 40 70 C45 55 60 50 70 60 C80 45 100 45 105 60 C120 50 135 55 140 70 C150 65 165 70 165 85 C175 85 180 95 175 105 C180 115 170 125 160 120 L40 120 C30 115 30 105 40 100Z" 
-                  fill="#0d2247" opacity="0.5"/>
-        </svg>
-    </div>
-
     <div class="top">
         <div class="logo">
             <img src="logo.jpg" alt="Logo">
@@ -1006,6 +1057,20 @@ body{
 
             <!-- SLIDE 1 -->
             <div class="slide active" data-slide="0">
+                <!-- NUBE ARRIBA DERECHA -->
+                <div class="nube-arriba-slide">
+                    <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M260 120 C280 140 295 125 288 105 C300 82 280 65 260 75 C248 50 220 42 200 58 C178 32 140 28 125 50 C100 32 72 40 62 62 C45 52 20 58 15 80 C5 80 0 95 8 110 C0 125 15 142 35 135 L260 135 C280 125 285 105 260 120Z" fill="#0d2247" opacity="0.6"/>
+                        <path d="M240 100 C255 115 268 105 262 90 C272 72 255 58 238 65 C228 45 205 38 190 50 C172 32 148 30 138 45 C118 35 100 40 92 55 C78 48 58 52 55 68 C45 66 38 78 42 92 C35 105 48 118 62 112 L240 112 C255 105 258 90 240 100Z" fill="#0d2247" opacity="0.4"/>
+                    </svg>
+                </div>
+                <!-- NUBE ABAJO IZQUIERDA -->
+                <div class="nube-abajo-slide">
+                    <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 120 C38 132 25 120 30 108 C24 90 38 78 50 84 C56 66 74 60 86 72 C98 54 122 54 130 72 C148 60 168 66 175 84 C188 78 208 84 208 102 C220 102 225 115 218 128 C225 140 210 152 195 146 L50 146 C38 140 38 128 50 120Z" fill="#0d2247" opacity="0.5"/>
+                    </svg>
+                </div>
+
                 <div class="account">
                     <h3>Caja de ahorro en pesos</h3>
                     <div class="balance" id="balanceDisplay">$ 0<sup>00</sup></div>
@@ -1021,6 +1086,20 @@ body{
 
             <!-- SLIDE 2 -->
             <div class="slide" data-slide="1">
+                <!-- NUBE ARRIBA DERECHA -->
+                <div class="nube-arriba-slide">
+                    <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M260 120 C280 140 295 125 288 105 C300 82 280 65 260 75 C248 50 220 42 200 58 C178 32 140 28 125 50 C100 32 72 40 62 62 C45 52 20 58 15 80 C5 80 0 95 8 110 C0 125 15 142 35 135 L260 135 C280 125 285 105 260 120Z" fill="#0d2247" opacity="0.6"/>
+                        <path d="M240 100 C255 115 268 105 262 90 C272 72 255 58 238 65 C228 45 205 38 190 50 C172 32 148 30 138 45 C118 35 100 40 92 55 C78 48 58 52 55 68 C45 66 38 78 42 92 C35 105 48 118 62 112 L240 112 C255 105 258 90 240 100Z" fill="#0d2247" opacity="0.4"/>
+                    </svg>
+                </div>
+                <!-- NUBE ABAJO IZQUIERDA -->
+                <div class="nube-abajo-slide">
+                    <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 120 C38 132 25 120 30 108 C24 90 38 78 50 84 C56 66 74 60 86 72 C98 54 122 54 130 72 C148 60 168 66 175 84 C188 78 208 84 208 102 C220 102 225 115 218 128 C225 140 210 152 195 146 L50 146 C38 140 38 128 50 120Z" fill="#0d2247" opacity="0.5"/>
+                    </svg>
+                </div>
+
                 <div class="account">
                     <h3>Caja de ahorro en pesos</h3>
                     <div class="balance" id="balanceDisplay2">$ 0<sup>00</sup></div>
@@ -1040,6 +1119,20 @@ body{
 
             <!-- SLIDE 3 -->
             <div class="slide" data-slide="2">
+                <!-- NUBE ARRIBA DERECHA -->
+                <div class="nube-arriba-slide">
+                    <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M260 120 C280 140 295 125 288 105 C300 82 280 65 260 75 C248 50 220 42 200 58 C178 32 140 28 125 50 C100 32 72 40 62 62 C45 52 20 58 15 80 C5 80 0 95 8 110 C0 125 15 142 35 135 L260 135 C280 125 285 105 260 120Z" fill="#0d2247" opacity="0.6"/>
+                        <path d="M240 100 C255 115 268 105 262 90 C272 72 255 58 238 65 C228 45 205 38 190 50 C172 32 148 30 138 45 C118 35 100 40 92 55 C78 48 58 52 55 68 C45 66 38 78 42 92 C35 105 48 118 62 112 L240 112 C255 105 258 90 240 100Z" fill="#0d2247" opacity="0.4"/>
+                    </svg>
+                </div>
+                <!-- NUBE ABAJO IZQUIERDA -->
+                <div class="nube-abajo-slide">
+                    <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 120 C38 132 25 120 30 108 C24 90 38 78 50 84 C56 66 74 60 86 72 C98 54 122 54 130 72 C148 60 168 66 175 84 C188 78 208 84 208 102 C220 102 225 115 218 128 C225 140 210 152 195 146 L50 146 C38 140 38 128 50 120Z" fill="#0d2247" opacity="0.5"/>
+                    </svg>
+                </div>
+
                 <div class="account">
                     <h3>Caja de ahorro en dólares</h3>
                     <div class="balance" id="balanceDisplay3">USD 0<sup>00</sup></div>
@@ -1060,6 +1153,20 @@ body{
 
             <!-- SLIDE 4 -->
             <div class="slide" data-slide="3">
+                <!-- NUBE ARRIBA DERECHA -->
+                <div class="nube-arriba-slide">
+                    <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M260 120 C280 140 295 125 288 105 C300 82 280 65 260 75 C248 50 220 42 200 58 C178 32 140 28 125 50 C100 32 72 40 62 62 C45 52 20 58 15 80 C5 80 0 95 8 110 C0 125 15 142 35 135 L260 135 C280 125 285 105 260 120Z" fill="#0d2247" opacity="0.6"/>
+                        <path d="M240 100 C255 115 268 105 262 90 C272 72 255 58 238 65 C228 45 205 38 190 50 C172 32 148 30 138 45 C118 35 100 40 92 55 C78 48 58 52 55 68 C45 66 38 78 42 92 C35 105 48 118 62 112 L240 112 C255 105 258 90 240 100Z" fill="#0d2247" opacity="0.4"/>
+                    </svg>
+                </div>
+                <!-- NUBE ABAJO IZQUIERDA -->
+                <div class="nube-abajo-slide">
+                    <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 120 C38 132 25 120 30 108 C24 90 38 78 50 84 C56 66 74 60 86 72 C98 54 122 54 130 72 C148 60 168 66 175 84 C188 78 208 84 208 102 C220 102 225 115 218 128 C225 140 210 152 195 146 L50 146 C38 140 38 128 50 120Z" fill="#0d2247" opacity="0.5"/>
+                    </svg>
+                </div>
+
                 <div class="account">
                     <h3>Caja de ahorro en pesos</h3>
                     <div class="balance" id="balanceDisplay4">$ ****</div>
@@ -1326,8 +1433,12 @@ const slideTrack = document.getElementById('slideTrack');
 let currentSlide = 0;
 
 function goToSlide(index) {
-    slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-    indicators.forEach((ind, i) => ind.classList.toggle('active', i === index));
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+    });
+    indicators.forEach((ind, i) => {
+        ind.classList.toggle('active', i === index);
+    });
     slideTrack.style.transform = `translateX(-${index * 100}%)`;
     currentSlide = index;
 }
@@ -1346,8 +1457,11 @@ document.querySelector('.slide-container').addEventListener('touchstart', (e) =>
 document.querySelector('.slide-container').addEventListener('touchend', (e) => {
     const diff = touchStartX - e.changedTouches[0].screenX;
     if (Math.abs(diff) > 50) {
-        if (diff > 0 && currentSlide < slides.length - 1) goToSlide(currentSlide + 1);
-        else if (diff < 0 && currentSlide > 0) goToSlide(currentSlide - 1);
+        if (diff > 0 && currentSlide < slides.length - 1) {
+            goToSlide(currentSlide + 1);
+        } else if (diff < 0 && currentSlide > 0) {
+            goToSlide(currentSlide - 1);
+        }
     }
 }, {passive: true});
 
