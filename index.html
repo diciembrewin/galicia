@@ -488,28 +488,39 @@ body{
 .page-tarjetas {
     background:#f5f7fa;
     min-height:100vh;
-    padding:16px 18px 80px;
+    padding:0 0 80px;
 }
 
-.tarjetas-header {
+/* Header azul de tarjetas */
+.tarjetas-header-azul {
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    padding:16px 18px 20px;
+    margin-bottom:0;
+}
+
+.tarjetas-header-azul .top-tarjetas {
     display:flex;
     align-items:center;
     gap:15px;
-    margin-bottom:20px;
-    padding-top:10px;
 }
 
-.tarjetas-header .back-btn {
+.tarjetas-header-azul .back-btn {
     font-size:22px;
-    color:#1565C0;
+    color:#fff;
     cursor:pointer;
     padding:5px;
 }
 
-.tarjetas-header h1 {
+.tarjetas-header-azul h1 {
     font-size:20px;
-    color:#333;
+    color:#fff;
     flex:1;
+}
+
+/* Contenido de tarjetas - fondo gris */
+.tarjetas-content {
+    padding:16px 18px;
+    background:#f5f7fa;
 }
 
 .tarjeta-item {
@@ -926,12 +937,18 @@ body{
 
 <div class="page-tarjetas">
 
-<div class="tarjetas-header">
-    <span class="back-btn" onclick="showPage('home')">
-        <i class="fa-solid fa-arrow-left"></i>
-    </span>
-    <h1>Tarjetas</h1>
+<!-- Header azul -->
+<div class="tarjetas-header-azul">
+    <div class="top-tarjetas">
+        <span class="back-btn" onclick="showPage('home')">
+            <i class="fa-solid fa-arrow-left"></i>
+        </span>
+        <h1>Tarjetas</h1>
+    </div>
 </div>
+
+<!-- Contenido gris -->
+<div class="tarjetas-content">
 
 <!-- Tarjeta VISA -->
 <div class="tarjeta-item">
@@ -952,7 +969,7 @@ body{
     </div>
 </div>
 
-<!-- Acciones tarjeta - botones pequeños -->
+<!-- Acciones tarjeta -->
 <div class="acciones-tarjeta">
     <div class="btn-accion" onclick="alert('Blanqueando PIN...')">
         <i class="fa-solid fa-key"></i>
@@ -990,6 +1007,8 @@ body{
         <span>$ 400.000</span>
     </div>
 </div>
+
+</div><!-- end tarjetas-content -->
 
 </div>
 
