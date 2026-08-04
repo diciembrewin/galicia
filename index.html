@@ -416,6 +416,7 @@ body{
     box-shadow:0 5px 20px rgba(0,0,0,.12);
 }
 
+/* RECOMENDACIONES */
 .recomendaciones {
     margin-top:22px;
     margin-bottom:10px;
@@ -427,38 +428,18 @@ body{
     margin-bottom:12px;
 }
 
-.recomendacion-item {
-    background:#fff;
-    border-radius:12px;
-    padding:16px;
-    margin-bottom:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-    border-left:4px solid #1565C0;
+/* IMAGEN DE RECOMENDACIONES */
+.img-recomen {
+    width:100%;
+    border-radius:14px;
+    cursor:pointer;
     transition:all 0.3s;
-    cursor:pointer;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
-.recomendacion-item:hover {
-    transform:translateX(3px);
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
-}
-
-.recomendacion-item p {
-    font-size:13px;
-    color:#333;
-    margin-bottom:8px;
-}
-
-.recomendacion-item .btn-cerrar {
-    color:#1565C0;
-    font-weight:bold;
-    font-size:12px;
-    cursor:pointer;
-    display:inline-block;
-}
-
-.recomendacion-item .btn-cerrar:hover {
-    text-decoration:underline;
+.img-recomen:hover {
+    transform:scale(1.01);
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
 }
 
 /* Slider */
@@ -1040,13 +1021,10 @@ body{
         <img src="benefi.jpeg" alt="Beneficios" class="img-beneficios" onclick="alert('Beneficios...')">
     </div>
 
-    <!-- Recomendaciones -->
+    <!-- RECOMENDACIONES CON TÍTULO -->
     <div class="recomendaciones">
         <h2>Recomendaciones</h2>
-        <div class="recomendacion-item">
-            <p>Protegé tu casa aunque estés lejos, activalo ahora</p>
-            <span class="btn-cerrar">Cerrar sesión</span>
-        </div>
+        <img src="recomen.jpeg" alt="Recomendaciones" class="img-recomen" onclick="alert('Recomendaciones...')">
     </div>
 
 </div>
