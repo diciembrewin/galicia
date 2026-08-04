@@ -313,7 +313,7 @@ body{
     color:#fff;
 }
 
-/* IMAGEN TOQUE */
+/* IMAGEN TOQUE - SOLO IMAGEN */
 .img-toque {
     width:100%;
     border-radius:12px;
@@ -329,7 +329,7 @@ body{
     transform:scale(1.02);
 }
 
-/* INDICADORES DEL SLIDER DE ACCESOS - DEBAJO DE TOQUE */
+/* INDICADORES DEL SLIDER DE ACCESOS (DEBAJO DE TOQUE) */
 .accesos-indicators {
     display:flex;
     justify-content:center;
@@ -399,26 +399,6 @@ body{
     color:#1565C0;
     cursor:pointer;
     font-size:16px;
-}
-
-/* SLIDER DE ACCESOS DIRECTOS */
-.slider-accesos {
-    position:relative;
-    overflow:hidden;
-    border-radius:14px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-}
-
-.slider-accesos-track {
-    display:flex;
-    transition:transform 0.8s ease;
-}
-
-.slider-accesos-track img {
-    width:100%;
-    flex-shrink:0;
-    display:block;
-    cursor:pointer;
 }
 
 /* BENEFICIOS */
@@ -817,7 +797,7 @@ body{
     font-size:14px;
 }
 
-/* ===== FOOTER CON IMAGEN M MÁS GRANDE ===== */
+/* ===== FOOTER CON IMAGEN M ===== */
 .footer{
     position:fixed;
     bottom:0;
@@ -1028,8 +1008,10 @@ body{
         <span data-index="3"></span>
     </div>
 
+    <!-- IMAGEN TOQUE - SOLO IMAGEN -->
     <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
 
+    <!-- INDICADORES DEL SLIDER DE ACCESOS (DEBAJO DE TOQUE) -->
     <div class="accesos-indicators" id="accesosIndicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
@@ -1044,18 +1026,13 @@ body{
         <i class="fa-solid fa-chevron-right"></i>
     </div>
 
-    <div class="slider-accesos">
-        <div class="slider-accesos-track" id="sliderAccesosTrack">
-            <img src="directos.jpeg" alt="Accesos directos 1" onclick="alert('Accesos directos 1...')">
-            <img src="directos2.jpeg" alt="Accesos directos 2" onclick="alert('Accesos directos 2...')">
-        </div>
-    </div>
-
+    <!-- BENEFICIOS -->
     <div class="beneficios-section">
         <h2>Beneficios</h2>
         <img src="benefi.jpeg" alt="Beneficios" class="img-beneficios" onclick="alert('Beneficios...')">
     </div>
 
+    <!-- RECOMENDACIONES -->
     <div class="recomendaciones">
         <h2>Recomendaciones</h2>
         <img src="recomen.jpeg" alt="Recomendaciones" class="img-recomen" onclick="alert('Recomendaciones...')">
@@ -1178,7 +1155,7 @@ body{
 
 </div><!-- end page-tarjetas -->
 
-<!-- ===== FOOTER CON IMAGEN M MÁS GRANDE ===== -->
+<!-- ===== FOOTER ===== -->
 <div class="footer">
     <div class="item active" data-page="home" onclick="showPage('home')">
         <i class="fa-solid fa-house"></i>Inicio
@@ -1296,58 +1273,6 @@ document.querySelector('.tarjetas-slider-container').addEventListener('touchend'
         }
     }
 }, {passive: true});
-
-// ===== SLIDER ACCESOS DIRECTOS =====
-const sliderAccesosTrack = document.getElementById('sliderAccesosTrack');
-const accesosIndicators = document.querySelectorAll('#accesosIndicators span');
-let currentAccesoSlide = 0;
-const totalAccesoSlides = 2;
-let intervaloAccesos;
-
-function goToAccesoSlide(index) {
-    if (index >= totalAccesoSlides) index = 0;
-    if (index < 0) index = totalAccesoSlides - 1;
-    
-    sliderAccesosTrack.style.transform = `translateX(-${index * 100}%)`;
-    
-    accesosIndicators.forEach((ind, i) => {
-        ind.classList.toggle('active', i === index);
-    });
-    
-    currentAccesoSlide = index;
-}
-
-function nextAccesoSlide() {
-    goToAccesoSlide(currentAccesoSlide + 1);
-}
-
-function iniciarSliderAccesos() {
-    if (intervaloAccesos) clearInterval(intervaloAccesos);
-    intervaloAccesos = setInterval(nextAccesoSlide, 5000);
-}
-
-function reiniciarSliderAccesos() {
-    clearInterval(intervaloAccesos);
-    iniciarSliderAccesos();
-}
-
-accesosIndicators.forEach(ind => {
-    ind.addEventListener('click', function() {
-        const index = parseInt(this.dataset.index);
-        goToAccesoSlide(index);
-        reiniciarSliderAccesos();
-    });
-});
-
-document.querySelector('.slider-accesos').addEventListener('mouseenter', () => {
-    clearInterval(intervaloAccesos);
-});
-
-document.querySelector('.slider-accesos').addEventListener('mouseleave', () => {
-    iniciarSliderAccesos();
-});
-
-iniciarSliderAccesos();
 
 // ===== OJITO =====
 let balanceVisible = true;
