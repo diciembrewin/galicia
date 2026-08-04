@@ -58,13 +58,13 @@ body{
     min-height:360px;
 }
 
-/* NUBE ARRIBA DERECHA - como en la imagen */
+/* NUBE ARRIBA DERECHA */
 .nube-arriba {
     position:absolute;
-    top:-120px;
-    right:-100px;
-    width:500px;
-    height:300px;
+    top:-60px;
+    right:-50px;
+    width:350px;
+    height:220px;
     background:#06285d;
     opacity:0.5;
     border-radius:60% 40% 70% 30% / 40% 50% 50% 60%;
@@ -75,32 +75,32 @@ body{
 .nube-arriba::before {
     content:"";
     position:absolute;
-    width:220px;
-    height:220px;
+    width:150px;
+    height:150px;
     background:#06285d;
     border-radius:50%;
-    left:-60px;
-    top:50px;
+    left:-40px;
+    top:30px;
 }
 
 .nube-arriba::after {
     content:"";
     position:absolute;
-    width:180px;
-    height:180px;
+    width:120px;
+    height:120px;
     background:#06285d;
     border-radius:50%;
-    right:20px;
-    bottom:-30px;
+    right:10px;
+    bottom:-20px;
 }
 
-/* NUBE ABAJO IZQUIERDA - como en la imagen */
+/* NUBE ABAJO IZQUIERDA */
 .nube-abajo {
     position:absolute;
-    left:-160px;
-    bottom:-160px;
-    width:580px;
-    height:400px;
+    left:-80px;
+    bottom:-80px;
+    width:400px;
+    height:280px;
     background:#06285d;
     opacity:0.5;
     border-radius:50% 50% 40% 60% / 60% 40% 60% 40%;
@@ -110,23 +110,23 @@ body{
 .nube-abajo::before {
     content:"";
     position:absolute;
-    width:200px;
-    height:200px;
+    width:140px;
+    height:140px;
     border-radius:50%;
     background:#06285d;
-    top:-100px;
-    left:50px;
+    top:-70px;
+    left:30px;
 }
 
 .nube-abajo::after {
     content:"";
     position:absolute;
-    width:240px;
-    height:240px;
+    width:160px;
+    height:160px;
     border-radius:50%;
     background:#06285d;
-    right:-20px;
-    bottom:30px;
+    right:-10px;
+    bottom:20px;
 }
 
 .top{
@@ -1009,10 +1009,7 @@ body{
 
 <div class="header">
 
-    <!-- NUBE ARRIBA DERECHA -->
     <div class="nube-arriba"></div>
-
-    <!-- NUBE ABAJO IZQUIERDA -->
     <div class="nube-abajo"></div>
 
     <div class="top">
