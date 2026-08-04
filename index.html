@@ -313,35 +313,18 @@ body{
     color:#fff;
 }
 
-/* PEDIR PLATA AL TOQUE */
-.pedir-plata {
-    background:rgba(255,215,0,0.12);
-    border:1px solid rgba(255,215,0,0.25);
+/* PEDIR PLATA AL TOQUE - IMAGEN */
+.img-toque {
+    width:100%;
     border-radius:12px;
-    padding:10px 16px;
     margin-top:12px;
-    text-align:center;
     cursor:pointer;
-    position:relative;
-    z-index:2;
     transition:all 0.3s;
+    display:block;
 }
 
-.pedir-plata:hover {
-    background:rgba(255,215,0,0.2);
+.img-toque:hover {
     transform:scale(1.02);
-}
-
-.pedir-plata span {
-    color:#ffd700;
-    font-weight:bold;
-    font-size:14px;
-    letter-spacing:1px;
-}
-
-.pedir-plata i {
-    color:#ffd700;
-    margin-right:8px;
 }
 
 .slider-indicators{
@@ -1111,11 +1094,8 @@ body{
         <span data-index="3"></span>
     </div>
 
-    <!-- PEDIR PLATA AL TOQUE -->
-    <div class="pedir-plata" onclick="alert('Solicitando préstamo...')">
-        <i class="fa-solid fa-bolt"></i>
-        <span>PEDIR PLATA AL TOQUE</span>
-    </div>
+    <!-- PEDIR PLATA AL TOQUE - IMAGEN -->
+    <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
 
 </div>
 
