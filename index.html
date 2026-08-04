@@ -352,6 +352,31 @@ body{
     background:#fff;
 }
 
+/* INDICADORES DEL SLIDER DE ACCESOS - DEBAJO DE TOQUE */
+.accesos-indicators {
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:10px;
+    position:relative;
+    z-index:2;
+}
+
+.accesos-indicators span {
+    width:10px;
+    height:10px;
+    background:rgba(255,255,255,0.3);
+    border-radius:50%;
+    cursor:pointer;
+    transition:all 0.3s;
+}
+
+.accesos-indicators span.active {
+    background:#fff;
+    width:30px;
+    border-radius:10px;
+}
+
 .content{
     padding:18px;
     flex:1;
@@ -395,29 +420,6 @@ body{
     flex-shrink:0;
     display:block;
     cursor:pointer;
-}
-
-/* Indicadores del slider de accesos - debajo de toque */
-.slider-accesos-indicators {
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    margin-top:10px;
-}
-
-.slider-accesos-indicators span {
-    width:10px;
-    height:10px;
-    background:#ccc;
-    border-radius:50%;
-    cursor:pointer;
-    transition:all 0.3s;
-}
-
-.slider-accesos-indicators span.active {
-    background:#1565C0;
-    width:30px;
-    border-radius:10px;
 }
 
 /* BENEFICIOS */
@@ -892,34 +894,24 @@ body{
 
 /* Indicadores del slider M */
 .footer-m-indicators {
-    position:fixed;
-    bottom:55px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:1001;
-    max-width:390px;
-    width:100%;
     display:flex;
     justify-content:center;
     gap:5px;
-    background:transparent;
-    pointer-events:none;
+    margin-top:4px;
 }
 
 .footer-m-indicators span {
-    width:7px;
-    height:7px;
-    background:rgba(200,200,200,0.7);
+    width:6px;
+    height:6px;
+    background:#ccc;
     border-radius:50%;
     cursor:pointer;
     transition:all 0.3s;
-    pointer-events:auto;
-    box-shadow:0 1px 3px rgba(0,0,0,0.2);
 }
 
 .footer-m-indicators span.active {
     background:#1565C0;
-    width:20px;
+    width:16px;
     border-radius:4px;
 }
 
@@ -1060,6 +1052,7 @@ body{
         </div>
     </div>
 
+    <!-- INDICADORES DEL SLIDER HOME -->
     <div class="slider-indicators" id="indicators">
         <span class="active" data-index="0"></span>
         <span class="active" data-index="1"></span>
@@ -1070,8 +1063,8 @@ body{
     <!-- PEDIR PLATA AL TOQUE - IMAGEN -->
     <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
 
-    <!-- INDICADORES DEL SLIDER DE ACCESOS DIRECTOS - DEBAJO DE TOQUE -->
-    <div class="slider-accesos-indicators" id="sliderAccesosIndicators">
+    <!-- INDICADORES DEL SLIDER DE ACCESOS - DEBAJO DE TOQUE -->
+    <div class="accesos-indicators" id="accesosIndicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
     </div>
@@ -1350,7 +1343,7 @@ document.querySelector('.tarjetas-slider-container').addEventListener('touchend'
 
 // ===== SLIDER ACCESOS DIRECTOS =====
 const sliderAccesosTrack = document.getElementById('sliderAccesosTrack');
-const sliderAccesosIndicators = document.querySelectorAll('#sliderAccesosIndicators span');
+const accesosIndicators = document.querySelectorAll('#accesosIndicators span');
 let currentAccesoSlide = 0;
 const totalAccesoSlides = 2;
 let intervaloAccesos;
@@ -1361,7 +1354,7 @@ function goToAccesoSlide(index) {
     
     sliderAccesosTrack.style.transform = `translateX(-${index * 100}%)`;
     
-    sliderAccesosIndicators.forEach((ind, i) => {
+    accesosIndicators.forEach((ind, i) => {
         ind.classList.toggle('active', i === index);
     });
     
@@ -1382,7 +1375,7 @@ function reiniciarSliderAccesos() {
     iniciarSliderAccesos();
 }
 
-sliderAccesosIndicators.forEach(ind => {
+accesosIndicators.forEach(ind => {
     ind.addEventListener('click', function() {
         const index = parseInt(this.dataset.index);
         goToAccesoSlide(index);
