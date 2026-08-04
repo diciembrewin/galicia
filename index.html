@@ -815,7 +815,7 @@ body{
     font-size:14px;
 }
 
-/* ===== FOOTER ===== */
+/* ===== FOOTER CON SLIDER M ===== */
 .footer{
     position:fixed;
     bottom:0;
@@ -855,7 +855,7 @@ body{
     color:#1565C0;
 }
 
-/* SLIDER M EN EL FOOTER */
+/* SLIDER M EN EL FOOTER - CORREGIDO */
 .footer-m {
     display:flex;
     flex-direction:column;
@@ -870,6 +870,7 @@ body{
     border-radius:50%;
     background:#fff;
     box-shadow:0 2px 8px rgba(0,0,0,.15);
+    cursor:pointer;
 }
 
 .footer-m-track {
@@ -885,28 +886,39 @@ body{
     object-fit:cover;
     flex-shrink:0;
     display:block;
+    border-radius:50%;
 }
 
-/* Indicadores del slider M (puntos pequeños) */
+/* Indicadores del slider M */
 .footer-m-indicators {
+    position:fixed;
+    bottom:55px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:1001;
+    max-width:390px;
+    width:100%;
     display:flex;
     justify-content:center;
-    gap:4px;
-    margin-top:4px;
+    gap:5px;
+    background:transparent;
+    pointer-events:none;
 }
 
 .footer-m-indicators span {
-    width:5px;
-    height:5px;
-    background:#ccc;
+    width:7px;
+    height:7px;
+    background:rgba(200,200,200,0.7);
     border-radius:50%;
     cursor:pointer;
     transition:all 0.3s;
+    pointer-events:auto;
+    box-shadow:0 1px 3px rgba(0,0,0,0.2);
 }
 
 .footer-m-indicators span.active {
     background:#1565C0;
-    width:12px;
+    width:20px;
     border-radius:4px;
 }
 
@@ -1230,10 +1242,10 @@ body{
     </div>
 </div>
 
-<!-- Indicadores del slider M (fuera del footer para no interferir) -->
-<div class="footer-m-indicators" id="footerMIndicators" style="position:fixed; bottom:52px; left:50%; transform:translateX(-50%); z-index:1001; max-width:390px; width:100%; display:flex; justify-content:center; gap:4px; background:transparent; pointer-events:none;">
-    <span class="active" data-index="0" style="pointer-events:auto;"></span>
-    <span data-index="1" style="pointer-events:auto;"></span>
+<!-- Indicadores del slider M -->
+<div class="footer-m-indicators" id="footerMIndicators">
+    <span class="active" data-index="0"></span>
+    <span data-index="1"></span>
 </div>
 
 </div><!-- end phone -->
@@ -1385,7 +1397,7 @@ document.querySelector('.slider-accesos').addEventListener('mouseleave', () => {
 
 iniciarSliderAccesos();
 
-// ===== SLIDER M EN EL FOOTER =====
+// ===== SLIDER M EN EL FOOTER - CORREGIDO =====
 const footerMTrack = document.getElementById('footerMTrack');
 const footerMIndicators = document.querySelectorAll('#footerMIndicators span');
 let currentMSlide = 0;
@@ -1410,6 +1422,7 @@ function nextMSlide() {
 }
 
 function iniciarSliderM() {
+    if (intervaloM) clearInterval(intervaloM);
     intervaloM = setInterval(nextMSlide, 4000);
 }
 
@@ -1418,6 +1431,7 @@ function reiniciarSliderM() {
     iniciarSliderM();
 }
 
+// Click en indicadores del slider M
 footerMIndicators.forEach(ind => {
     ind.addEventListener('click', function() {
         const index = parseInt(this.dataset.index);
@@ -1426,6 +1440,7 @@ footerMIndicators.forEach(ind => {
     });
 });
 
+// Pausar al pasar el mouse sobre el círculo M
 document.getElementById('footerM').addEventListener('mouseenter', () => {
     clearInterval(intervaloM);
 });
@@ -1434,6 +1449,7 @@ document.getElementById('footerM').addEventListener('mouseleave', () => {
     iniciarSliderM();
 });
 
+// Iniciar el slider M
 iniciarSliderM();
 
 // ===== OJITO =====
