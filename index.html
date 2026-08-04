@@ -484,16 +484,19 @@ body{
     box-shadow:0 3px 12px rgba(0,0,0,0.2);
 }
 
-/* ===== TARJETAS - FONDO AZUL ===== */
+/* ===== TARJETAS - MISMA ESTRUCTURA QUE HOME ===== */
 .page-tarjetas {
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    background:#f5f7fa;
     min-height:100vh;
     padding:0 0 80px;
 }
 
-/* Header de tarjetas */
+/* Header azul igual que home */
 .tarjetas-header {
-    padding:16px 18px 20px;
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    color:#fff;
+    padding:16px 18px;
+    flex-shrink:0;
 }
 
 .tarjetas-header .top-tarjetas {
@@ -515,9 +518,11 @@ body{
     flex:1;
 }
 
-/* Contenido de tarjetas */
+/* Contenido blanco igual que home */
 .tarjetas-content {
-    padding:0 18px 20px;
+    padding:18px;
+    background:#f5f7fa;
+    flex:1;
 }
 
 /* Grid de tarjetas - una al lado de la otra */
@@ -525,15 +530,15 @@ body{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px;
-    margin-bottom:20px;
+    margin-bottom:16px;
 }
 
 /* Tarjeta VISA - Blanca */
 .tarjeta-item.visa {
     background:#fff;
-    border-radius:16px;
+    border-radius:14px;
     padding:16px;
-    box-shadow:0 4px 15px rgba(0,0,0,.2);
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 .tarjeta-item.visa .tipo {
@@ -592,9 +597,9 @@ body{
 /* Tarjeta Débito - Salmón */
 .tarjeta-item.debito {
     background:linear-gradient(135deg, #f5a623, #e88a1e);
-    border-radius:16px;
+    border-radius:14px;
     padding:16px;
-    box-shadow:0 4px 15px rgba(0,0,0,.2);
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 .tarjeta-item.debito .tipo {
@@ -652,7 +657,7 @@ body{
     color:#fff;
 }
 
-/* Acciones tarjeta - botones pequeños */
+/* Acciones tarjeta - botones */
 .acciones-tarjeta {
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -661,8 +666,8 @@ body{
 }
 
 .acciones-tarjeta .btn-accion {
-    background:rgba(255,255,255,0.15);
-    color:#fff;
+    background:#f0f4ff;
+    color:#1565C0;
     padding:10px 6px;
     border-radius:12px;
     text-align:center;
@@ -670,11 +675,12 @@ body{
     font-weight:bold;
     cursor:pointer;
     transition:all 0.3s;
-    border:1px solid rgba(255,255,255,0.2);
+    border:1px solid #e0e8f5;
 }
 
 .acciones-tarjeta .btn-accion:hover {
-    background:rgba(255,255,255,0.3);
+    background:#1565C0;
+    color:#fff;
     transform:scale(1.02);
 }
 
@@ -684,38 +690,40 @@ body{
     margin-bottom:4px;
 }
 
+/* Total movimientos */
 .movimientos-total {
-    background:rgba(255,255,255,0.1);
-    border-radius:16px;
+    background:#fff;
+    border-radius:14px;
     padding:16px;
     margin:16px 0;
     text-align:center;
-    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 .movimientos-total p {
     font-size:13px;
-    color:rgba(255,255,255,0.8);
+    color:#666;
 }
 
 .movimientos-total .total {
     font-size:22px;
     font-weight:bold;
-    color:#fff;
+    color:#333;
     margin-top:5px;
 }
 
+/* Información tarjeta */
 .info-tarjeta {
-    background:rgba(255,255,255,0.1);
-    border-radius:16px;
+    background:#fff;
+    border-radius:14px;
     padding:16px;
     margin:16px 0;
-    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 .info-tarjeta h3 {
     font-size:16px;
-    color:#fff;
+    color:#333;
     margin-bottom:12px;
 }
 
@@ -723,7 +731,7 @@ body{
     display:flex;
     justify-content:space-between;
     padding:10px 0;
-    border-bottom:1px solid rgba(255,255,255,0.1);
+    border-bottom:1px solid #eee;
 }
 
 .info-tarjeta .info-item:last-child {
@@ -731,12 +739,12 @@ body{
 }
 
 .info-tarjeta .info-item span:first-child {
-    color:rgba(255,255,255,0.7);
+    color:#666;
     font-size:13px;
 }
 
 .info-tarjeta .info-item span:last-child {
-    color:#fff;
+    color:#333;
     font-weight:bold;
     font-size:14px;
 }
@@ -1002,9 +1010,7 @@ body{
 <!-- ===== PÁGINA TARJETAS ===== -->
 <div class="page" id="page-tarjetas">
 
-<div class="page-tarjetas">
-
-<!-- Header -->
+<!-- Header azul igual que home -->
 <div class="tarjetas-header">
     <div class="top-tarjetas">
         <span class="back-btn" onclick="showPage('home')">
@@ -1014,7 +1020,7 @@ body{
     </div>
 </div>
 
-<!-- Contenido -->
+<!-- Contenido blanco igual que home -->
 <div class="tarjetas-content">
 
 <!-- Grid de tarjetas: VISA y Débito una al lado de la otra -->
@@ -1095,8 +1101,6 @@ body{
         <span>Límite de extracción</span>
         <span>$ 400.000</span>
     </div>
-</div>
-
 </div>
 
 </div>
