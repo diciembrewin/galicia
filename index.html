@@ -49,7 +49,7 @@ body{
 
 /* ===== HOME ===== */
 .header{
-    background:linear-gradient(180deg, #0c3f8f 0%, #082c6b 50%, #06306f 100%);
+    background:linear-gradient(180deg, #0a1628 0%, #1a2a5e 40%, #1a3a7a 70%, #2a5a9a 100%);
     color:#fff;
     padding:16px 18px 20px;
     flex-shrink:0;
@@ -58,29 +58,29 @@ body{
     min-height:360px;
 }
 
-/* NUBE ARRIBA DERECHA - Estilo mancha */
+/* NUBE ARRIBA DERECHA - como en la imagen */
 .nube-arriba {
     position:absolute;
-    top:-130px;
-    right:-120px;
-    width:520px;
-    height:320px;
+    top:-120px;
+    right:-100px;
+    width:500px;
+    height:300px;
     background:#06285d;
-    opacity:0.45;
-    border-radius:52% 48% 62% 38% / 38% 54% 46% 62%;
-    transform:rotate(-8deg);
+    opacity:0.5;
+    border-radius:60% 40% 70% 30% / 40% 50% 50% 60%;
+    transform:rotate(-5deg);
     z-index:0;
 }
 
 .nube-arriba::before {
     content:"";
     position:absolute;
-    width:240px;
-    height:240px;
+    width:220px;
+    height:220px;
     background:#06285d;
     border-radius:50%;
-    left:-70px;
-    top:40px;
+    left:-60px;
+    top:50px;
 }
 
 .nube-arriba::after {
@@ -90,43 +90,43 @@ body{
     height:180px;
     background:#06285d;
     border-radius:50%;
-    right:-30px;
-    bottom:-40px;
+    right:20px;
+    bottom:-30px;
 }
 
-/* NUBE ABAJO IZQUIERDA - Estilo mancha */
+/* NUBE ABAJO IZQUIERDA - como en la imagen */
 .nube-abajo {
     position:absolute;
-    left:-180px;
-    bottom:-180px;
-    width:620px;
-    height:430px;
+    left:-160px;
+    bottom:-160px;
+    width:580px;
+    height:400px;
     background:#06285d;
-    opacity:0.45;
-    border-radius:60% 40% 52% 48% / 48% 56% 44% 52%;
+    opacity:0.5;
+    border-radius:50% 50% 40% 60% / 60% 40% 60% 40%;
     z-index:0;
 }
 
 .nube-abajo::before {
     content:"";
     position:absolute;
-    width:210px;
-    height:210px;
+    width:200px;
+    height:200px;
     border-radius:50%;
     background:#06285d;
-    top:-120px;
-    left:40px;
+    top:-100px;
+    left:50px;
 }
 
 .nube-abajo::after {
     content:"";
     position:absolute;
-    width:260px;
-    height:260px;
+    width:240px;
+    height:240px;
     border-radius:50%;
     background:#06285d;
-    right:-30px;
-    bottom:20px;
+    right:-20px;
+    bottom:30px;
 }
 
 .top{
@@ -374,13 +374,13 @@ body{
 }
 
 .big{
-    background:linear-gradient(135deg, #0c3f8f, #06306f);
+    background:linear-gradient(135deg, #1a2a5e, #2a5a9a);
     color:#fff;
 }
 
 .card i{
     font-size:28px;
-    color:#0c3f8f;
+    color:#1a2a5e;
     margin-bottom:10px;
 }
 
@@ -419,7 +419,7 @@ body{
     padding:16px;
     margin-bottom:10px;
     box-shadow:0 2px 8px rgba(0,0,0,.06);
-    border-left:4px solid #0c3f8f;
+    border-left:4px solid #1565C0;
     transition:all 0.3s;
     cursor:pointer;
 }
@@ -442,7 +442,7 @@ body{
 }
 
 .nueva-seccion .item .btn-link {
-    color:#0c3f8f;
+    color:#1565C0;
     font-weight:bold;
     font-size:12px;
     cursor:pointer;
@@ -476,7 +476,7 @@ body{
 
 .servicio-card i {
     font-size:22px;
-    color:#0c3f8f;
+    color:#1565C0;
     margin-bottom:6px;
 }
 
@@ -487,7 +487,7 @@ body{
 }
 
 .btn-servicios {
-    background:linear-gradient(135deg, #0c3f8f, #06306f);
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
     color:#fff;
     padding:11px;
     border-radius:25px;
@@ -501,7 +501,7 @@ body{
 
 .btn-servicios:hover {
     transform:scale(1.02);
-    box-shadow:0 3px 12px rgba(12,63,143,0.3);
+    box-shadow:0 3px 12px rgba(21,101,192,0.3);
 }
 
 .recomendaciones {
@@ -521,7 +521,7 @@ body{
     padding:16px;
     margin-bottom:10px;
     box-shadow:0 2px 8px rgba(0,0,0,.06);
-    border-left:4px solid #0c3f8f;
+    border-left:4px solid #1565C0;
     transition:all 0.3s;
     cursor:pointer;
 }
@@ -538,7 +538,7 @@ body{
 }
 
 .recomendacion-item .btn-cerrar {
-    color:#0c3f8f;
+    color:#1565C0;
     font-weight:bold;
     font-size:12px;
     cursor:pointer;
@@ -591,7 +591,7 @@ body{
 
 .btn-fima, .btn-dolar {
     background:#fff;
-    color:#0c3f8f;
+    color:#0D47A1;
     padding:5px 22px;
     border-radius:18px;
     font-weight:bold;
@@ -614,11 +614,10 @@ body{
 }
 
 .tarjetas-header {
-    background:linear-gradient(180deg, #0c3f8f 0%, #082c6b 50%, #06306f 100%);
+    background:linear-gradient(180deg, #0a1628 0%, #1a2a5e 40%, #1a3a7a 70%, #2a5a9a 100%);
     color:#fff;
     padding:16px 18px 20px;
     position:relative;
-    overflow:hidden;
 }
 
 .tarjetas-header .top-tarjetas {
@@ -643,7 +642,7 @@ body{
 }
 
 .seccion-azul {
-    background:linear-gradient(180deg, #0c3f8f 0%, #082c6b 50%, #06306f 100%);
+    background:linear-gradient(180deg, #0a1628 0%, #1a2a5e 40%, #1a3a7a 70%, #2a5a9a 100%);
     padding:0 18px 20px;
     position:relative;
 }
@@ -690,7 +689,7 @@ body{
 }
 
 .tarjeta-item.visa .tipo .mostrar-datos {
-    color:#0c3f8f;
+    color:#1565C0;
     font-weight:bold;
     font-size:11px;
     cursor:pointer;
@@ -930,11 +929,11 @@ body{
 }
 
 .item:hover{
-    color:#0c3f8f;
+    color:#1565C0;
 }
 
 .item.active{
-    color:#0c3f8f;
+    color:#1565C0;
 }
 
 .footer-m {
@@ -1010,10 +1009,10 @@ body{
 
 <div class="header">
 
-    <!-- NUBE ARRIBA DERECHA - Estilo mancha -->
+    <!-- NUBE ARRIBA DERECHA -->
     <div class="nube-arriba"></div>
 
-    <!-- NUBE ABAJO IZQUIERDA - Estilo mancha -->
+    <!-- NUBE ABAJO IZQUIERDA -->
     <div class="nube-abajo"></div>
 
     <div class="top">
