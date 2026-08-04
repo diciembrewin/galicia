@@ -58,7 +58,7 @@ body{
     min-height:360px;
 }
 
-/* NUBE ARRIBA DERECHA - más pequeña */
+/* NUBE ARRIBA DERECHA */
 .nube-arriba {
     position:absolute;
     top:-40px;
@@ -97,7 +97,6 @@ body{
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Movimiento de la nube de arriba al cambiar de slide */
 .slide.active .nube-arriba {
     transform: rotate(-5deg) translateX(-20px) translateY(10px) scale(1.05);
 }
@@ -110,7 +109,7 @@ body{
     transform: translateX(10px) translateY(-8px);
 }
 
-/* NUBE ABAJO IZQUIERDA - más pequeña */
+/* NUBE ABAJO IZQUIERDA */
 .nube-abajo {
     position:absolute;
     left:-50px;
@@ -148,7 +147,6 @@ body{
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Movimiento de la nube de abajo al cambiar de slide */
 .slide.active .nube-abajo {
     transform: translateX(25px) translateY(-15px) scale(1.05);
 }
@@ -266,6 +264,22 @@ body{
     margin-top:16px;
     position:relative;
     z-index:2;
+    align-items:start;
+}
+
+.btn-transferir {
+    width:60px;
+    height:60px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto;
+    cursor:pointer;
+    transition:all 0.3s;
+    border-radius:8px;
+}
+
+.btn-transferir:hover {
+    transform:scale(1.1);
 }
 
 .action{
@@ -276,16 +290,6 @@ body{
 
 .action:hover{
     transform:translateY(-3px);
-}
-
-.action img {
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    object-fit:cover;
-    display:block;
-    margin:0 auto;
-    border:1px solid rgba(255,255,255,0.08);
 }
 
 .action i {
@@ -1071,8 +1075,8 @@ body{
                     <div class="balance" id="balanceDisplay">$ 0<sup>00</sup></div>
                     <div class="number">★ Nº 4070450-4 028-4</div>
                 </div>
-                <div class="actions" style="grid-template-columns:repeat(4,1fr); gap:8px; margin-top:16px;">
-                    <img src="tranferir.jpeg" alt="Transferir" style="width:55px; height:55px; border-radius:50%; object-fit:cover; display:block; margin:0 auto; border:1px solid rgba(255,255,255,0.08); cursor:pointer; transition:all 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                <div class="actions">
+                    <img src="tranferir.jpeg" alt="Transferir" class="btn-transferir" onclick="alert('Transferir...')">
                     <div class="action"><i class="fa-solid fa-arrow-down-left"></i><p>Ingresar</p></div>
                     <div class="action"><i class="fa-regular fa-copy"></i><p>Alias/CBU</p></div>
                     <div class="action"><i class="fa-solid fa-dollar-sign"></i><p>Comprar/Vender</p></div>
@@ -1125,8 +1129,8 @@ body{
                     <div class="balance" id="balanceDisplay4">$ ****</div>
                     <div class="number">★ Nº 4070450-4 028-4</div>
                 </div>
-                <div class="actions" style="grid-template-columns:repeat(4,1fr); gap:8px; margin-top:16px;">
-                    <img src="tranferir.jpeg" alt="Transferir" style="width:55px; height:55px; border-radius:50%; object-fit:cover; display:block; margin:0 auto; border:1px solid rgba(255,255,255,0.08); cursor:pointer; transition:all 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                <div class="actions">
+                    <img src="tranferir.jpeg" alt="Transferir" class="btn-transferir" onclick="alert('Transferir...')">
                     <div class="action"><i class="fa-solid fa-arrow-down-left"></i><p>Ingresar</p></div>
                     <div class="action"><i class="fa-regular fa-copy"></i><p>Alias/CBU</p></div>
                     <div class="action"><i class="fa-solid fa-dollar-sign"></i><p>Comprar/Vender</p></div>
