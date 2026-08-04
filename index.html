@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home Banking</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -17,42 +17,25 @@
 
 body{
     background:#ececec;
-    padding-bottom:70px;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
+    padding-bottom:60px;
 }
 
 .phone{
-    width:100%;
-    max-width:390px;
-    margin:0 auto;
-    background:#f5f7fa;
-    min-height:100vh;
-    box-shadow:0 0 30px rgba(0,0,0,.15);
+    width:320px;
+    margin:10px auto;
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
     position:relative;
-    display:flex;
-    flex-direction:column;
 }
 
-/* Ocultar/mostrar secciones */
-.page {
-    display:none;
-    flex:1;
-    flex-direction:column;
-}
-
-.page.active {
-    display:flex;
-}
-
-/* ===== HOME ===== */
+/* Header */
 .header{
     background:linear-gradient(135deg, #1565C0, #0D47A1);
     color:#fff;
-    padding:16px 18px;
-    flex-shrink:0;
+    padding:15px;
+    min-height:300px;
 }
 
 .top{
@@ -62,14 +45,15 @@ body{
 }
 
 .logo{
-    width:44px;
-    height:44px;
+    width:30px;
+    height:30px;
     border-radius:50%;
     background:#fff;
     display:flex;
     justify-content:center;
     align-items:center;
     overflow:hidden;
+    flex-shrink:0;
 }
 
 .logo img {
@@ -80,8 +64,8 @@ body{
 
 .icons{
     display:flex;
-    gap:16px;
-    font-size:20px;
+    gap:14px;
+    font-size:18px;
     color:#fff;
 }
 
@@ -96,15 +80,15 @@ body{
 
 .btn-ir-cuentas{
     margin:12px auto 8px;
-    width:160px;
+    width:150px;
     background:rgba(255,255,255,0.2);
     color:#fff;
-    padding:8px 12px;
+    padding:8px;
     border-radius:25px;
     text-align:center;
     font-weight:bold;
     cursor:pointer;
-    font-size:13px;
+    font-size:12px;
     backdrop-filter:blur(5px);
     border:1px solid rgba(255,255,255,0.3);
 }
@@ -116,39 +100,40 @@ body{
 
 .account{
     text-align:center;
-    margin-top:5px;
+    margin-top:3px;
 }
 
 .account h3{
-    font-size:14px;
-    margin-bottom:4px;
+    font-size:13px;
+    margin-bottom:3px;
     font-weight:normal;
     color:#fff;
     opacity:0.9;
 }
 
 .balance{
-    font-size:42px;
+    font-size:38px;
     font-weight:bold;
     color:#fff;
 }
 
 .balance sup{
-    font-size:18px;
+    font-size:16px;
 }
 
 .number{
-    margin-top:6px;
-    font-size:14px;
+    margin-top:5px;
+    font-size:13px;
     opacity:0.8;
     color:#fff;
 }
 
+/* Acciones */
 .actions{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:8px;
-    margin-top:16px;
+    margin-top:15px;
 }
 
 .action{
@@ -162,15 +147,15 @@ body{
 }
 
 .circle{
-    width:50px;
-    height:50px;
+    width:45px;
+    height:45px;
     border-radius:50%;
     background:rgba(255,255,255,0.15);
-    margin:0 auto;
+    margin:auto;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:20px;
+    font-size:18px;
     color:#fff;
     transition:all 0.3s;
     border:1px solid rgba(255,255,255,0.1);
@@ -183,21 +168,22 @@ body{
 
 .action p{
     margin-top:4px;
-    font-size:11px;
+    font-size:10px;
     opacity:0.9;
     color:#fff;
 }
 
+/* Indicadores */
 .slider-indicators{
     display:flex;
     justify-content:center;
-    gap:8px;
-    margin:14px 0 0;
+    gap:6px;
+    margin:12px 0 0;
 }
 
 .slider-indicators span{
-    width:10px;
-    height:10px;
+    width:8px;
+    height:8px;
     background:rgba(255,255,255,0.3);
     border-radius:20px;
     transition:all 0.3s;
@@ -205,54 +191,53 @@ body{
 }
 
 .slider-indicators span.active{
-    width:35px;
+    width:28px;
     background:#fff;
 }
 
+/* Contenido */
 .content{
-    padding:18px;
-    flex:1;
-    padding-bottom:80px;
-    background:#f5f7fa;
+    padding:15px;
+    padding-bottom:70px;
 }
 
 .title{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:14px;
+    margin-bottom:12px;
 }
 
 .title h1{
-    font-size:18px;
+    font-size:16px;
     color:#333;
 }
 
 .title i{
     color:#1565C0;
     cursor:pointer;
-    font-size:16px;
+    font-size:14px;
 }
 
 .cards{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:12px;
+    gap:10px;
 }
 
 .card{
     background:#fff;
-    border-radius:14px;
-    padding:16px;
-    min-height:100px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    border-radius:12px;
+    padding:14px;
+    min-height:90px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
     transition:all 0.3s;
     cursor:pointer;
 }
 
 .card:hover{
     transform:translateY(-3px);
-    box-shadow:0 5px 20px rgba(0,0,0,.12);
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
 }
 
 .big{
@@ -261,9 +246,9 @@ body{
 }
 
 .card i{
-    font-size:28px;
+    font-size:24px;
     color:#1565C0;
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
 .big i{
@@ -271,164 +256,84 @@ body{
 }
 
 .card h3{
-    font-size:14px;
+    font-size:13px;
 }
 
 .card p{
     margin-top:6px;
     color:#555;
-    font-size:12px;
+    font-size:11px;
 }
 
 .big p{
     color:rgba(255,255,255,0.8);
 }
 
-/* Secciones home */
-.nueva-seccion {
-    margin-top:22px;
-}
-
-.nueva-seccion h2 {
-    font-size:17px;
-    color:#333;
-    margin-bottom:12px;
-}
-
-.nueva-seccion .item {
+/* Footer fijo */
+.footer{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:320px;
     background:#fff;
-    border-radius:12px;
-    padding:16px;
-    margin-bottom:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-    border-left:4px solid #1565C0;
-    transition:all 0.3s;
-    cursor:pointer;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:8px 0;
+    border-top:1px solid #ddd;
+    z-index:1000;
+    border-radius:0 0 20px 20px;
 }
 
-.nueva-seccion .item:hover {
-    transform:translateX(3px);
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
-}
-
-.nueva-seccion .item h3 {
-    font-size:15px;
-    color:#333;
-    margin-bottom:4px;
-}
-
-.nueva-seccion .item p {
-    font-size:13px;
+.item{
+    text-align:center;
     color:#666;
-    margin-bottom:6px;
-}
-
-.nueva-seccion .item .btn-link {
-    color:#1565C0;
-    font-weight:bold;
-    font-size:12px;
+    font-size:10px;
     cursor:pointer;
+    transition:all 0.3s;
+    flex:1;
 }
 
-.nueva-seccion .item .btn-link:hover {
-    text-decoration:underline;
+.item i{
+    display:block;
+    font-size:18px;
+    margin-bottom:2px;
 }
 
-.servicios-grid {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin:12px 0;
+.item:hover{
+    color:#1565C0;
 }
 
-.servicio-card {
+.active{
+    color:#1565C0;
+}
+
+.footer-m {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+    padding:0 3px;
+}
+
+.footer-m .m-icon {
+    width:40px;
+    height:40px;
+    border-radius:50%;
     background:#fff;
-    border-radius:10px;
-    padding:14px 10px;
-    text-align:center;
-    transition:all 0.3s;
-    cursor:pointer;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
 }
 
-.servicio-card:hover {
-    background:#e8edf5;
-    transform:translateY(-2px);
-}
-
-.servicio-card i {
-    font-size:22px;
-    color:#1565C0;
-    margin-bottom:6px;
-}
-
-.servicio-card p {
-    font-size:11px;
-    color:#555;
-    font-weight:500;
-}
-
-.btn-servicios {
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
-    color:#fff;
-    padding:11px;
-    border-radius:25px;
-    text-align:center;
-    font-weight:bold;
-    cursor:pointer;
-    transition:all 0.3s;
-    font-size:13px;
+.footer-m .m-icon img {
     width:100%;
-}
-
-.btn-servicios:hover {
-    transform:scale(1.02);
-    box-shadow:0 3px 12px rgba(21,101,192,0.3);
-}
-
-.recomendaciones {
-    margin-top:22px;
-    margin-bottom:10px;
-}
-
-.recomendaciones h2 {
-    font-size:17px;
-    color:#333;
-    margin-bottom:12px;
-}
-
-.recomendacion-item {
-    background:#fff;
-    border-radius:12px;
-    padding:16px;
-    margin-bottom:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-    border-left:4px solid #1565C0;
-    transition:all 0.3s;
-    cursor:pointer;
-}
-
-.recomendacion-item:hover {
-    transform:translateX(3px);
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
-}
-
-.recomendacion-item p {
-    font-size:13px;
-    color:#333;
-    margin-bottom:8px;
-}
-
-.recomendacion-item .btn-cerrar {
-    color:#1565C0;
-    font-weight:bold;
-    font-size:12px;
-    cursor:pointer;
-    display:inline-block;
-}
-
-.recomendacion-item .btn-cerrar:hover {
-    text-decoration:underline;
+    height:100%;
+    object-fit:cover;
 }
 
 /* Slider */
@@ -447,23 +352,24 @@ body{
     padding:0 3px;
 }
 
+/* FIMA y Dolar */
 .fima-box, .dolar-box {
     background:rgba(255,255,255,0.12);
     border-radius:10px;
-    padding:10px 14px;
-    margin:12px 0 5px;
+    padding:10px 12px;
+    margin:12px 0 3px;
     backdrop-filter:blur(5px);
     text-align:center;
     border:1px solid rgba(255,255,255,0.1);
 }
 
 .fima-box h4, .dolar-box h4 {
-    font-size:13px;
+    font-size:12px;
     color:#fff;
 }
 
 .fima-box p, .dolar-box p {
-    font-size:11px;
+    font-size:10px;
     opacity:0.9;
     color:#fff;
     margin-top:2px;
@@ -472,10 +378,10 @@ body{
 .btn-fima, .btn-dolar {
     background:#fff;
     color:#0D47A1;
-    padding:5px 22px;
+    padding:5px 20px;
     border-radius:18px;
     font-weight:bold;
-    font-size:12px;
+    font-size:11px;
     cursor:pointer;
     border:none;
     margin-top:6px;
@@ -487,412 +393,167 @@ body{
     box-shadow:0 3px 12px rgba(0,0,0,0.2);
 }
 
-/* ===== TARJETAS ===== */
-.page-tarjetas {
-    min-height:100vh;
-    padding:0 0 80px;
+/* Secciones */
+.nueva-seccion {
+    margin-top:20px;
 }
 
-/* Header azul */
-.tarjetas-header {
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
-    color:#fff;
-    padding:16px 18px 20px;
-}
-
-.tarjetas-header .top-tarjetas {
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.tarjetas-header .back-btn {
-    font-size:22px;
-    color:#fff;
-    cursor:pointer;
-    padding:5px;
-}
-
-.tarjetas-header h1 {
-    font-size:20px;
-    color:#fff;
-    flex:1;
-}
-
-/* Sección azul - tarjetas y botones */
-.seccion-azul {
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
-    padding:0 18px 20px;
-}
-
-/* SLIDER DE TARJETAS */
-.tarjetas-slider-container {
-    overflow:hidden;
-    position:relative;
-    margin-bottom:12px;
-}
-
-.tarjetas-slider-track {
-    display:flex;
-    transition:transform 0.5s ease;
-}
-
-.tarjeta-slide {
-    min-width:100%;
-    padding:0 2px;
-}
-
-/* Tarjeta VISA - Blanca - más ancha */
-.tarjeta-item.visa {
-    background:#fff;
-    border-radius:16px;
-    padding:24px 20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.25);
-    min-height:170px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    width:100%;
-}
-
-.tarjeta-item.visa .tipo {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:8px;
-}
-
-.tarjeta-item.visa .tipo h3 {
-    font-size:18px;
-    color:#333;
-}
-
-.tarjeta-item.visa .tipo .mostrar-datos {
-    color:#1565C0;
-    font-weight:bold;
-    font-size:11px;
-    cursor:pointer;
-}
-
-.tarjeta-item.visa .tipo .mostrar-datos:hover {
-    text-decoration:underline;
-}
-
-.tarjeta-item.visa .numero {
-    font-size:20px;
-    color:#333;
-    letter-spacing:3px;
-    margin:10px 0;
-}
-
-.tarjeta-item.visa .datos {
-    display:flex;
-    gap:20px;
-    font-size:12px;
-    color:#333;
-    margin-top:5px;
-}
-
-.tarjeta-item.visa .datos div {
-    flex:1;
-}
-
-.tarjeta-item.visa .datos div span {
-    display:block;
-    font-size:9px;
-    color:#999;
-    margin-bottom:3px;
-}
-
-.tarjeta-item.visa .datos .codigo {
-    color:#333;
-}
-
-/* Tarjeta Débito - Salmón - más ancha */
-.tarjeta-item.debito {
-    background:linear-gradient(135deg, #f5a623, #e88a1e);
-    border-radius:16px;
-    padding:24px 20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.25);
-    min-height:170px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    width:100%;
-}
-
-.tarjeta-item.debito .tipo {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:8px;
-}
-
-.tarjeta-item.debito .tipo h3 {
-    font-size:18px;
-    color:#fff;
-}
-
-.tarjeta-item.debito .tipo .mostrar-datos {
-    color:#fff;
-    font-weight:bold;
-    font-size:11px;
-    cursor:pointer;
-    opacity:0.8;
-}
-
-.tarjeta-item.debito .tipo .mostrar-datos:hover {
-    opacity:1;
-    text-decoration:underline;
-}
-
-.tarjeta-item.debito .numero {
-    font-size:20px;
-    color:#fff;
-    letter-spacing:3px;
-    margin:10px 0;
-}
-
-.tarjeta-item.debito .datos {
-    display:flex;
-    gap:20px;
-    font-size:12px;
-    color:#fff;
-    margin-top:5px;
-}
-
-.tarjeta-item.debito .datos div {
-    flex:1;
-}
-
-.tarjeta-item.debito .datos div span {
-    display:block;
-    font-size:9px;
-    color:rgba(255,255,255,0.6);
-    margin-bottom:3px;
-}
-
-.tarjeta-item.debito .datos .codigo {
-    color:#fff;
-}
-
-/* Indicadores del slider de tarjetas */
-.tarjetas-indicators {
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    margin:6px 0 0;
-}
-
-.tarjetas-indicators span {
-    width:10px;
-    height:10px;
-    background:rgba(255,255,255,0.3);
-    border-radius:20px;
-    transition:all 0.3s;
-    cursor:pointer;
-}
-
-.tarjetas-indicators span.active {
-    width:35px;
-    background:#fff;
-}
-
-/* Acciones tarjeta - botones más pequeños */
-.acciones-tarjeta {
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-top:14px;
-}
-
-.acciones-tarjeta .btn-accion {
-    background:rgba(255,255,255,0.15);
-    color:#fff;
-    padding:8px 4px;
-    border-radius:10px;
-    text-align:center;
-    font-size:10px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:all 0.3s;
-    border:1px solid rgba(255,255,255,0.15);
-}
-
-.acciones-tarjeta .btn-accion:hover {
-    background:rgba(255,255,255,0.3);
-    transform:scale(1.02);
-}
-
-.acciones-tarjeta .btn-accion i {
-    display:block;
-    font-size:16px;
-    margin-bottom:3px;
-}
-
-/* Sección blanca - total e información */
-.seccion-blanca {
-    background:#f5f7fa;
-    padding:18px;
-}
-
-/* Total movimientos */
-.movimientos-total {
-    background:#fff;
-    border-radius:14px;
-    padding:16px;
-    margin-bottom:16px;
-    text-align:center;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-}
-
-.movimientos-total p {
-    font-size:13px;
-    color:#666;
-}
-
-.movimientos-total .total {
-    font-size:22px;
-    font-weight:bold;
-    color:#333;
-    margin-top:5px;
-}
-
-/* Información tarjeta */
-.info-tarjeta {
-    background:#fff;
-    border-radius:14px;
-    padding:16px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-}
-
-.info-tarjeta h3 {
-    font-size:16px;
+.nueva-seccion h2 {
+    font-size:15px;
     color:#333;
     margin-bottom:12px;
 }
 
-.info-tarjeta .info-item {
-    display:flex;
-    justify-content:space-between;
-    padding:10px 0;
-    border-bottom:1px solid #eee;
+.nueva-seccion .item {
+    background:#fff;
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    border-left:3px solid #1565C0;
+    transition:all 0.3s;
+    cursor:pointer;
 }
 
-.info-tarjeta .info-item:last-child {
-    border-bottom:none;
+.nueva-seccion .item:hover {
+    transform:translateX(3px);
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
 }
 
-.info-tarjeta .info-item span:first-child {
-    color:#666;
-    font-size:13px;
-}
-
-.info-tarjeta .info-item span:last-child {
-    color:#333;
-    font-weight:bold;
+.nueva-seccion .item h3 {
     font-size:14px;
-}
-
-/* ===== FOOTER ===== */
-.footer{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    background:#fff;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    padding:10px 0 8px;
-    border-top:1px solid #ddd;
-    z-index:1000;
-    max-width:390px;
-    margin:0 auto;
-}
-
-.item{
-    text-align:center;
-    color:#666;
-    font-size:11px;
-    cursor:pointer;
-    transition:all 0.3s;
-    flex:1;
-}
-
-.item i{
-    display:block;
-    font-size:20px;
+    color:#333;
     margin-bottom:3px;
 }
 
-.item:hover{
+.nueva-seccion .item p {
+    font-size:12px;
+    color:#666;
+    margin-bottom:5px;
+}
+
+.nueva-seccion .item .btn-link {
     color:#1565C0;
+    font-weight:bold;
+    font-size:12px;
+    cursor:pointer;
 }
 
-.item.active{
+.nueva-seccion .item .btn-link:hover {
+    text-decoration:underline;
+}
+
+/* Servicios */
+.servicios-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin:12px 0;
+}
+
+.servicio-card {
+    background:#f5f7fa;
+    border-radius:10px;
+    padding:12px 8px;
+    text-align:center;
+    transition:all 0.3s;
+    cursor:pointer;
+}
+
+.servicio-card:hover {
+    background:#e8edf5;
+    transform:translateY(-2px);
+}
+
+.servicio-card i {
+    font-size:20px;
     color:#1565C0;
+    margin-bottom:5px;
 }
 
-.footer-m {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    flex:0 0 auto;
-    padding:0 5px;
+.servicio-card p {
+    font-size:10px;
+    color:#555;
+    font-weight:500;
 }
 
-.footer-m .m-icon {
-    width:32px;
-    height:32px;
-    border-radius:50%;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
-}
-
-.footer-m .m-icon img {
+.btn-servicios {
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    color:#fff;
+    padding:10px;
+    border-radius:25px;
+    text-align:center;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.3s;
+    font-size:12px;
     width:100%;
-    height:100%;
-    object-fit:cover;
+}
+
+.btn-servicios:hover {
+    transform:scale(1.02);
+    box-shadow:0 3px 12px rgba(21,101,192,0.3);
+}
+
+/* Recomendaciones */
+.recomendaciones {
+    margin-top:20px;
+    margin-bottom:15px;
+}
+
+.recomendaciones h2 {
+    font-size:15px;
+    color:#333;
+    margin-bottom:12px;
+}
+
+.recomendacion-item {
+    background:#fff;
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    border-left:3px solid #1565C0;
+    transition:all 0.3s;
+    cursor:pointer;
+}
+
+.recomendacion-item:hover {
+    transform:translateX(3px);
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.recomendacion-item p {
+    font-size:12px;
+    color:#333;
+    margin-bottom:8px;
+}
+
+.recomendacion-item .btn-cerrar {
+    color:#1565C0;
+    font-weight:bold;
+    font-size:12px;
+    cursor:pointer;
+    display:inline-block;
+}
+
+.recomendacion-item .btn-cerrar:hover {
+    text-decoration:underline;
 }
 
 /* Responsive */
-@media(max-width:420px){
-    body{
-        padding-bottom:65px;
-        background:#fff;
-    }
+@media(max-width:350px){
     .phone{
-        max-width:100%;
-        box-shadow:none;
+        width:100%;
+        margin:0;
         border-radius:0;
     }
     .footer{
-        max-width:100%;
-        padding:10px 0 8px;
-    }
-}
-
-@media(min-width:421px){
-    .phone{
-        margin:20px auto;
-        border-radius:25px;
-        min-height:auto;
-        box-shadow:0 10px 30px rgba(0,0,0,.25);
+        width:100%;
+        border-radius:0;
     }
     body{
-        padding-bottom:70px;
-        background:#ececec;
-        align-items:center;
-    }
-    .footer{
-        border-radius:0 0 25px 25px;
-        max-width:390px;
+        padding-bottom:0;
     }
 }
 </style>
@@ -902,18 +563,12 @@ body{
 
 <div class="phone">
 
-<!-- ===== PÁGINA HOME ===== -->
-<div class="page active" id="page-home">
-
-<div class="header">
+<div class="header" id="header">
 
 <div class="top">
-
-<!-- LOGO CON IMAGEN -->
 <div class="logo">
     <img src="logo.jpg" alt="Logo">
 </div>
-
 <div class="icons">
 <i class="fa-regular fa-eye" id="toggleBalance" style="cursor:pointer;"></i>
 <i class="fa-regular fa-circle-question"></i>
@@ -1058,173 +713,23 @@ body{
 
 </div>
 
-</div><!-- end page-home -->
-
-<!-- ===== PÁGINA TARJETAS ===== -->
-<div class="page" id="page-tarjetas">
-
-<!-- Header azul -->
-<div class="tarjetas-header">
-    <div class="top-tarjetas">
-        <span class="back-btn" onclick="showPage('home')">
-            <i class="fa-solid fa-arrow-left"></i>
-        </span>
-        <h1>Tarjetas</h1>
-    </div>
-</div>
-
-<!-- Sección azul: tarjetas + botones -->
-<div class="seccion-azul">
-
-    <!-- SLIDER DE TARJETAS -->
-    <div class="tarjetas-slider-container">
-        <div class="tarjetas-slider-track" id="tarjetasSlideTrack">
-            
-            <!-- Slide 1: VISA -->
-            <div class="tarjeta-slide active" data-slide="0">
-                <div class="tarjeta-item visa">
-                    <div class="tipo">
-                        <h3>VISA</h3>
-                        <span class="mostrar-datos">Mostrar datos</span>
-                    </div>
-                    <div class="numero">**** **** **** 3501</div>
-                    <div class="datos">
-                        <div>
-                            <span>Fecha de vencimiento</span>
-                            12/28
-                        </div>
-                        <div>
-                            <span>Código de seguridad</span>
-                            <span class="codigo">***</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2: Débito -->
-            <div class="tarjeta-slide" data-slide="1">
-                <div class="tarjeta-item debito">
-                    <div class="tipo">
-                        <h3>Débito</h3>
-                        <span class="mostrar-datos">Mostrar datos</span>
-                    </div>
-                    <div class="numero">**** **** **** 3501</div>
-                    <div class="datos">
-                        <div>
-                            <span>Fecha de vencimiento</span>
-                            12/28
-                        </div>
-                        <div>
-                            <span>Código de seguridad</span>
-                            <span class="codigo">***</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Indicadores del slider de tarjetas -->
-    <div class="tarjetas-indicators" id="tarjetasIndicators">
-        <span class="active" data-index="0"></span>
-        <span data-index="1"></span>
-    </div>
-
-    <!-- Acciones tarjeta - botones más pequeños -->
-    <div class="acciones-tarjeta">
-        <div class="btn-accion" onclick="alert('Blanqueando PIN...')">
-            <i class="fa-solid fa-key"></i>
-            Blanquear PIN
-        </div>
-        <div class="btn-accion" onclick="alert('Pausando tarjeta...')">
-            <i class="fa-solid fa-pause"></i>
-            Pausar tarjeta
-        </div>
-        <div class="btn-accion" onclick="alert('Denunciando tarjeta...')">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            Denunciar tarjeta
-        </div>
-        <div class="btn-accion" onclick="alert('Más gestiones...')">
-            <i class="fa-solid fa-ellipsis"></i>
-            Más gestiones
-        </div>
-    </div>
-
-</div>
-
-<!-- Sección blanca: total + información -->
-<div class="seccion-blanca">
-
-    <!-- Total movimientos -->
-    <div class="movimientos-total">
-        <p>El total de movimientos es de</p>
-        <div class="total">$ 7.081.945,69 y USD 0</div>
-    </div>
-
-    <!-- Información tarjeta -->
-    <div class="info-tarjeta">
-        <h3>Información de tu tarjeta</h3>
-        <div class="info-item">
-            <span>Límite de compra</span>
-            <span>$ 7.200.000</span>
-        </div>
-        <div class="info-item">
-            <span>Límite de extracción</span>
-            <span>$ 400.000</span>
-        </div>
-    </div>
-
-</div>
-
-</div><!-- end page-tarjetas -->
-
-<!-- ===== FOOTER ===== -->
+<!-- Footer -->
 <div class="footer">
-    <div class="item active" data-page="home" onclick="showPage('home')">
-        <i class="fa-solid fa-house"></i>Inicio
-    </div>
-    <div class="item" data-page="tarjetas" onclick="showPage('tarjetas')">
-        <i class="fa-regular fa-credit-card"></i>Tarjetas
-    </div>
-    <div class="footer-m">
-        <div class="m-icon">
-            <img src="m.jpeg" alt="M">
-        </div>
-    </div>
-    <div class="item" data-page="transferencias" onclick="showPage('transferencias')">
-        <i class="fa-solid fa-arrow-right-arrow-left"></i>Transferencia...
-    </div>
-    <div class="item" data-page="mas" onclick="showPage('mas')">
-        <i class="fa-solid fa-bars"></i>Más
+<div class="item active"><i class="fa-solid fa-house"></i>Inicio</div>
+<div class="item"><i class="fa-regular fa-credit-card"></i>Tarjetas</div>
+<div class="footer-m">
+    <div class="m-icon">
+        <img src="m.jpeg" alt="M">
     </div>
 </div>
+<div class="item"><i class="fa-solid fa-arrow-right-arrow-left"></i>Transferencia...</div>
+<div class="item"><i class="fa-solid fa-bars"></i>Más</div>
+</div>
 
-</div><!-- end phone -->
+</div>
 
 <script>
-// ===== NAVEGACIÓN ENTRE PÁGINAS =====
-function showPage(page) {
-    document.querySelectorAll('.page').forEach(p => {
-        p.classList.remove('active');
-    });
-    
-    const targetPage = document.getElementById('page-' + page);
-    if (targetPage) {
-        targetPage.classList.add('active');
-    }
-    
-    document.querySelectorAll('.footer .item').forEach(item => {
-        item.classList.remove('active');
-        if (item.dataset.page === page) {
-            item.classList.add('active');
-        }
-    });
-    
-    window.scrollTo(0, 0);
-}
-
-// ===== SLIDER HOME =====
+// Slider
 const slides = document.querySelectorAll('.slide');
 const indicators = document.querySelectorAll('.slider-indicators span');
 const slideTrack = document.getElementById('slideTrack');
@@ -1243,6 +748,7 @@ indicators.forEach(ind => {
     });
 });
 
+// Touch
 let touchStartX = 0;
 document.querySelector('.slide-container').addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
@@ -1256,43 +762,7 @@ document.querySelector('.slide-container').addEventListener('touchend', (e) => {
     }
 }, {passive: true});
 
-// ===== SLIDER TARJETAS =====
-const tarjetasSlides = document.querySelectorAll('.tarjeta-slide');
-const tarjetasIndicators = document.querySelectorAll('.tarjetas-indicators span');
-const tarjetasSlideTrack = document.getElementById('tarjetasSlideTrack');
-let currentTarjetaSlide = 0;
-
-function goToTarjetaSlide(index) {
-    tarjetasSlides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-    tarjetasIndicators.forEach((ind, i) => ind.classList.toggle('active', i === index));
-    tarjetasSlideTrack.style.transform = `translateX(-${index * 100}%)`;
-    currentTarjetaSlide = index;
-}
-
-tarjetasIndicators.forEach(ind => {
-    ind.addEventListener('click', function() {
-        goToTarjetaSlide(parseInt(this.dataset.index));
-    });
-});
-
-// Touch para tarjetas
-let touchStartXTarjetas = 0;
-document.querySelector('.tarjetas-slider-container').addEventListener('touchstart', (e) => {
-    touchStartXTarjetas = e.changedTouches[0].screenX;
-}, {passive: true});
-
-document.querySelector('.tarjetas-slider-container').addEventListener('touchend', (e) => {
-    const diff = touchStartXTarjetas - e.changedTouches[0].screenX;
-    if (Math.abs(diff) > 50) {
-        if (diff > 0 && currentTarjetaSlide < tarjetasSlides.length - 1) {
-            goToTarjetaSlide(currentTarjetaSlide + 1);
-        } else if (diff < 0 && currentTarjetaSlide > 0) {
-            goToTarjetaSlide(currentTarjetaSlide - 1);
-        }
-    }
-}, {passive: true});
-
-// ===== OJITO =====
+// Ojito
 let balanceVisible = true;
 const toggleBtn = document.getElementById('toggleBalance');
 const balances = [
