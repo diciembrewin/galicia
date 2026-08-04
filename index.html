@@ -235,6 +235,7 @@ body{
     font-size:16px;
 }
 
+/* ACCESOS DIRECTOS - 5 ITEMS */
 .cards{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -1010,11 +1011,39 @@ body{
 <i class="fa-solid fa-chevron-right"></i>
 </div>
 
+<!-- 5 ACCESOS DIRECTOS -->
 <div class="cards">
-<div class="card big"><i class="fa-solid fa-file-invoice-dollar"></i><h3>Pagá o agregá tus servicios</h3></div>
-<div class="card"><i class="fa-solid fa-building-columns"></i><h3>Agregar / Retirar</h3></div>
-<div class="card"><i class="fa-solid fa-money-bill-transfer"></i><h3>Comprar / Vender</h3></div>
-<div class="card"><i class="fa-solid fa-shield-halved"></i><h3>Generar Token</h3></div>
+    <!-- 1. Pedí tu préstamo -->
+    <div class="card" onclick="alert('Solicitando préstamo con tasa del 40%...')">
+        <i class="fa-solid fa-hand-holding-dollar"></i>
+        <h3>Pedí tu préstamo</h3>
+        <p>Tasa 40%</p>
+    </div>
+
+    <!-- 2. Generar Token -->
+    <div class="card" onclick="alert('Generando Token...')">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Generar Token</h3>
+    </div>
+
+    <!-- 3. Agregar / Retirar -->
+    <div class="card" onclick="alert('Agregar / Retirar dinero...')">
+        <i class="fa-solid fa-building-columns"></i>
+        <h3>Agregar / Retirar</h3>
+    </div>
+
+    <!-- 4. Comprar / Vender -->
+    <div class="card" onclick="alert('Comprar / Vender...')">
+        <i class="fa-solid fa-money-bill-transfer"></i>
+        <h3>Comprar / Vender</h3>
+    </div>
+
+    <!-- 5. Inversiones (ocupa 2 columnas) -->
+    <div class="card big" style="grid-column: span 2;" onclick="alert('Ver inversiones...')">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Inversiones</h3>
+        <p>Hacé rendir tu dinero</p>
+    </div>
 </div>
 
 <!-- Beneficios -->
