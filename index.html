@@ -484,107 +484,175 @@ body{
     box-shadow:0 3px 12px rgba(0,0,0,0.2);
 }
 
-/* ===== TARJETAS ===== */
+/* ===== TARJETAS - FONDO AZUL ===== */
 .page-tarjetas {
-    background:#f5f7fa;
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
     min-height:100vh;
     padding:0 0 80px;
 }
 
-/* Header azul de tarjetas */
-.tarjetas-header-azul {
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
+/* Header de tarjetas */
+.tarjetas-header {
     padding:16px 18px 20px;
-    margin-bottom:0;
 }
 
-.tarjetas-header-azul .top-tarjetas {
+.tarjetas-header .top-tarjetas {
     display:flex;
     align-items:center;
     gap:15px;
 }
 
-.tarjetas-header-azul .back-btn {
+.tarjetas-header .back-btn {
     font-size:22px;
     color:#fff;
     cursor:pointer;
     padding:5px;
 }
 
-.tarjetas-header-azul h1 {
+.tarjetas-header h1 {
     font-size:20px;
     color:#fff;
     flex:1;
 }
 
-/* Contenido de tarjetas - fondo gris */
+/* Contenido de tarjetas */
 .tarjetas-content {
-    padding:16px 18px;
-    background:#f5f7fa;
+    padding:0 18px 20px;
 }
 
-.tarjeta-item {
+/* Grid de tarjetas - una al lado de la otra */
+.tarjetas-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+/* Tarjeta VISA - Blanca */
+.tarjeta-item.visa {
     background:#fff;
     border-radius:16px;
-    padding:18px;
-    margin-bottom:16px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    padding:16px;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
 }
 
-.tarjeta-item .tipo {
+.tarjeta-item.visa .tipo {
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:5px;
 }
 
-.tarjeta-item .tipo h3 {
-    font-size:18px;
+.tarjeta-item.visa .tipo h3 {
+    font-size:16px;
     color:#333;
 }
 
-.tarjeta-item .tipo .mostrar-datos {
+.tarjeta-item.visa .tipo .mostrar-datos {
     color:#1565C0;
     font-weight:bold;
-    font-size:12px;
+    font-size:10px;
     cursor:pointer;
 }
 
-.tarjeta-item .tipo .mostrar-datos:hover {
+.tarjeta-item.visa .tipo .mostrar-datos:hover {
     text-decoration:underline;
 }
 
-.tarjeta-item .numero {
-    font-size:20px;
+.tarjeta-item.visa .numero {
+    font-size:16px;
     color:#333;
     letter-spacing:2px;
     margin:5px 0;
 }
 
-.tarjeta-item .datos {
+.tarjeta-item.visa .datos {
     display:flex;
-    gap:20px;
-    font-size:12px;
+    gap:10px;
+    font-size:10px;
     color:#333;
     margin-top:3px;
 }
 
-.tarjeta-item .datos div {
+.tarjeta-item.visa .datos div {
     flex:1;
 }
 
-.tarjeta-item .datos div span {
+.tarjeta-item.visa .datos div span {
     display:block;
-    font-size:10px;
+    font-size:8px;
     color:#999;
     margin-bottom:2px;
 }
 
-.tarjeta-item .datos .codigo {
+.tarjeta-item.visa .datos .codigo {
     color:#333;
 }
 
-/* Acciones tarjeta - botones más pequeños */
+/* Tarjeta Débito - Salmón */
+.tarjeta-item.debito {
+    background:linear-gradient(135deg, #f5a623, #e88a1e);
+    border-radius:16px;
+    padding:16px;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+
+.tarjeta-item.debito .tipo {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:5px;
+}
+
+.tarjeta-item.debito .tipo h3 {
+    font-size:16px;
+    color:#fff;
+}
+
+.tarjeta-item.debito .tipo .mostrar-datos {
+    color:#fff;
+    font-weight:bold;
+    font-size:10px;
+    cursor:pointer;
+    opacity:0.8;
+}
+
+.tarjeta-item.debito .tipo .mostrar-datos:hover {
+    opacity:1;
+    text-decoration:underline;
+}
+
+.tarjeta-item.debito .numero {
+    font-size:16px;
+    color:#fff;
+    letter-spacing:2px;
+    margin:5px 0;
+}
+
+.tarjeta-item.debito .datos {
+    display:flex;
+    gap:10px;
+    font-size:10px;
+    color:#fff;
+    margin-top:3px;
+}
+
+.tarjeta-item.debito .datos div {
+    flex:1;
+}
+
+.tarjeta-item.debito .datos div span {
+    display:block;
+    font-size:8px;
+    color:rgba(255,255,255,0.6);
+    margin-bottom:2px;
+}
+
+.tarjeta-item.debito .datos .codigo {
+    color:#fff;
+}
+
+/* Acciones tarjeta - botones pequeños */
 .acciones-tarjeta {
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -593,8 +661,8 @@ body{
 }
 
 .acciones-tarjeta .btn-accion {
-    background:#f0f4ff;
-    color:#1565C0;
+    background:rgba(255,255,255,0.15);
+    color:#fff;
     padding:10px 6px;
     border-radius:12px;
     text-align:center;
@@ -602,12 +670,11 @@ body{
     font-weight:bold;
     cursor:pointer;
     transition:all 0.3s;
-    border:1px solid #e0e8f5;
+    border:1px solid rgba(255,255,255,0.2);
 }
 
 .acciones-tarjeta .btn-accion:hover {
-    background:#1565C0;
-    color:#fff;
+    background:rgba(255,255,255,0.3);
     transform:scale(1.02);
 }
 
@@ -618,37 +685,37 @@ body{
 }
 
 .movimientos-total {
-    background:#fff;
+    background:rgba(255,255,255,0.1);
     border-radius:16px;
     padding:16px;
     margin:16px 0;
     text-align:center;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    border:1px solid rgba(255,255,255,0.1);
 }
 
 .movimientos-total p {
     font-size:13px;
-    color:#666;
+    color:rgba(255,255,255,0.8);
 }
 
 .movimientos-total .total {
     font-size:22px;
     font-weight:bold;
-    color:#333;
+    color:#fff;
     margin-top:5px;
 }
 
 .info-tarjeta {
-    background:#fff;
+    background:rgba(255,255,255,0.1);
     border-radius:16px;
     padding:16px;
     margin:16px 0;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    border:1px solid rgba(255,255,255,0.1);
 }
 
 .info-tarjeta h3 {
     font-size:16px;
-    color:#333;
+    color:#fff;
     margin-bottom:12px;
 }
 
@@ -656,7 +723,7 @@ body{
     display:flex;
     justify-content:space-between;
     padding:10px 0;
-    border-bottom:1px solid #eee;
+    border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 .info-tarjeta .info-item:last-child {
@@ -664,12 +731,12 @@ body{
 }
 
 .info-tarjeta .info-item span:first-child {
-    color:#666;
+    color:rgba(255,255,255,0.7);
     font-size:13px;
 }
 
 .info-tarjeta .info-item span:last-child {
-    color:#333;
+    color:#fff;
     font-weight:bold;
     font-size:14px;
 }
@@ -937,8 +1004,8 @@ body{
 
 <div class="page-tarjetas">
 
-<!-- Header azul -->
-<div class="tarjetas-header-azul">
+<!-- Header -->
+<div class="tarjetas-header">
     <div class="top-tarjetas">
         <span class="back-btn" onclick="showPage('home')">
             <i class="fa-solid fa-arrow-left"></i>
@@ -947,24 +1014,46 @@ body{
     </div>
 </div>
 
-<!-- Contenido gris -->
+<!-- Contenido -->
 <div class="tarjetas-content">
 
-<!-- Tarjeta VISA -->
-<div class="tarjeta-item">
-    <div class="tipo">
-        <h3>VISA</h3>
-        <span class="mostrar-datos">Mostrar datos</span>
-    </div>
-    <div class="numero">**** **** **** 3501</div>
-    <div class="datos">
-        <div>
-            <span>Fecha de vencimiento</span>
-            12/28
+<!-- Grid de tarjetas: VISA y Débito una al lado de la otra -->
+<div class="tarjetas-grid">
+    <!-- Tarjeta VISA - Blanca -->
+    <div class="tarjeta-item visa">
+        <div class="tipo">
+            <h3>VISA</h3>
+            <span class="mostrar-datos">Mostrar datos</span>
         </div>
-        <div>
-            <span>Código de seguridad</span>
-            <span class="codigo">***</span>
+        <div class="numero">**** **** **** 3501</div>
+        <div class="datos">
+            <div>
+                <span>Fecha de vencimiento</span>
+                12/28
+            </div>
+            <div>
+                <span>Código de seguridad</span>
+                <span class="codigo">***</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta Débito - Salmón -->
+    <div class="tarjeta-item debito">
+        <div class="tipo">
+            <h3>Débito</h3>
+            <span class="mostrar-datos">Mostrar datos</span>
+        </div>
+        <div class="numero">**** **** **** 3501</div>
+        <div class="datos">
+            <div>
+                <span>Fecha de vencimiento</span>
+                12/28
+            </div>
+            <div>
+                <span>Código de seguridad</span>
+                <span class="codigo">***</span>
+            </div>
         </div>
     </div>
 </div>
@@ -1008,7 +1097,7 @@ body{
     </div>
 </div>
 
-</div><!-- end tarjetas-content -->
+</div>
 
 </div>
 
