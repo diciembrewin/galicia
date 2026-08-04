@@ -58,13 +58,13 @@ body{
     min-height:360px;
 }
 
-/* NUBE ARRIBA DERECHA - con transición para movimiento */
+/* NUBE ARRIBA DERECHA - más pequeña */
 .nube-arriba {
     position:absolute;
-    top:-60px;
-    right:-50px;
-    width:350px;
-    height:220px;
+    top:-40px;
+    right:-30px;
+    width:250px;
+    height:160px;
     background:#06285d;
     opacity:0.5;
     border-radius:60% 40% 70% 30% / 40% 50% 50% 60%;
@@ -76,47 +76,47 @@ body{
 .nube-arriba::before {
     content:"";
     position:absolute;
-    width:150px;
-    height:150px;
+    width:100px;
+    height:100px;
     background:#06285d;
     border-radius:50%;
-    left:-40px;
-    top:30px;
+    left:-30px;
+    top:20px;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nube-arriba::after {
     content:"";
     position:absolute;
-    width:120px;
-    height:120px;
+    width:80px;
+    height:80px;
     background:#06285d;
     border-radius:50%;
-    right:10px;
-    bottom:-20px;
+    right:5px;
+    bottom:-15px;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Movimiento de la nube de arriba al cambiar de slide */
 .slide.active .nube-arriba {
-    transform: rotate(-5deg) translateX(-30px) translateY(15px) scale(1.05);
+    transform: rotate(-5deg) translateX(-20px) translateY(10px) scale(1.05);
 }
 
 .slide.active .nube-arriba::before {
-    transform: translateX(-20px) translateY(10px);
+    transform: translateX(-15px) translateY(8px);
 }
 
 .slide.active .nube-arriba::after {
-    transform: translateX(15px) translateY(-10px);
+    transform: translateX(10px) translateY(-8px);
 }
 
-/* NUBE ABAJO IZQUIERDA - con transición para movimiento */
+/* NUBE ABAJO IZQUIERDA - más pequeña */
 .nube-abajo {
     position:absolute;
-    left:-80px;
-    bottom:-80px;
-    width:400px;
-    height:280px;
+    left:-50px;
+    bottom:-50px;
+    width:280px;
+    height:190px;
     background:#06285d;
     opacity:0.5;
     border-radius:50% 50% 40% 60% / 60% 40% 60% 40%;
@@ -127,38 +127,38 @@ body{
 .nube-abajo::before {
     content:"";
     position:absolute;
-    width:140px;
-    height:140px;
+    width:90px;
+    height:90px;
     border-radius:50%;
     background:#06285d;
-    top:-70px;
-    left:30px;
+    top:-45px;
+    left:20px;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nube-abajo::after {
     content:"";
     position:absolute;
-    width:160px;
-    height:160px;
+    width:110px;
+    height:110px;
     border-radius:50%;
     background:#06285d;
-    right:-10px;
-    bottom:20px;
+    right:-5px;
+    bottom:15px;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Movimiento de la nube de abajo al cambiar de slide */
 .slide.active .nube-abajo {
-    transform: translateX(35px) translateY(-20px) scale(1.05);
+    transform: translateX(25px) translateY(-15px) scale(1.05);
 }
 
 .slide.active .nube-abajo::before {
-    transform: translateX(25px) translateY(-15px);
+    transform: translateX(18px) translateY(-10px);
 }
 
 .slide.active .nube-abajo::after {
-    transform: translateX(-20px) translateY(15px);
+    transform: translateX(-15px) translateY(10px);
 }
 
 .top{
@@ -1041,7 +1041,6 @@ body{
 
 <div class="header">
 
-    <!-- Las nubes se mueven SOLO cuando se desliza el slider -->
     <div class="nube-arriba"></div>
     <div class="nube-abajo"></div>
 
