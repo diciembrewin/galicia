@@ -58,13 +58,13 @@ body{
     min-height:360px;
 }
 
-/* NUBE ARRIBA DERECHA - forma redondeada completa */
+/* NUBE ARRIBA DERECHA - en la esquina */
 .nube-arriba {
     position:absolute;
-    top:-30px;
-    right:-40px;
-    width:420px;
-    height:280px;
+    top:-15px;
+    right:-15px;
+    width:350px;
+    height:230px;
     opacity:0.5;
     z-index:0;
 }
@@ -74,13 +74,13 @@ body{
     height:100%;
 }
 
-/* NUBE ABAJO IZQUIERDA - forma redondeada completa */
+/* NUBE ABAJO IZQUIERDA - una sola nube limpia */
 .nube-abajo {
     position:absolute;
-    bottom:0px;
-    left:-50px;
-    width:380px;
-    height:250px;
+    bottom:5px;
+    left:-40px;
+    width:300px;
+    height:190px;
     opacity:0.4;
     z-index:0;
 }
@@ -970,23 +970,21 @@ body{
 
 <div class="header">
 
-    <!-- NUBE ARRIBA DERECHA - forma redondeada completa -->
+    <!-- NUBE ARRIBA DERECHA - en la esquina -->
     <div class="nube-arriba">
-        <svg viewBox="0 0 420 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M370 170 C410 215 425 180 415 140 C445 100 410 70 370 85 C345 45 295 30 255 60 C215 25 155 15 120 50 C75 22 25 35 8 70 C-15 70 -25 95 -12 118 C-25 145 -5 172 25 160 L370 160 C405 148 410 115 370 170Z" 
+        <svg viewBox="0 0 350 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M310 140 C340 175 355 145 345 115 C365 85 335 65 305 75 C285 40 245 28 215 52 C185 22 138 15 108 45 C72 22 30 32 15 62 C-5 62 -15 85 -2 105 C-15 128 5 150 30 140 L310 140 C340 130 345 105 310 140Z" 
                   fill="#032B5C" opacity="0.7"/>
-            <path d="M340 140 C375 180 390 150 380 118 C405 85 375 62 340 75 C320 42 278 30 248 55 C215 28 168 20 142 48 C108 28 72 38 58 65 C42 58 22 62 18 82 C8 82 2 98 10 115 C2 132 18 148 35 142 L340 142 C370 132 375 108 340 140Z" 
+            <path d="M285 115 C310 145 325 120 318 95 C335 70 310 55 285 62 C268 35 235 25 210 45 C185 22 148 18 125 42 C95 28 62 35 50 58 C35 52 18 58 15 75 C5 75 0 90 8 105 C0 118 15 132 30 128 L285 128 C310 120 312 100 285 115Z" 
                   fill="#032B5C" opacity="0.35"/>
         </svg>
     </div>
 
-    <!-- NUBE ABAJO IZQUIERDA -->
+    <!-- NUBE ABAJO IZQUIERDA - una sola nube limpia -->
     <div class="nube-abajo">
-        <svg viewBox="0 0 380 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M68 170 C45 195 22 172 28 148 C15 118 45 95 70 105 C82 78 110 65 135 88 C158 58 200 58 220 88 C250 72 285 80 298 112 C325 112 335 138 320 162 C335 188 305 208 272 195 L68 195 C45 185 45 162 68 170Z" 
+        <svg viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M55 140 C40 158 25 140 28 122 C18 100 40 85 58 92 C68 72 90 62 108 80 C125 60 155 60 170 80 C190 68 218 74 228 95 C245 95 252 112 245 128 C252 145 235 158 215 150 L55 150 C40 143 40 128 55 140Z" 
                   fill="#032B5C" opacity="0.6"/>
-            <path d="M125 140 C108 160 88 142 94 122 C82 100 108 85 128 94 C140 72 165 62 185 80 C205 58 238 58 252 80 C275 68 305 74 315 100 C335 100 342 120 330 140 C342 158 318 172 292 165 L125 165 C108 155 108 138 125 140Z" 
-                  fill="#032B5C" opacity="0.3"/>
         </svg>
     </div>
 
