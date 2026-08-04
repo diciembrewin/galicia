@@ -397,7 +397,6 @@ body{
     cursor:pointer;
 }
 
-/* Indicadores del slider de accesos */
 .slider-accesos-indicators {
     display:flex;
     justify-content:center;
@@ -431,7 +430,6 @@ body{
     margin-bottom:12px;
 }
 
-/* IMAGEN DE BENEFICIOS */
 .img-beneficios {
     width:100%;
     border-radius:14px;
@@ -457,7 +455,6 @@ body{
     margin-bottom:12px;
 }
 
-/* IMAGEN DE RECOMENDACIONES */
 .img-recomen {
     width:100%;
     border-radius:14px;
@@ -858,6 +855,7 @@ body{
     color:#1565C0;
 }
 
+/* SLIDER M EN EL FOOTER */
 .footer-m {
     display:flex;
     flex-direction:column;
@@ -865,24 +863,51 @@ body{
     justify-content:center;
     flex:0 0 auto;
     padding:0 5px;
-}
-
-.footer-m .m-icon {
-    width:40px;
-    height:40px;
+    position:relative;
+    overflow:hidden;
+    width:45px;
+    height:45px;
     border-radius:50%;
     background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
     box-shadow:0 2px 8px rgba(0,0,0,.15);
 }
 
-.footer-m .m-icon img {
+.footer-m-track {
+    display:flex;
+    transition:transform 0.8s ease;
     width:100%;
     height:100%;
+}
+
+.footer-m-track img {
+    width:45px;
+    height:45px;
     object-fit:cover;
+    flex-shrink:0;
+    display:block;
+}
+
+/* Indicadores del slider M (puntos pequeños) */
+.footer-m-indicators {
+    display:flex;
+    justify-content:center;
+    gap:4px;
+    margin-top:4px;
+}
+
+.footer-m-indicators span {
+    width:5px;
+    height:5px;
+    background:#ccc;
+    border-radius:50%;
+    cursor:pointer;
+    transition:all 0.3s;
+}
+
+.footer-m-indicators span.active {
+    background:#1565C0;
+    width:12px;
+    border-radius:4px;
 }
 
 /* Responsive */
@@ -1049,7 +1074,6 @@ body{
         </div>
     </div>
 
-    <!-- Indicadores del slider -->
     <div class="slider-accesos-indicators" id="sliderAccesosIndicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
@@ -1184,16 +1208,18 @@ body{
 
 </div><!-- end page-tarjetas -->
 
-<!-- ===== FOOTER ===== -->
+<!-- ===== FOOTER CON SLIDER M ===== -->
 <div class="footer">
     <div class="item active" data-page="home" onclick="showPage('home')">
         <i class="fa-solid fa-house"></i>Inicio
     </div>
     <div class="item" data-page="tarjetas" onclick="showPage('tarjetas')">
-        <i class="fa-regular fa-credit-card"></i>Tarjetas    </div>
-    <div class="footer-m">
-        <div class="m-icon">
-            <img src="m.jpeg" alt="M">
+        <i class="fa-regular fa-credit-card"></i>Tarjetas
+    </div>
+    <div class="footer-m" id="footerM">
+        <div class="footer-m-track" id="footerMTrack">
+            <img src="m.jpeg" alt="M 1">
+            <img src="m2.jpeg" alt="M 2">
         </div>
     </div>
     <div class="item" data-page="transferencias" onclick="showPage('transferencias')">
@@ -1202,6 +1228,12 @@ body{
     <div class="item" data-page="mas" onclick="showPage('mas')">
         <i class="fa-solid fa-bars"></i>Más
     </div>
+</div>
+
+<!-- Indicadores del slider M (fuera del footer para no interferir) -->
+<div class="footer-m-indicators" id="footerMIndicators" style="position:fixed; bottom:52px; left:50%; transform:translateX(-50%); z-index:1001; max-width:390px; width:100%; display:flex; justify-content:center; gap:4px; background:transparent; pointer-events:none;">
+    <span class="active" data-index="0" style="pointer-events:auto;"></span>
+    <span data-index="1" style="pointer-events:auto;"></span>
 </div>
 
 </div><!-- end phone -->
@@ -1326,7 +1358,6 @@ function nextAccesoSlide() {
     goToAccesoSlide(currentAccesoSlide + 1);
 }
 
-// Iniciar auto-slide cada 5 segundos
 function iniciarSliderAccesos() {
     intervaloAccesos = setInterval(nextAccesoSlide, 5000);
 }
@@ -1336,7 +1367,6 @@ function reiniciarSliderAccesos() {
     iniciarSliderAccesos();
 }
 
-// Click en indicadores del slider de accesos
 sliderAccesosIndicators.forEach(ind => {
     ind.addEventListener('click', function() {
         const index = parseInt(this.dataset.index);
@@ -1345,7 +1375,6 @@ sliderAccesosIndicators.forEach(ind => {
     });
 });
 
-// Pausar al pasar el mouse
 document.querySelector('.slider-accesos').addEventListener('mouseenter', () => {
     clearInterval(intervaloAccesos);
 });
@@ -1354,8 +1383,58 @@ document.querySelector('.slider-accesos').addEventListener('mouseleave', () => {
     iniciarSliderAccesos();
 });
 
-// Iniciar el slider
 iniciarSliderAccesos();
+
+// ===== SLIDER M EN EL FOOTER =====
+const footerMTrack = document.getElementById('footerMTrack');
+const footerMIndicators = document.querySelectorAll('#footerMIndicators span');
+let currentMSlide = 0;
+const totalMSlides = 2;
+let intervaloM;
+
+function goToMSlide(index) {
+    if (index >= totalMSlides) index = 0;
+    if (index < 0) index = totalMSlides - 1;
+    
+    footerMTrack.style.transform = `translateX(-${index * 100}%)`;
+    
+    footerMIndicators.forEach((ind, i) => {
+        ind.classList.toggle('active', i === index);
+    });
+    
+    currentMSlide = index;
+}
+
+function nextMSlide() {
+    goToMSlide(currentMSlide + 1);
+}
+
+function iniciarSliderM() {
+    intervaloM = setInterval(nextMSlide, 4000);
+}
+
+function reiniciarSliderM() {
+    clearInterval(intervaloM);
+    iniciarSliderM();
+}
+
+footerMIndicators.forEach(ind => {
+    ind.addEventListener('click', function() {
+        const index = parseInt(this.dataset.index);
+        goToMSlide(index);
+        reiniciarSliderM();
+    });
+});
+
+document.getElementById('footerM').addEventListener('mouseenter', () => {
+    clearInterval(intervaloM);
+});
+
+document.getElementById('footerM').addEventListener('mouseleave', () => {
+    iniciarSliderM();
+});
+
+iniciarSliderM();
 
 // ===== OJITO =====
 let balanceVisible = true;
