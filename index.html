@@ -58,13 +58,13 @@ body{
     min-height:360px;
 }
 
-/* NUBE ARRIBA DERECHA - UNA SOLA NUBE CON MÁS CURVAS */
+/* NUBE ARRIBA DERECHA - forma redondeada completa */
 .nube-arriba {
     position:absolute;
-    top:-25px;
-    right:-35px;
-    width:400px;
-    height:260px;
+    top:-30px;
+    right:-40px;
+    width:420px;
+    height:280px;
     opacity:0.5;
     z-index:0;
 }
@@ -74,13 +74,13 @@ body{
     height:100%;
 }
 
-/* NUBE ABAJO IZQUIERDA - UNA SOLA NUBE CON MÁS CURVAS */
+/* NUBE ABAJO IZQUIERDA - forma redondeada completa */
 .nube-abajo {
     position:absolute;
     bottom:0px;
-    left:-45px;
-    width:360px;
-    height:230px;
+    left:-50px;
+    width:380px;
+    height:250px;
     opacity:0.4;
     z-index:0;
 }
@@ -568,7 +568,7 @@ body{
     box-shadow:0 3px 12px rgba(0,0,0,0.2);
 }
 
-/* ===== TARJETAS - MISMO FONDO AZUL SIN NUBES ===== */
+/* ===== TARJETAS ===== */
 .page-tarjetas {
     min-height:100vh;
     padding:0 0 80px;
@@ -602,7 +602,6 @@ body{
     flex:1;
 }
 
-/* Sección azul de tarjetas - sin nubes */
 .seccion-azul {
     background:linear-gradient(180deg, #0a1628 0%, #1a2a5e 40%, #1a3a7a 70%, #2a5a9a 100%);
     padding:0 18px 20px;
@@ -971,19 +970,23 @@ body{
 
 <div class="header">
 
-    <!-- NUBE ARRIBA DERECHA - UNA SOLA NUBE CON MÁS CURVAS -->
+    <!-- NUBE ARRIBA DERECHA - forma redondeada completa -->
     <div class="nube-arriba">
-        <svg viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M360 160 C395 200 410 170 400 135 C425 100 395 75 360 90 C335 50 290 38 255 65 C220 30 165 20 135 55 C95 30 50 40 35 70 C15 55 -10 62 -20 90 C-35 90 -42 115 -30 135 C-42 158 -20 180 10 168 L360 168 C390 155 395 125 360 160Z" 
+        <svg viewBox="0 0 420 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M370 170 C410 215 425 180 415 140 C445 100 410 70 370 85 C345 45 295 30 255 60 C215 25 155 15 120 50 C75 22 25 35 8 70 C-15 70 -25 95 -12 118 C-25 145 -5 172 25 160 L370 160 C405 148 410 115 370 170Z" 
                   fill="#032B5C" opacity="0.7"/>
+            <path d="M340 140 C375 180 390 150 380 118 C405 85 375 62 340 75 C320 42 278 30 248 55 C215 28 168 20 142 48 C108 28 72 38 58 65 C42 58 22 62 18 82 C8 82 2 98 10 115 C2 132 18 148 35 142 L340 142 C370 132 375 108 340 140Z" 
+                  fill="#032B5C" opacity="0.35"/>
         </svg>
     </div>
 
-    <!-- NUBE ABAJO IZQUIERDA - UNA SOLA NUBE CON MÁS CURVAS -->
+    <!-- NUBE ABAJO IZQUIERDA -->
     <div class="nube-abajo">
-        <svg viewBox="0 0 360 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M65 165 C45 185 25 165 30 145 C18 118 45 98 68 108 C78 82 105 70 128 92 C150 65 190 65 208 92 C235 78 270 85 282 115 C305 115 315 138 302 160 C315 182 290 200 260 190 L65 190 C45 182 45 162 65 165Z" 
+        <svg viewBox="0 0 380 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M68 170 C45 195 22 172 28 148 C15 118 45 95 70 105 C82 78 110 65 135 88 C158 58 200 58 220 88 C250 72 285 80 298 112 C325 112 335 138 320 162 C335 188 305 208 272 195 L68 195 C45 185 45 162 68 170Z" 
                   fill="#032B5C" opacity="0.6"/>
+            <path d="M125 140 C108 160 88 142 94 122 C82 100 108 85 128 94 C140 72 165 62 185 80 C205 58 238 58 252 80 C275 68 305 74 315 100 C335 100 342 120 330 140 C342 158 318 172 292 165 L125 165 C108 155 108 138 125 140Z" 
+                  fill="#032B5C" opacity="0.3"/>
         </svg>
     </div>
 
