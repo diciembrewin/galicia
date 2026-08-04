@@ -58,13 +58,13 @@ body{
     min-height:360px;
 }
 
-/* NUBE ARRIBA DERECHA - con muchas curvas */
+/* NUBE ARRIBA DERECHA - UNA SOLA NUBE CON MÁS CURVAS */
 .nube-arriba {
     position:absolute;
-    top:-30px;
-    right:-40px;
-    width:380px;
-    height:250px;
+    top:-25px;
+    right:-35px;
+    width:400px;
+    height:260px;
     opacity:0.5;
     z-index:0;
 }
@@ -74,13 +74,13 @@ body{
     height:100%;
 }
 
-/* NUBE ABAJO IZQUIERDA - con muchas curvas */
+/* NUBE ABAJO IZQUIERDA - UNA SOLA NUBE CON MÁS CURVAS */
 .nube-abajo {
     position:absolute;
-    bottom:5px;
-    left:-50px;
-    width:350px;
-    height:220px;
+    bottom:0px;
+    left:-45px;
+    width:360px;
+    height:230px;
     opacity:0.4;
     z-index:0;
 }
@@ -568,7 +568,7 @@ body{
     box-shadow:0 3px 12px rgba(0,0,0,0.2);
 }
 
-/* ===== TARJETAS ===== */
+/* ===== TARJETAS - MISMO FONDO AZUL SIN NUBES ===== */
 .page-tarjetas {
     min-height:100vh;
     padding:0 0 80px;
@@ -579,7 +579,6 @@ body{
     color:#fff;
     padding:16px 18px 20px;
     position:relative;
-    overflow:hidden;
 }
 
 .tarjetas-header .top-tarjetas {
@@ -603,11 +602,11 @@ body{
     flex:1;
 }
 
+/* Sección azul de tarjetas - sin nubes */
 .seccion-azul {
     background:linear-gradient(180deg, #0a1628 0%, #1a2a5e 40%, #1a3a7a 70%, #2a5a9a 100%);
     padding:0 18px 20px;
     position:relative;
-    overflow:hidden;
 }
 
 .tarjetas-slider-container {
@@ -972,27 +971,19 @@ body{
 
 <div class="header">
 
-    <!-- NUBE ARRIBA DERECHA -->
+    <!-- NUBE ARRIBA DERECHA - UNA SOLA NUBE CON MÁS CURVAS -->
     <div class="nube-arriba">
-        <svg viewBox="0 0 380 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M340 150 C370 185 390 160 380 130 C400 100 375 80 345 95 C325 60 285 48 255 72 C225 42 175 32 150 60 C120 38 80 46 65 72 C45 58 18 65 10 90 C-5 90 -12 110 0 128 C-10 148 8 168 32 158 L340 158 C370 148 375 120 340 150Z" 
+        <svg viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M360 160 C395 200 410 170 400 135 C425 100 395 75 360 90 C335 50 290 38 255 65 C220 30 165 20 135 55 C95 30 50 40 35 70 C15 55 -10 62 -20 90 C-35 90 -42 115 -30 135 C-42 158 -20 180 10 168 L360 168 C390 155 395 125 360 160Z" 
                   fill="#032B5C" opacity="0.7"/>
-            <path d="M310 120 C335 145 355 130 348 108 C360 88 340 72 320 82 C305 58 275 48 255 65 C235 42 205 38 188 55 C168 42 145 48 138 65 C125 58 105 62 100 78 C90 76 82 88 88 105 C78 120 95 135 112 128 L310 128 C330 120 335 100 310 120Z" 
-                  fill="#032B5C" opacity="0.4"/>
-            <path d="M280 95 C300 115 315 102 308 85 C318 68 302 55 285 63 C272 45 252 38 238 52 C220 35 198 32 185 48 C168 38 150 42 145 58 C135 52 120 55 118 68 C110 66 105 75 110 88 C102 100 115 112 130 108 L280 108 C295 102 298 85 280 95Z" 
-                  fill="#032B5C" opacity="0.25"/>
         </svg>
     </div>
 
-    <!-- NUBE ABAJO IZQUIERDA -->
+    <!-- NUBE ABAJO IZQUIERDA - UNA SOLA NUBE CON MÁS CURVAS -->
     <div class="nube-abajo">
-        <svg viewBox="0 0 350 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M60 155 C45 175 28 155 32 135 C22 110 45 92 65 102 C75 78 100 68 120 88 C140 65 175 65 190 88 C215 75 245 82 255 110 C275 110 285 130 275 150 C285 170 265 188 240 178 L60 178 C42 170 42 148 60 155Z" 
+        <svg viewBox="0 0 360 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M65 165 C45 185 25 165 30 145 C18 118 45 98 68 108 C78 82 105 70 128 92 C150 65 190 65 208 92 C235 78 270 85 282 115 C305 115 315 138 302 160 C315 182 290 200 260 190 L65 190 C45 182 45 162 65 165Z" 
                   fill="#032B5C" opacity="0.6"/>
-            <path d="M115 130 C100 148 82 132 88 115 C78 95 100 82 118 90 C128 72 150 65 168 80 C185 62 215 62 228 80 C248 70 272 76 280 98 C295 98 305 115 295 132 C305 150 285 165 260 158 L115 158 C100 150 100 135 115 130Z" 
-                  fill="#032B5C" opacity="0.35"/>
-            <path d="M165 108 C155 122 140 110 145 98 C138 82 155 72 168 78 C175 64 192 58 205 70 C218 56 240 56 250 70 C265 62 282 68 288 85 C298 85 305 98 298 110 C305 122 290 133 270 128 L165 128 C152 122 152 112 165 108Z" 
-                  fill="#032B5C" opacity="0.2"/>
         </svg>
     </div>
 
