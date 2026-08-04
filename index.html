@@ -313,7 +313,7 @@ body{
     color:#fff;
 }
 
-/* IMAGEN TOQUE - SOLO IMAGEN, SIN INDICADORES */
+/* IMAGEN TOQUE */
 .img-toque {
     width:100%;
     border-radius:12px;
@@ -327,6 +327,30 @@ body{
 
 .img-toque:hover {
     transform:scale(1.02);
+}
+
+/* INDICADORES DEL SLIDER DE ACCESOS - DEBAJO DE TOQUE (estilo como los del home) */
+.accesos-indicators {
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:10px;
+    position:relative;
+    z-index:2;
+}
+
+.accesos-indicators span {
+    width:10px;
+    height:10px;
+    background:rgba(255,255,255,0.3);
+    border-radius:20px;
+    transition:all 0.3s;
+    cursor:pointer;
+}
+
+.accesos-indicators span.active {
+    width:35px;
+    background:#fff;
 }
 
 .slider-indicators{
@@ -395,29 +419,6 @@ body{
     flex-shrink:0;
     display:block;
     cursor:pointer;
-}
-
-/* INDICADORES DEL SLIDER DE ACCESOS DIRECTOS (debajo del slider) */
-.accesos-indicators {
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    margin-top:10px;
-}
-
-.accesos-indicators span {
-    width:10px;
-    height:10px;
-    background:#ccc;
-    border-radius:50%;
-    cursor:pointer;
-    transition:all 0.3s;
-}
-
-.accesos-indicators span.active {
-    background:#1565C0;
-    width:30px;
-    border-radius:10px;
 }
 
 /* BENEFICIOS */
@@ -1020,20 +1021,24 @@ body{
         </div>
     </div>
 
-
-    <!-- IMAGEN TOQUE - SOLO IMAGEN, SIN INDICADORES -->
-    <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
-
-    
-</div>
-
-      <!-- INDICADORES DEL SLIDER HOME -->
-  <div class="slider-indicators" id="indicators">
+    <!-- INDICADORES DEL SLIDER HOME -->
+    <div class="slider-indicators" id="indicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
         <span data-index="2"></span>
         <span data-index="3"></span>
     </div>
+
+    <!-- IMAGEN TOQUE -->
+    <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
+
+    <!-- INDICADORES DEL SLIDER DE ACCESOS (DEBAJO DE TOQUE) - ESTILO COMO LOS DEL HOME -->
+    <div class="accesos-indicators" id="accesosIndicators">
+        <span class="active" data-index="0"></span>
+        <span data-index="1"></span>
+    </div>
+
+</div>
 
 <div class="content">
 
@@ -1048,12 +1053,6 @@ body{
             <img src="directos.jpeg" alt="Accesos directos 1" onclick="alert('Accesos directos 1...')">
             <img src="directos2.jpeg" alt="Accesos directos 2" onclick="alert('Accesos directos 2...')">
         </div>
-    </div>
-
-    <!-- INDICADORES DEL SLIDER DE ACCESOS DIRECTOS -->
-    <div class="accesos-indicators" id="accesosIndicators">
-        <span class="active" data-index="0"></span>
-        <span data-index="1"></span>
     </div>
 
     <!-- BENEFICIOS CON TÍTULO -->
