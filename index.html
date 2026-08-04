@@ -268,14 +268,14 @@ body{
     color:rgba(255,255,255,0.8);
 }
 
-/* Footer */
-
+/* Footer con M entre Tarjetas y Transferencia */
 .footer{
     position:sticky;
     bottom:0;
     background:#fff;
     display:flex;
     justify-content:space-around;
+    align-items:center;
     padding:10px 0;
     border-top:1px solid #ddd;
 }
@@ -286,6 +286,7 @@ body{
     font-size:12px;
     cursor:pointer;
     transition:all 0.3s;
+    flex:1;
 }
 
 .item i{
@@ -300,6 +301,29 @@ body{
 
 .active{
     color:#1565C0;
+}
+
+/* M entre Tarjetas y Transferencia */
+.footer-m {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+    padding:0 5px;
+}
+
+.footer-m .m-icon {
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    font-weight:bold;
 }
 
 /* Slider de vistas - diferentes paneles */
@@ -366,6 +390,154 @@ body{
 .btn-fima:hover, .btn-dolar:hover {
     transform:scale(1.05);
     box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== SECCIONES ===== */
+.nueva-seccion {
+    margin-top:25px;
+}
+
+.nueva-seccion h2 {
+    font-size:18px;
+    color:#333;
+    margin-bottom:15px;
+}
+
+.nueva-seccion .item {
+    background:#fff;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
+    border-left:4px solid #1565C0;
+    transition:all 0.3s;
+    cursor:pointer;
+}
+
+.nueva-seccion .item:hover {
+    transform:translateX(5px);
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.nueva-seccion .item h3 {
+    font-size:16px;
+    color:#333;
+    margin-bottom:5px;
+}
+
+.nueva-seccion .item p {
+    font-size:13px;
+    color:#666;
+    margin-bottom:8px;
+}
+
+.nueva-seccion .item .btn-link {
+    color:#1565C0;
+    font-weight:bold;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.nueva-seccion .item .btn-link:hover {
+    text-decoration:underline;
+}
+
+/* Servicios */
+.servicios-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin:15px 0;
+}
+
+.servicio-card {
+    background:#f5f7fa;
+    border-radius:12px;
+    padding:15px 10px;
+    text-align:center;
+    transition:all 0.3s;
+    cursor:pointer;
+}
+
+.servicio-card:hover {
+    background:#e8edf5;
+    transform:translateY(-3px);
+}
+
+.servicio-card i {
+    font-size:24px;
+    color:#1565C0;
+    margin-bottom:8px;
+}
+
+.servicio-card p {
+    font-size:12px;
+    color:#555;
+    font-weight:500;
+}
+
+.btn-servicios {
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    color:#fff;
+    padding:12px;
+    border-radius:30px;
+    text-align:center;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.3s;
+    font-size:14px;
+    width:100%;
+}
+
+.btn-servicios:hover {
+    transform:scale(1.02);
+    box-shadow:0 4px 15px rgba(21,101,192,0.3);
+}
+
+/* Recomendaciones */
+.recomendaciones {
+    margin-top:25px;
+    margin-bottom:20px;
+}
+
+.recomendaciones h2 {
+    font-size:18px;
+    color:#333;
+    margin-bottom:15px;
+}
+
+.recomendacion-item {
+    background:#fff;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
+    border-left:4px solid #1565C0;
+    transition:all 0.3s;
+    cursor:pointer;
+}
+
+.recomendacion-item:hover {
+    transform:translateX(5px);
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.recomendacion-item p {
+    font-size:14px;
+    color:#333;
+    margin-bottom:10px;
+}
+
+.recomendacion-item .btn-cerrar {
+    color:#1565C0;
+    font-weight:bold;
+    font-size:13px;
+    cursor:pointer;
+    display:inline-block;
+}
+
+.recomendacion-item .btn-cerrar:hover {
+    text-decoration:underline;
 }
 </style>
 
@@ -582,6 +754,7 @@ Ir a Cuentas
 
 <div class="content">
 
+<!-- ===== ACCESOS DIRECTOS ===== -->
 <div class="title">
 <h1>Accesos directos</h1>
 <i class="fa-solid fa-chevron-right"></i>
@@ -611,8 +784,60 @@ Ir a Cuentas
 
 </div>
 
+<!-- ===== BENEFICIOS ===== -->
+<div class="nueva-seccion">
+    <h2>Beneficios</h2>
+    
+    <div class="item">
+        <h3>Sección Tus Viajes</h3>
+        <p>Todo lo que necesitas, en un sólo lugar.</p>
+        <span class="btn-link">Conocer más</span>
+    </div>
+    
+    <div class="item">
+        <h3>Todo para tu show</h3>
+        <p>Beneficios exclusivos en recitales</p>
+        <span class="btn-link">Conocer más</span>
+    </div>
 </div>
 
+<!-- ===== SERVICIOS Y RECARGAS ===== -->
+<div class="nueva-seccion">
+    <h2>Servicios y recargas</h2>
+    
+    <div class="servicios-grid">
+        <div class="servicio-card">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <p>Recargar celular</p>
+        </div>
+        <div class="servicio-card">
+            <i class="fa-solid fa-bus"></i>
+            <p>Recargar transporte</p>
+        </div>
+        <div class="servicio-card">
+            <i class="fa-solid fa-file-invoice"></i>
+            <p>Pagar ARCA</p>
+        </div>
+    </div>
+    
+    <div class="btn-servicios">
+        Pagá o agregá tus servicios
+    </div>
+</div>
+
+<!-- ===== RECOMENDACIONES ===== -->
+<div class="recomendaciones">
+    <h2>Recomendaciones</h2>
+    
+    <div class="recomendacion-item">
+        <p>Protegé tu casa aunque estés lejos, activalo ahora</p>
+        <span class="btn-cerrar">Cerrar sesión</span>
+    </div>
+</div>
+
+</div>
+
+<!-- ===== FOOTER CON M ENTRE TARJETAS Y TRANSFERENCIA ===== -->
 <div class="footer">
 
 <div class="item active">
@@ -623,6 +848,10 @@ Inicio
 <div class="item">
 <i class="fa-regular fa-credit-card"></i>
 Tarjetas
+</div>
+
+<div class="footer-m">
+<div class="m-icon">M</div>
 </div>
 
 <div class="item">
@@ -705,7 +934,6 @@ const balances = [
     document.getElementById('balanceDisplay4')
 ];
 
-// Guardar los valores originales
 const originalBalances = [
     '$ 0<sup>00</sup>',
     '$ 0<sup>00</sup>',
@@ -718,11 +946,9 @@ toggleBtn.addEventListener('click', function() {
     
     balances.forEach((balance, index) => {
         if (balanceVisible) {
-            // Mostrar saldo
             balance.innerHTML = originalBalances[index];
             toggleBtn.className = 'fa-regular fa-eye';
         } else {
-            // Ocultar saldo
             balance.innerHTML = '***';
             toggleBtn.className = 'fa-regular fa-eye-slash';
         }
