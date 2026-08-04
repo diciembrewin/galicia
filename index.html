@@ -313,48 +313,20 @@ body{
     color:#fff;
 }
 
-/* SLIDER TOQUE - PEDIR PLATA AL TOQUE */
-.slider-toque {
-    position:relative;
-    overflow:hidden;
+/* IMAGEN TOQUE - SOLO IMAGEN, SIN INDICADORES */
+.img-toque {
+    width:100%;
     border-radius:12px;
     margin-top:6px;
-}
-
-.slider-toque-track {
-    display:flex;
-    transition:transform 0.8s ease;
-}
-
-.slider-toque-track img {
-    width:100%;
-    flex-shrink:0;
-    display:block;
     cursor:pointer;
-}
-
-/* INDICADORES DEL SLIDER TOQUE - como los del home */
-.toque-indicators {
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    margin-top:10px;
+    transition:all 0.3s;
+    display:block;
     position:relative;
     z-index:2;
 }
 
-.toque-indicators span {
-    width:10px;
-    height:10px;
-    background:rgba(255,255,255,0.3);
-    border-radius:20px;
-    transition:all 0.3s;
-    cursor:pointer;
-}
-
-.toque-indicators span.active {
-    width:35px;
-    background:#fff;
+.img-toque:hover {
+    transform:scale(1.02);
 }
 
 .slider-indicators{
@@ -425,7 +397,7 @@ body{
     cursor:pointer;
 }
 
-/* INDICADORES DEL SLIDER DE ACCESOS */
+/* INDICADORES DEL SLIDER DE ACCESOS DIRECTOS (debajo del slider) */
 .accesos-indicators {
     display:flex;
     justify-content:center;
@@ -844,7 +816,7 @@ body{
     font-size:14px;
 }
 
-/* ===== FOOTER CON SLIDER M ===== */
+/* ===== FOOTER ===== */
 .footer{
     position:fixed;
     bottom:0;
@@ -884,7 +856,6 @@ body{
     color:#1565C0;
 }
 
-/* SLIDER M EN EL FOOTER */
 .footer-m {
     display:flex;
     flex-direction:column;
@@ -892,53 +863,24 @@ body{
     justify-content:center;
     flex:0 0 auto;
     padding:0 5px;
-    position:relative;
-    overflow:hidden;
-    width:45px;
-    height:45px;
+}
+
+.footer-m .m-icon {
+    width:40px;
+    height:40px;
     border-radius:50%;
     background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
     box-shadow:0 2px 8px rgba(0,0,0,.15);
-    cursor:pointer;
 }
 
-.footer-m-track {
-    display:flex;
-    transition:transform 0.8s ease;
+.footer-m .m-icon img {
     width:100%;
     height:100%;
-}
-
-.footer-m-track img {
-    width:45px;
-    height:45px;
     object-fit:cover;
-    flex-shrink:0;
-    display:block;
-    border-radius:50%;
-}
-
-/* Indicadores del slider M */
-.footer-m-indicators {
-    display:flex;
-    justify-content:center;
-    gap:5px;
-    margin-top:4px;
-}
-
-.footer-m-indicators span {
-    width:6px;
-    height:6px;
-    background:#ccc;
-    border-radius:50%;
-    cursor:pointer;
-    transition:all 0.3s;
-}
-
-.footer-m-indicators span.active {
-    background:#1565C0;
-    width:16px;
-    border-radius:4px;
 }
 
 /* Responsive */
@@ -1086,19 +1028,8 @@ body{
         <span data-index="3"></span>
     </div>
 
-    <!-- SLIDER TOQUE - PEDIR PLATA AL TOQUE -->
-    <div class="slider-toque">
-        <div class="slider-toque-track" id="sliderToqueTrack">
-            <img src="toque.jpeg" alt="Pedir plata al toque 1" onclick="alert('Pedir plata al toque...')">
-            <img src="toque2.jpeg" alt="Pedir plata al toque 2" onclick="alert('Pedir plata al toque 2...')">
-        </div>
-    </div>
-
-    <!-- INDICADORES DEL SLIDER TOQUE -->
-    <div class="toque-indicators" id="toqueIndicators">
-        <span class="active" data-index="0"></span>
-        <span data-index="1"></span>
-    </div>
+    <!-- IMAGEN TOQUE - SOLO IMAGEN, SIN INDICADORES -->
+    <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
 
 </div>
 
@@ -1117,7 +1048,7 @@ body{
         </div>
     </div>
 
-    <!-- INDICADORES DEL SLIDER DE ACCESOS -->
+    <!-- INDICADORES DEL SLIDER DE ACCESOS DIRECTOS -->
     <div class="accesos-indicators" id="accesosIndicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
@@ -1252,7 +1183,7 @@ body{
 
 </div><!-- end page-tarjetas -->
 
-<!-- ===== FOOTER CON SLIDER M ===== -->
+<!-- ===== FOOTER ===== -->
 <div class="footer">
     <div class="item active" data-page="home" onclick="showPage('home')">
         <i class="fa-solid fa-house"></i>Inicio
@@ -1260,10 +1191,9 @@ body{
     <div class="item" data-page="tarjetas" onclick="showPage('tarjetas')">
         <i class="fa-regular fa-credit-card"></i>Tarjetas
     </div>
-    <div class="footer-m" id="footerM">
-        <div class="footer-m-track" id="footerMTrack">
-            <img src="m.jpeg" alt="M 1">
-            <img src="m2.jpeg" alt="M 2">
+    <div class="footer-m">
+        <div class="m-icon">
+            <img src="m.jpeg" alt="M">
         </div>
     </div>
     <div class="item" data-page="transferencias" onclick="showPage('transferencias')">
@@ -1272,12 +1202,6 @@ body{
     <div class="item" data-page="mas" onclick="showPage('mas')">
         <i class="fa-solid fa-bars"></i>Más
     </div>
-</div>
-
-<!-- Indicadores del slider M -->
-<div class="footer-m-indicators" id="footerMIndicators">
-    <span class="active" data-index="0"></span>
-    <span data-index="1"></span>
 </div>
 
 </div><!-- end phone -->
@@ -1378,58 +1302,6 @@ document.querySelector('.tarjetas-slider-container').addEventListener('touchend'
     }
 }, {passive: true});
 
-// ===== SLIDER TOQUE =====
-const sliderToqueTrack = document.getElementById('sliderToqueTrack');
-const toqueIndicators = document.querySelectorAll('#toqueIndicators span');
-let currentToqueSlide = 0;
-const totalToqueSlides = 2;
-let intervaloToque;
-
-function goToToqueSlide(index) {
-    if (index >= totalToqueSlides) index = 0;
-    if (index < 0) index = totalToqueSlides - 1;
-    
-    sliderToqueTrack.style.transform = `translateX(-${index * 100}%)`;
-    
-    toqueIndicators.forEach((ind, i) => {
-        ind.classList.toggle('active', i === index);
-    });
-    
-    currentToqueSlide = index;
-}
-
-function nextToqueSlide() {
-    goToToqueSlide(currentToqueSlide + 1);
-}
-
-function iniciarSliderToque() {
-    if (intervaloToque) clearInterval(intervaloToque);
-    intervaloToque = setInterval(nextToqueSlide, 4000);
-}
-
-function reiniciarSliderToque() {
-    clearInterval(intervaloToque);
-    iniciarSliderToque();
-}
-
-toqueIndicators.forEach(ind => {
-    ind.addEventListener('click', function() {
-        const index = parseInt(this.dataset.index);
-        goToToqueSlide(index);
-        reiniciarSliderToque();
-    });
-});
-
-document.querySelector('.slider-toque').addEventListener('mouseenter', () => {
-    clearInterval(intervaloToque);
-});
-
-document.querySelector('.slider-toque').addEventListener('mouseleave', () => {
-    iniciarSliderToque();
-});
-
-iniciarSliderToque();
-
 // ===== SLIDER ACCESOS DIRECTOS =====
 const sliderAccesosTrack = document.getElementById('sliderAccesosTrack');
 const accesosIndicators = document.querySelectorAll('#accesosIndicators span');
@@ -1481,58 +1353,6 @@ document.querySelector('.slider-accesos').addEventListener('mouseleave', () => {
 });
 
 iniciarSliderAccesos();
-
-// ===== SLIDER M EN EL FOOTER =====
-const footerMTrack = document.getElementById('footerMTrack');
-const footerMIndicators = document.querySelectorAll('#footerMIndicators span');
-let currentMSlide = 0;
-const totalMSlides = 2;
-let intervaloM;
-
-function goToMSlide(index) {
-    if (index >= totalMSlides) index = 0;
-    if (index < 0) index = totalMSlides - 1;
-    
-    footerMTrack.style.transform = `translateX(-${index * 100}%)`;
-    
-    footerMIndicators.forEach((ind, i) => {
-        ind.classList.toggle('active', i === index);
-    });
-    
-    currentMSlide = index;
-}
-
-function nextMSlide() {
-    goToMSlide(currentMSlide + 1);
-}
-
-function iniciarSliderM() {
-    if (intervaloM) clearInterval(intervaloM);
-    intervaloM = setInterval(nextMSlide, 4000);
-}
-
-function reiniciarSliderM() {
-    clearInterval(intervaloM);
-    iniciarSliderM();
-}
-
-footerMIndicators.forEach(ind => {
-    ind.addEventListener('click', function() {
-        const index = parseInt(this.dataset.index);
-        goToMSlide(index);
-        reiniciarSliderM();
-    });
-});
-
-document.getElementById('footerM').addEventListener('mouseenter', () => {
-    clearInterval(intervaloM);
-});
-
-document.getElementById('footerM').addEventListener('mouseleave', () => {
-    iniciarSliderM();
-});
-
-iniciarSliderM();
 
 // ===== OJITO =====
 let balanceVisible = true;
