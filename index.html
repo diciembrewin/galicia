@@ -32,7 +32,7 @@ body{
 /* Header */
 
 .header{
-    background:#1a73e8;
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
     color:#fff;
     padding:20px;
     min-height:380px;
@@ -50,7 +50,7 @@ body{
     height:50px;
     border-radius:50%;
     background:#fff;
-    color:#1a73e8;
+    color:#0D47A1;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -63,13 +63,23 @@ body{
     display:flex;
     gap:18px;
     font-size:22px;
+    color:#fff;
+}
+
+.icons i{
+    cursor:pointer;
+    transition:all 0.3s;
+}
+
+.icons i:hover{
+    transform:scale(1.1);
 }
 
 .btn-ir-cuentas{
     margin:15px auto 10px;
     width:180px;
-    background:#fff;
-    color:#0d47a1;
+    background:rgba(255,255,255,0.2);
+    color:#fff;
     padding:10px;
     border-radius:30px;
     text-align:center;
@@ -77,11 +87,13 @@ body{
     cursor:pointer;
     transition:all 0.3s;
     font-size:14px;
+    backdrop-filter:blur(5px);
+    border:1px solid rgba(255,255,255,0.3);
 }
 
 .btn-ir-cuentas:hover{
+    background:rgba(255,255,255,0.3);
     transform:scale(1.05);
-    box-shadow:0 5px 15px rgba(26,115,232,0.3);
 }
 
 .account{
@@ -93,11 +105,14 @@ body{
     font-size:16px;
     margin-bottom:5px;
     font-weight:normal;
+    color:#fff;
+    opacity:0.9;
 }
 
 .balance{
     font-size:50px;
     font-weight:bold;
+    color:#fff;
 }
 
 .balance sup{
@@ -107,7 +122,8 @@ body{
 .number{
     margin-top:8px;
     font-size:16px;
-    opacity:0.9;
+    opacity:0.8;
+    color:#fff;
 }
 
 /* Acciones */
@@ -133,17 +149,19 @@ body{
     width:55px;
     height:55px;
     border-radius:50%;
-    background:rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.15);
     margin:auto;
     display:flex;
     justify-content:center;
     align-items:center;
     font-size:22px;
+    color:#fff;
     transition:all 0.3s;
+    border:1px solid rgba(255,255,255,0.1);
 }
 
 .action:hover .circle{
-    background:rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.25);
     transform:scale(1.1);
 }
 
@@ -151,6 +169,7 @@ body{
     margin-top:5px;
     font-size:11px;
     opacity:0.9;
+    color:#fff;
 }
 
 /* Indicadores */
@@ -195,7 +214,7 @@ body{
 }
 
 .title i{
-    color:#1a73e8;
+    color:#1565C0;
     cursor:pointer;
 }
 
@@ -221,13 +240,13 @@ body{
 }
 
 .big{
-    background:#1a73e8;
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
     color:#fff;
 }
 
 .card i{
     font-size:30px;
-    color:#1a73e8;
+    color:#1565C0;
     margin-bottom:12px;
 }
 
@@ -276,11 +295,11 @@ body{
 }
 
 .item:hover{
-    color:#1a73e8;
+    color:#1565C0;
 }
 
 .active{
-    color:#1a73e8;
+    color:#1565C0;
 }
 
 /* Slider de vistas - diferentes paneles */
@@ -307,6 +326,47 @@ body{
         border-radius:0;
     }
 }
+
+/* Estilos para FIMA y Dolar */
+.fima-box, .dolar-box {
+    background:rgba(255,255,255,0.12);
+    border-radius:12px;
+    padding:12px 15px;
+    margin:15px 0 5px;
+    backdrop-filter:blur(5px);
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.fima-box h4, .dolar-box h4 {
+    font-size:14px;
+    color:#fff;
+}
+
+.fima-box p, .dolar-box p {
+    font-size:12px;
+    opacity:0.9;
+    color:#fff;
+    margin-top:3px;
+}
+
+.btn-fima, .btn-dolar {
+    background:#fff;
+    color:#0D47A1;
+    padding:6px 25px;
+    border-radius:20px;
+    font-weight:bold;
+    font-size:13px;
+    cursor:pointer;
+    border:none;
+    margin-top:8px;
+    transition:all 0.3s;
+}
+
+.btn-fima:hover, .btn-dolar:hover {
+    transform:scale(1.05);
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
 </style>
 
 </head>
@@ -323,7 +383,7 @@ body{
 </div>
 
 <div class="icons">
-<i class="fa-regular fa-eye"></i>
+<i class="fa-regular fa-eye" id="toggleBalance" style="cursor:pointer;"></i>
 <i class="fa-regular fa-circle-question"></i>
 <i class="fa-regular fa-bell"></i>
 </div>
@@ -341,7 +401,7 @@ Ir a Cuentas
 <div class="slide active" data-slide="0">
     <div class="account">
         <h3>Caja de ahorro en pesos</h3>
-        <div class="balance">
+        <div class="balance" id="balanceDisplay">
             $ 0<sup>00</sup>
         </div>
         <div class="number">
@@ -381,7 +441,7 @@ Ir a Cuentas
 <div class="slide" data-slide="1">
     <div class="account">
         <h3>Caja de ahorro en pesos</h3>
-        <div class="balance">
+        <div class="balance" id="balanceDisplay2">
             $ 0<sup>00</sup>
         </div>
         <div class="number">
@@ -389,9 +449,9 @@ Ir a Cuentas
         </div>
     </div>
 
-    <div style="background:rgba(255,255,255,0.15); border-radius:12px; padding:12px 15px; margin:15px 0 5px; backdrop-filter:blur(5px); text-align:center;">
-        <h4 style="font-size:14px;">💰 Activa Cuenta FIMA y hace rendir tus pesos un 16,6% anual</h4>
-        <button style="background:#fff; color:#1a73e8; padding:6px 25px; border-radius:20px; font-weight:bold; font-size:13px; cursor:pointer; border:none; margin-top:8px; transition:all 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="alert('Activando cuenta FIMA...')">Activar Cuenta FIMA</button>
+    <div class="fima-box">
+        <h4>💰 Activa Cuenta FIMA y hace rendir tus pesos un 16,6% anual</h4>
+        <button class="btn-fima" onclick="alert('Activando cuenta FIMA...')">Activar Cuenta FIMA</button>
     </div>
 
     <div class="actions">
@@ -426,7 +486,7 @@ Ir a Cuentas
 <div class="slide" data-slide="2">
     <div class="account">
         <h3>Caja de ahorro en dólares</h3>
-        <div class="balance">
+        <div class="balance" id="balanceDisplay3">
             USD 0<sup>00</sup>
         </div>
         <div class="number">
@@ -434,10 +494,10 @@ Ir a Cuentas
         </div>
     </div>
 
-    <div style="background:rgba(255,255,255,0.15); border-radius:12px; padding:12px 15px; margin:15px 0 5px; backdrop-filter:blur(5px); text-align:center;">
-        <h4 style="font-size:14px;">💵 MEP USD</h4>
-        <p style="font-size:12px; opacity:0.9;">Operá Dólar MEP desde tu cuenta</p>
-        <button style="background:#fff; color:#1a73e8; padding:6px 25px; border-radius:20px; font-weight:bold; font-size:13px; cursor:pointer; border:none; margin-top:8px; transition:all 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="alert('Activando cuenta remunerada...')">ACTIVAR CUENTA REMUNERADA</button>
+    <div class="dolar-box">
+        <h4>💵 MEP USD</h4>
+        <p>Operá Dólar MEP desde tu cuenta</p>
+        <button class="btn-dolar" onclick="alert('Activando cuenta remunerada...')">ACTIVAR CUENTA REMUNERADA</button>
     </div>
 
     <div class="actions">
@@ -472,7 +532,7 @@ Ir a Cuentas
 <div class="slide" data-slide="3">
     <div class="account">
         <h3>Caja de ahorro en pesos</h3>
-        <div class="balance">
+        <div class="balance" id="balanceDisplay4">
             $ ****
         </div>
         <div class="number">
@@ -580,29 +640,25 @@ Más
 </div>
 
 <script>
-// Slider functionality - solo control manual
+// ===== SLIDER FUNCIONALITY =====
 const slides = document.querySelectorAll('.slide');
 const indicators = document.querySelectorAll('.slider-indicators span');
 const slideTrack = document.getElementById('slideTrack');
 let currentSlide = 0;
 
 function goToSlide(index) {
-    // Actualizar slides
     slides.forEach((slide, i) => {
         slide.classList.toggle('active', i === index);
     });
     
-    // Actualizar indicadores
     indicators.forEach((ind, i) => {
         ind.classList.toggle('active', i === index);
     });
     
-    // Mover el track
     slideTrack.style.transform = `translateX(-${index * 100}%)`;
     currentSlide = index;
 }
 
-// Click en indicadores
 indicators.forEach(ind => {
     ind.addEventListener('click', function() {
         const index = parseInt(this.dataset.index);
@@ -610,7 +666,7 @@ indicators.forEach(ind => {
     });
 });
 
-// Touch support para swipe
+// Touch support
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -630,13 +686,47 @@ document.querySelector('.slide-container').addEventListener('touchend', (e) => {
     }
 }, {passive: true});
 
-// También permitir navegación con flechas del teclado
+// Keyboard support
 document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
         goToSlide(currentSlide + 1);
     } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
         goToSlide(currentSlide - 1);
     }
+});
+
+// ===== OJITO FUNCIONAL =====
+let balanceVisible = true;
+const toggleBtn = document.getElementById('toggleBalance');
+const balances = [
+    document.getElementById('balanceDisplay'),
+    document.getElementById('balanceDisplay2'),
+    document.getElementById('balanceDisplay3'),
+    document.getElementById('balanceDisplay4')
+];
+
+// Guardar los valores originales
+const originalBalances = [
+    '$ 0<sup>00</sup>',
+    '$ 0<sup>00</sup>',
+    'USD 0<sup>00</sup>',
+    '$ ****'
+];
+
+toggleBtn.addEventListener('click', function() {
+    balanceVisible = !balanceVisible;
+    
+    balances.forEach((balance, index) => {
+        if (balanceVisible) {
+            // Mostrar saldo
+            balance.innerHTML = originalBalances[index];
+            toggleBtn.className = 'fa-regular fa-eye';
+        } else {
+            // Ocultar saldo
+            balance.innerHTML = '***';
+            toggleBtn.className = 'fa-regular fa-eye-slash';
+        }
+    });
 });
 </script>
 
