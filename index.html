@@ -484,19 +484,17 @@ body{
     box-shadow:0 3px 12px rgba(0,0,0,0.2);
 }
 
-/* ===== TARJETAS - MISMA ESTRUCTURA QUE HOME ===== */
+/* ===== TARJETAS ===== */
 .page-tarjetas {
-    background:#f5f7fa;
     min-height:100vh;
     padding:0 0 80px;
 }
 
-/* Header azul igual que home */
+/* Header azul */
 .tarjetas-header {
     background:linear-gradient(135deg, #1565C0, #0D47A1);
     color:#fff;
-    padding:16px 18px;
-    flex-shrink:0;
+    padding:16px 18px 20px;
 }
 
 .tarjetas-header .top-tarjetas {
@@ -518,11 +516,10 @@ body{
     flex:1;
 }
 
-/* Contenido blanco igual que home */
-.tarjetas-content {
-    padding:18px;
-    background:#f5f7fa;
-    flex:1;
+/* Sección azul - tarjetas y botones */
+.seccion-azul {
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    padding:0 18px 20px;
 }
 
 /* Grid de tarjetas - una al lado de la otra */
@@ -530,15 +527,14 @@ body{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px;
-    margin-bottom:16px;
 }
 
 /* Tarjeta VISA - Blanca */
 .tarjeta-item.visa {
     background:#fff;
     border-radius:14px;
-    padding:16px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    padding:14px;
+    box-shadow:0 4px 15px rgba(0,0,0,.25);
 }
 
 .tarjeta-item.visa .tipo {
@@ -549,14 +545,14 @@ body{
 }
 
 .tarjeta-item.visa .tipo h3 {
-    font-size:16px;
+    font-size:14px;
     color:#333;
 }
 
 .tarjeta-item.visa .tipo .mostrar-datos {
     color:#1565C0;
     font-weight:bold;
-    font-size:10px;
+    font-size:9px;
     cursor:pointer;
 }
 
@@ -565,16 +561,16 @@ body{
 }
 
 .tarjeta-item.visa .numero {
-    font-size:16px;
+    font-size:14px;
     color:#333;
     letter-spacing:2px;
-    margin:5px 0;
+    margin:4px 0;
 }
 
 .tarjeta-item.visa .datos {
     display:flex;
     gap:10px;
-    font-size:10px;
+    font-size:9px;
     color:#333;
     margin-top:3px;
 }
@@ -585,7 +581,7 @@ body{
 
 .tarjeta-item.visa .datos div span {
     display:block;
-    font-size:8px;
+    font-size:7px;
     color:#999;
     margin-bottom:2px;
 }
@@ -598,8 +594,8 @@ body{
 .tarjeta-item.debito {
     background:linear-gradient(135deg, #f5a623, #e88a1e);
     border-radius:14px;
-    padding:16px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    padding:14px;
+    box-shadow:0 4px 15px rgba(0,0,0,.25);
 }
 
 .tarjeta-item.debito .tipo {
@@ -610,14 +606,14 @@ body{
 }
 
 .tarjeta-item.debito .tipo h3 {
-    font-size:16px;
+    font-size:14px;
     color:#fff;
 }
 
 .tarjeta-item.debito .tipo .mostrar-datos {
     color:#fff;
     font-weight:bold;
-    font-size:10px;
+    font-size:9px;
     cursor:pointer;
     opacity:0.8;
 }
@@ -628,16 +624,16 @@ body{
 }
 
 .tarjeta-item.debito .numero {
-    font-size:16px;
+    font-size:14px;
     color:#fff;
     letter-spacing:2px;
-    margin:5px 0;
+    margin:4px 0;
 }
 
 .tarjeta-item.debito .datos {
     display:flex;
     gap:10px;
-    font-size:10px;
+    font-size:9px;
     color:#fff;
     margin-top:3px;
 }
@@ -648,7 +644,7 @@ body{
 
 .tarjeta-item.debito .datos div span {
     display:block;
-    font-size:8px;
+    font-size:7px;
     color:rgba(255,255,255,0.6);
     margin-bottom:2px;
 }
@@ -657,17 +653,17 @@ body{
     color:#fff;
 }
 
-/* Acciones tarjeta - botones */
+/* Acciones tarjeta - botones sobre fondo azul */
 .acciones-tarjeta {
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:10px;
-    margin:16px 0;
+    margin-top:16px;
 }
 
 .acciones-tarjeta .btn-accion {
-    background:#f0f4ff;
-    color:#1565C0;
+    background:rgba(255,255,255,0.15);
+    color:#fff;
     padding:10px 6px;
     border-radius:12px;
     text-align:center;
@@ -675,12 +671,11 @@ body{
     font-weight:bold;
     cursor:pointer;
     transition:all 0.3s;
-    border:1px solid #e0e8f5;
+    border:1px solid rgba(255,255,255,0.15);
 }
 
 .acciones-tarjeta .btn-accion:hover {
-    background:#1565C0;
-    color:#fff;
+    background:rgba(255,255,255,0.3);
     transform:scale(1.02);
 }
 
@@ -690,12 +685,18 @@ body{
     margin-bottom:4px;
 }
 
+/* Sección blanca - total e información */
+.seccion-blanca {
+    background:#f5f7fa;
+    padding:18px;
+}
+
 /* Total movimientos */
 .movimientos-total {
     background:#fff;
     border-radius:14px;
     padding:16px;
-    margin:16px 0;
+    margin-bottom:16px;
     text-align:center;
     box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
@@ -717,7 +718,6 @@ body{
     background:#fff;
     border-radius:14px;
     padding:16px;
-    margin:16px 0;
     box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
@@ -1010,7 +1010,7 @@ body{
 <!-- ===== PÁGINA TARJETAS ===== -->
 <div class="page" id="page-tarjetas">
 
-<!-- Header azul igual que home -->
+<!-- Header azul -->
 <div class="tarjetas-header">
     <div class="top-tarjetas">
         <span class="back-btn" onclick="showPage('home')">
@@ -1020,88 +1020,93 @@ body{
     </div>
 </div>
 
-<!-- Contenido blanco igual que home -->
-<div class="tarjetas-content">
+<!-- Sección azul: tarjetas + botones -->
+<div class="seccion-azul">
 
-<!-- Grid de tarjetas: VISA y Débito una al lado de la otra -->
-<div class="tarjetas-grid">
-    <!-- Tarjeta VISA - Blanca -->
-    <div class="tarjeta-item visa">
-        <div class="tipo">
-            <h3>VISA</h3>
-            <span class="mostrar-datos">Mostrar datos</span>
-        </div>
-        <div class="numero">**** **** **** 3501</div>
-        <div class="datos">
-            <div>
-                <span>Fecha de vencimiento</span>
-                12/28
+    <!-- Grid de tarjetas: VISA y Débito una al lado de la otra -->
+    <div class="tarjetas-grid">
+        <!-- Tarjeta VISA - Blanca -->
+        <div class="tarjeta-item visa">
+            <div class="tipo">
+                <h3>VISA</h3>
+                <span class="mostrar-datos">Mostrar datos</span>
             </div>
-            <div>
-                <span>Código de seguridad</span>
-                <span class="codigo">***</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tarjeta Débito - Salmón -->
-    <div class="tarjeta-item debito">
-        <div class="tipo">
-            <h3>Débito</h3>
-            <span class="mostrar-datos">Mostrar datos</span>
-        </div>
-        <div class="numero">**** **** **** 3501</div>
-        <div class="datos">
-            <div>
-                <span>Fecha de vencimiento</span>
-                12/28
-            </div>
-            <div>
-                <span>Código de seguridad</span>
-                <span class="codigo">***</span>
+            <div class="numero">**** **** **** 3501</div>
+            <div class="datos">
+                <div>
+                    <span>Fecha de vencimiento</span>
+                    12/28
+                </div>
+                <div>
+                    <span>Código de seguridad</span>
+                    <span class="codigo">***</span>
+                </div>
             </div>
         </div>
+
+        <!-- Tarjeta Débito - Salmón -->
+        <div class="tarjeta-item debito">
+            <div class="tipo">
+                <h3>Débito</h3>
+                <span class="mostrar-datos">Mostrar datos</span>
+            </div>
+            <div class="numero">**** **** **** 3501</div>
+            <div class="datos">
+                <div>
+                    <span>Fecha de vencimiento</span>
+                    12/28
+                </div>
+                <div>
+                    <span>Código de seguridad</span>
+                    <span class="codigo">***</span>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Acciones tarjeta - sobre fondo azul -->
+    <div class="acciones-tarjeta">
+        <div class="btn-accion" onclick="alert('Blanqueando PIN...')">
+            <i class="fa-solid fa-key"></i>
+            Blanquear PIN
+        </div>
+        <div class="btn-accion" onclick="alert('Pausando tarjeta...')">
+            <i class="fa-solid fa-pause"></i>
+            Pausar tarjeta
+        </div>
+        <div class="btn-accion" onclick="alert('Denunciando tarjeta...')">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Denunciar tarjeta
+        </div>
+        <div class="btn-accion" onclick="alert('Más gestiones...')">
+            <i class="fa-solid fa-ellipsis"></i>
+            Más gestiones
+        </div>
+    </div>
+
 </div>
 
-<!-- Acciones tarjeta -->
-<div class="acciones-tarjeta">
-    <div class="btn-accion" onclick="alert('Blanqueando PIN...')">
-        <i class="fa-solid fa-key"></i>
-        Blanquear PIN
-    </div>
-    <div class="btn-accion" onclick="alert('Pausando tarjeta...')">
-        <i class="fa-solid fa-pause"></i>
-        Pausar tarjeta
-    </div>
-    <div class="btn-accion" onclick="alert('Denunciando tarjeta...')">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        Denunciar tarjeta
-    </div>
-    <div class="btn-accion" onclick="alert('Más gestiones...')">
-        <i class="fa-solid fa-ellipsis"></i>
-        Más gestiones
-    </div>
-</div>
+<!-- Sección blanca: total + información -->
+<div class="seccion-blanca">
 
-<!-- Total movimientos -->
-<div class="movimientos-total">
-    <p>El total de movimientos es de</p>
-    <div class="total">$ 7.081.945,69 y USD 0</div>
-</div>
+    <!-- Total movimientos -->
+    <div class="movimientos-total">
+        <p>El total de movimientos es de</p>
+        <div class="total">$ 7.081.945,69 y USD 0</div>
+    </div>
 
-<!-- Información tarjeta -->
-<div class="info-tarjeta">
-    <h3>Información de tu tarjeta</h3>
-    <div class="info-item">
-        <span>Límite de compra</span>
-        <span>$ 7.200.000</span>
+    <!-- Información tarjeta -->
+    <div class="info-tarjeta">
+        <h3>Información de tu tarjeta</h3>
+        <div class="info-item">
+            <span>Límite de compra</span>
+            <span>$ 7.200.000</span>
+        </div>
+        <div class="info-item">
+            <span>Límite de extracción</span>
+            <span>$ 400.000</span>
+        </div>
     </div>
-    <div class="info-item">
-        <span>Límite de extracción</span>
-        <span>$ 400.000</span>
-    </div>
-</div>
 
 </div>
 
