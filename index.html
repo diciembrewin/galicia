@@ -58,16 +58,15 @@ body{
     min-height:360px;
 }
 
-/* NUBE ARRIBA DERECHA - más grande y con movimiento */
+/* NUBE ARRIBA DERECHA - más grande y en la esquina */
 .nube-arriba {
     position:absolute;
-    top:-20px;
-    right:-30px;
-    width:300px;
-    height:200px;
-    opacity:0.3;
+    top:-30px;
+    right:-40px;
+    width:350px;
+    height:230px;
+    opacity:0.35;
     z-index:0;
-    transition:transform 0.8s ease;
 }
 
 .nube-arriba svg {
@@ -75,30 +74,20 @@ body{
     height:100%;
 }
 
-/* NUBE ABAJO IZQUIERDA - con movimiento */
+/* NUBE ABAJO IZQUIERDA - más grande y en la esquina */
 .nube-abajo {
     position:absolute;
-    bottom:20px;
-    left:-40px;
-    width:280px;
-    height:180px;
-    opacity:0.2;
+    bottom:10px;
+    left:-50px;
+    width:320px;
+    height:200px;
+    opacity:0.25;
     z-index:0;
-    transition:transform 0.8s ease;
 }
 
 .nube-abajo svg {
     width:100%;
     height:100%;
-}
-
-/* Movimiento de nubes al cambiar slide */
-.slide.active .nube-arriba {
-    transform:translateX(-20px) translateY(10px);
-}
-
-.slide.active .nube-abajo {
-    transform:translateX(20px) translateY(-10px);
 }
 
 .top{
@@ -535,62 +524,6 @@ body{
 .slide {
     min-width:100%;
     padding:0 3px;
-}
-
-/* Cada slide tiene sus propias nubes */
-.slide {
-    position:relative;
-}
-
-.slide .nube-arriba-slide,
-.slide .nube-abajo-slide {
-    display:none;
-}
-
-.slide.active .nube-arriba-slide {
-    display:block;
-}
-
-.slide.active .nube-abajo-slide {
-    display:block;
-}
-
-/* Nubes dentro de cada slide */
-.nube-arriba-slide {
-    position:absolute;
-    top:-20px;
-    right:-30px;
-    width:300px;
-    height:200px;
-    opacity:0.3;
-    z-index:0;
-    transition:transform 1s ease;
-}
-
-.nube-abajo-slide {
-    position:absolute;
-    bottom:20px;
-    left:-40px;
-    width:280px;
-    height:180px;
-    opacity:0.2;
-    z-index:0;
-    transition:transform 1s ease;
-}
-
-.nube-arriba-slide svg,
-.nube-abajo-slide svg {
-    width:100%;
-    height:100%;
-}
-
-/* Movimiento suave al cambiar */
-.slide.active .nube-arriba-slide {
-    transform:translateX(-30px) translateY(15px) scale(1.05);
-}
-
-.slide.active .nube-abajo-slide {
-    transform:translateX(30px) translateY(-15px) scale(1.05);
 }
 
 .fima-box, .dolar-box {
@@ -1039,6 +972,26 @@ body{
 
 <div class="header">
 
+    <!-- NUBE ARRIBA DERECHA -->
+    <div class="nube-arriba">
+        <svg viewBox="0 0 350 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M310 140 C335 165 350 145 340 120 C355 95 330 75 305 85 C290 55 255 45 230 65 C205 35 160 30 140 55 C110 35 75 45 62 70 C45 58 15 65 8 90 C-5 90 -12 110 0 128 C-12 148 8 168 32 158 L310 158 C335 148 340 125 310 140Z" 
+                  fill="#0d2247" opacity="0.7"/>
+            <path d="M285 115 C305 135 320 120 312 100 C325 78 305 62 285 72 C272 50 245 42 225 58 C205 35 175 32 160 50 C140 38 120 45 112 62 C98 55 75 60 72 78 C62 76 55 88 60 105 C52 120 68 135 85 128 L285 128 C305 120 308 102 285 115Z" 
+                  fill="#0d2247" opacity="0.4"/>
+        </svg>
+    </div>
+
+    <!-- NUBE ABAJO IZQUIERDA -->
+    <div class="nube-abajo">
+        <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 140 C45 155 30 140 35 125 C28 105 45 90 60 98 C68 78 88 70 102 85 C118 65 145 65 155 85 C175 72 200 78 208 100 C225 100 232 115 225 132 C232 148 215 162 195 155 L60 155 C45 148 45 133 60 140Z" 
+                  fill="#0d2247" opacity="0.5"/>
+            <path d="M110 120 C100 130 90 122 93 115 C88 102 100 92 110 97 C115 85 128 80 138 90 C148 78 165 78 172 90 C185 82 200 86 205 100 C215 100 220 110 215 120 C220 130 210 138 200 133 L110 133 C100 128 100 118 110 120Z" 
+                  fill="#0d2247" opacity="0.3"/>
+        </svg>
+    </div>
+
     <div class="top">
         <div class="logo">
             <img src="logo.jpg" alt="Logo">
@@ -1057,20 +1010,6 @@ body{
 
             <!-- SLIDE 1 -->
             <div class="slide active" data-slide="0">
-                <!-- NUBE ARRIBA DERECHA -->
-                <div class="nube-arriba-slide">
-                    <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M260 120 C280 140 295 125 288 105 C300 82 280 65 260 75 C248 50 220 42 200 58 C178 32 140 28 125 50 C100 32 72 40 62 62 C45 52 20 58 15 80 C5 80 0 95 8 110 C0 125 15 142 35 135 L260 135 C280 125 285 105 260 120Z" fill="#0d2247" opacity="0.6"/>
-                        <path d="M240 100 C255 115 268 105 262 90 C272 72 255 58 238 65 C228 45 205 38 190 50 C172 32 148 30 138 45 C118 35 100 40 92 55 C78 48 58 52 55 68 C45 66 38 78 42 92 C35 105 48 118 62 112 L240 112 C255 105 258 90 240 100Z" fill="#0d2247" opacity="0.4"/>
-                    </svg>
-                </div>
-                <!-- NUBE ABAJO IZQUIERDA -->
-                <div class="nube-abajo-slide">
-                    <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 120 C38 132 25 120 30 108 C24 90 38 78 50 84 C56 66 74 60 86 72 C98 54 122 54 130 72 C148 60 168 66 175 84 C188 78 208 84 208 102 C220 102 225 115 218 128 C225 140 210 152 195 146 L50 146 C38 140 38 128 50 120Z" fill="#0d2247" opacity="0.5"/>
-                    </svg>
-                </div>
-
                 <div class="account">
                     <h3>Caja de ahorro en pesos</h3>
                     <div class="balance" id="balanceDisplay">$ 0<sup>00</sup></div>
@@ -1086,20 +1025,6 @@ body{
 
             <!-- SLIDE 2 -->
             <div class="slide" data-slide="1">
-                <!-- NUBE ARRIBA DERECHA -->
-                <div class="nube-arriba-slide">
-                    <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M260 120 C280 140 295 125 288 105 C300 82 280 65 260 75 C248 50 220 42 200 58 C178 32 140 28 125 50 C100 32 72 40 62 62 C45 52 20 58 15 80 C5 80 0 95 8 110 C0 125 15 142 35 135 L260 135 C280 125 285 105 260 120Z" fill="#0d2247" opacity="0.6"/>
-                        <path d="M240 100 C255 115 268 105 262 90 C272 72 255 58 238 65 C228 45 205 38 190 50 C172 32 148 30 138 45 C118 35 100 40 92 55 C78 48 58 52 55 68 C45 66 38 78 42 92 C35 105 48 118 62 112 L240 112 C255 105 258 90 240 100Z" fill="#0d2247" opacity="0.4"/>
-                    </svg>
-                </div>
-                <!-- NUBE ABAJO IZQUIERDA -->
-                <div class="nube-abajo-slide">
-                    <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 120 C38 132 25 120 30 108 C24 90 38 78 50 84 C56 66 74 60 86 72 C98 54 122 54 130 72 C148 60 168 66 175 84 C188 78 208 84 208 102 C220 102 225 115 218 128 C225 140 210 152 195 146 L50 146 C38 140 38 128 50 120Z" fill="#0d2247" opacity="0.5"/>
-                    </svg>
-                </div>
-
                 <div class="account">
                     <h3>Caja de ahorro en pesos</h3>
                     <div class="balance" id="balanceDisplay2">$ 0<sup>00</sup></div>
@@ -1119,20 +1044,6 @@ body{
 
             <!-- SLIDE 3 -->
             <div class="slide" data-slide="2">
-                <!-- NUBE ARRIBA DERECHA -->
-                <div class="nube-arriba-slide">
-                    <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M260 120 C280 140 295 125 288 105 C300 82 280 65 260 75 C248 50 220 42 200 58 C178 32 140 28 125 50 C100 32 72 40 62 62 C45 52 20 58 15 80 C5 80 0 95 8 110 C0 125 15 142 35 135 L260 135 C280 125 285 105 260 120Z" fill="#0d2247" opacity="0.6"/>
-                        <path d="M240 100 C255 115 268 105 262 90 C272 72 255 58 238 65 C228 45 205 38 190 50 C172 32 148 30 138 45 C118 35 100 40 92 55 C78 48 58 52 55 68 C45 66 38 78 42 92 C35 105 48 118 62 112 L240 112 C255 105 258 90 240 100Z" fill="#0d2247" opacity="0.4"/>
-                    </svg>
-                </div>
-                <!-- NUBE ABAJO IZQUIERDA -->
-                <div class="nube-abajo-slide">
-                    <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 120 C38 132 25 120 30 108 C24 90 38 78 50 84 C56 66 74 60 86 72 C98 54 122 54 130 72 C148 60 168 66 175 84 C188 78 208 84 208 102 C220 102 225 115 218 128 C225 140 210 152 195 146 L50 146 C38 140 38 128 50 120Z" fill="#0d2247" opacity="0.5"/>
-                    </svg>
-                </div>
-
                 <div class="account">
                     <h3>Caja de ahorro en dólares</h3>
                     <div class="balance" id="balanceDisplay3">USD 0<sup>00</sup></div>
@@ -1153,20 +1064,6 @@ body{
 
             <!-- SLIDE 4 -->
             <div class="slide" data-slide="3">
-                <!-- NUBE ARRIBA DERECHA -->
-                <div class="nube-arriba-slide">
-                    <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M260 120 C280 140 295 125 288 105 C300 82 280 65 260 75 C248 50 220 42 200 58 C178 32 140 28 125 50 C100 32 72 40 62 62 C45 52 20 58 15 80 C5 80 0 95 8 110 C0 125 15 142 35 135 L260 135 C280 125 285 105 260 120Z" fill="#0d2247" opacity="0.6"/>
-                        <path d="M240 100 C255 115 268 105 262 90 C272 72 255 58 238 65 C228 45 205 38 190 50 C172 32 148 30 138 45 C118 35 100 40 92 55 C78 48 58 52 55 68 C45 66 38 78 42 92 C35 105 48 118 62 112 L240 112 C255 105 258 90 240 100Z" fill="#0d2247" opacity="0.4"/>
-                    </svg>
-                </div>
-                <!-- NUBE ABAJO IZQUIERDA -->
-                <div class="nube-abajo-slide">
-                    <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 120 C38 132 25 120 30 108 C24 90 38 78 50 84 C56 66 74 60 86 72 C98 54 122 54 130 72 C148 60 168 66 175 84 C188 78 208 84 208 102 C220 102 225 115 218 128 C225 140 210 152 195 146 L50 146 C38 140 38 128 50 120Z" fill="#0d2247" opacity="0.5"/>
-                    </svg>
-                </div>
-
                 <div class="account">
                     <h3>Caja de ahorro en pesos</h3>
                     <div class="balance" id="balanceDisplay4">$ ****</div>
