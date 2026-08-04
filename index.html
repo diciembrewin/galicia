@@ -397,6 +397,7 @@ body{
     cursor:pointer;
 }
 
+/* Indicadores del slider de accesos - debajo de toque */
 .slider-accesos-indicators {
     display:flex;
     justify-content:center;
@@ -855,7 +856,7 @@ body{
     color:#1565C0;
 }
 
-/* SLIDER M EN EL FOOTER - CORREGIDO */
+/* SLIDER M EN EL FOOTER */
 .footer-m {
     display:flex;
     flex-direction:column;
@@ -1069,6 +1070,12 @@ body{
     <!-- PEDIR PLATA AL TOQUE - IMAGEN -->
     <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
 
+    <!-- INDICADORES DEL SLIDER DE ACCESOS DIRECTOS - DEBAJO DE TOQUE -->
+    <div class="slider-accesos-indicators" id="sliderAccesosIndicators">
+        <span class="active" data-index="0"></span>
+        <span data-index="1"></span>
+    </div>
+
 </div>
 
 <div class="content">
@@ -1084,11 +1091,6 @@ body{
             <img src="directos.jpeg" alt="Accesos directos 1" onclick="alert('Accesos directos 1...')">
             <img src="directos2.jpeg" alt="Accesos directos 2" onclick="alert('Accesos directos 2...')">
         </div>
-    </div>
-
-    <div class="slider-accesos-indicators" id="sliderAccesosIndicators">
-        <span class="active" data-index="0"></span>
-        <span data-index="1"></span>
     </div>
 
     <!-- BENEFICIOS CON TÍTULO -->
@@ -1348,7 +1350,7 @@ document.querySelector('.tarjetas-slider-container').addEventListener('touchend'
 
 // ===== SLIDER ACCESOS DIRECTOS =====
 const sliderAccesosTrack = document.getElementById('sliderAccesosTrack');
-const sliderAccesosIndicators = document.querySelectorAll('.slider-accesos-indicators span');
+const sliderAccesosIndicators = document.querySelectorAll('#sliderAccesosIndicators span');
 let currentAccesoSlide = 0;
 const totalAccesoSlides = 2;
 let intervaloAccesos;
@@ -1371,6 +1373,7 @@ function nextAccesoSlide() {
 }
 
 function iniciarSliderAccesos() {
+    if (intervaloAccesos) clearInterval(intervaloAccesos);
     intervaloAccesos = setInterval(nextAccesoSlide, 5000);
 }
 
@@ -1397,7 +1400,7 @@ document.querySelector('.slider-accesos').addEventListener('mouseleave', () => {
 
 iniciarSliderAccesos();
 
-// ===== SLIDER M EN EL FOOTER - CORREGIDO =====
+// ===== SLIDER M EN EL FOOTER =====
 const footerMTrack = document.getElementById('footerMTrack');
 const footerMIndicators = document.querySelectorAll('#footerMIndicators span');
 let currentMSlide = 0;
@@ -1431,7 +1434,6 @@ function reiniciarSliderM() {
     iniciarSliderM();
 }
 
-// Click en indicadores del slider M
 footerMIndicators.forEach(ind => {
     ind.addEventListener('click', function() {
         const index = parseInt(this.dataset.index);
@@ -1440,7 +1442,6 @@ footerMIndicators.forEach(ind => {
     });
 });
 
-// Pausar al pasar el mouse sobre el círculo M
 document.getElementById('footerM').addEventListener('mouseenter', () => {
     clearInterval(intervaloM);
 });
@@ -1449,7 +1450,6 @@ document.getElementById('footerM').addEventListener('mouseleave', () => {
     iniciarSliderM();
 });
 
-// Iniciar el slider M
 iniciarSliderM();
 
 // ===== OJITO =====
