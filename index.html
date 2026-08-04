@@ -66,13 +66,16 @@ body{
     height:44px;
     border-radius:50%;
     background:#fff;
-    color:#0D47A1;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:18px;
-    font-weight:bold;
-    gap:2px;
+    overflow:hidden;
+}
+
+.logo img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 .icons{
@@ -526,7 +529,7 @@ body{
 .tarjetas-slider-container {
     overflow:hidden;
     position:relative;
-    margin-bottom:16px;
+    margin-bottom:12px;
 }
 
 .tarjetas-slider-track {
@@ -536,10 +539,10 @@ body{
 
 .tarjeta-slide {
     min-width:100%;
-    padding:0 3px;
+    padding:0 2px;
 }
 
-/* Tarjeta VISA - Blanca - más grande */
+/* Tarjeta VISA - Blanca - más ancha */
 .tarjeta-item.visa {
     background:#fff;
     border-radius:16px;
@@ -549,6 +552,7 @@ body{
     display:flex;
     flex-direction:column;
     justify-content:space-between;
+    width:100%;
 }
 
 .tarjeta-item.visa .tipo {
@@ -604,7 +608,7 @@ body{
     color:#333;
 }
 
-/* Tarjeta Débito - Salmón - más grande */
+/* Tarjeta Débito - Salmón - más ancha */
 .tarjeta-item.debito {
     background:linear-gradient(135deg, #f5a623, #e88a1e);
     border-radius:16px;
@@ -614,6 +618,7 @@ body{
     display:flex;
     flex-direction:column;
     justify-content:space-between;
+    width:100%;
 }
 
 .tarjeta-item.debito .tipo {
@@ -676,7 +681,7 @@ body{
     display:flex;
     justify-content:center;
     gap:8px;
-    margin:8px 0 0;
+    margin:6px 0 0;
 }
 
 .tarjetas-indicators span {
@@ -693,21 +698,21 @@ body{
     background:#fff;
 }
 
-/* Acciones tarjeta - botones sobre fondo azul */
+/* Acciones tarjeta - botones más pequeños */
 .acciones-tarjeta {
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:10px;
-    margin-top:16px;
+    gap:8px;
+    margin-top:14px;
 }
 
 .acciones-tarjeta .btn-accion {
     background:rgba(255,255,255,0.15);
     color:#fff;
-    padding:12px 6px;
-    border-radius:12px;
+    padding:8px 4px;
+    border-radius:10px;
     text-align:center;
-    font-size:11px;
+    font-size:10px;
     font-weight:bold;
     cursor:pointer;
     transition:all 0.3s;
@@ -721,8 +726,8 @@ body{
 
 .acciones-tarjeta .btn-accion i {
     display:block;
-    font-size:20px;
-    margin-bottom:4px;
+    font-size:16px;
+    margin-bottom:3px;
 }
 
 /* Sección blanca - total e información */
@@ -898,9 +903,12 @@ body{
 <div class="header">
 
 <div class="top">
+
+<!-- LOGO CON IMAGEN -->
 <div class="logo">
-<i class="fa-solid fa-cross"></i> M
+    <img src="splash_icon.png" alt="Logo">
 </div>
+
 <div class="icons">
 <i class="fa-regular fa-eye" id="toggleBalance" style="cursor:pointer;"></i>
 <i class="fa-regular fa-circle-question"></i>
@@ -1118,7 +1126,7 @@ body{
         <span data-index="1"></span>
     </div>
 
-    <!-- Acciones tarjeta - sobre fondo azul -->
+    <!-- Acciones tarjeta - botones más pequeños -->
     <div class="acciones-tarjeta">
         <div class="btn-accion" onclick="alert('Blanqueando PIN...')">
             <i class="fa-solid fa-key"></i>
