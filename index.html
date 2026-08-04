@@ -199,6 +199,7 @@ body{
 
 .content{
     padding:20px;
+    padding-bottom:80px; /* Espacio para el footer fijo */
 }
 
 .title{
@@ -268,16 +269,19 @@ body{
     color:rgba(255,255,255,0.8);
 }
 
-/* Footer con M entre Tarjetas y Transferencia */
+/* Footer fijo */
 .footer{
-    position:sticky;
+    position:absolute;
     bottom:0;
+    left:0;
+    right:0;
     background:#fff;
     display:flex;
     justify-content:space-around;
     align-items:center;
     padding:10px 0;
     border-top:1px solid #ddd;
+    z-index:100;
 }
 
 .item{
@@ -837,7 +841,7 @@ Ir a Cuentas
 
 </div>
 
-<!-- ===== FOOTER CON M ENTRE TARJETAS Y TRANSFERENCIA ===== -->
+<!-- ===== FOOTER FIJO CON M ENTRE TARJETAS Y TRANSFERENCIA ===== -->
 <div class="footer">
 
 <div class="item active">
