@@ -235,7 +235,6 @@ body{
     font-size:16px;
 }
 
-/* ACCESOS DIRECTOS - 5 ITEMS */
 .cards{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -286,12 +285,216 @@ body{
     color:rgba(255,255,255,0.8);
 }
 
+/* Secciones home */
+.nueva-seccion {
+    margin-top:22px;
+}
+
+.nueva-seccion h2 {
+    font-size:17px;
+    color:#333;
+    margin-bottom:12px;
+}
+
+.nueva-seccion .item {
+    background:#fff;
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    border-left:4px solid #1565C0;
+    transition:all 0.3s;
+    cursor:pointer;
+}
+
+.nueva-seccion .item:hover {
+    transform:translateX(3px);
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.nueva-seccion .item h3 {
+    font-size:15px;
+    color:#333;
+    margin-bottom:4px;
+}
+
+.nueva-seccion .item p {
+    font-size:13px;
+    color:#666;
+    margin-bottom:6px;
+}
+
+.nueva-seccion .item .btn-link {
+    color:#1565C0;
+    font-weight:bold;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.nueva-seccion .item .btn-link:hover {
+    text-decoration:underline;
+}
+
+.servicios-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin:12px 0;
+}
+
+.servicio-card {
+    background:#fff;
+    border-radius:10px;
+    padding:14px 10px;
+    text-align:center;
+    transition:all 0.3s;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.servicio-card:hover {
+    background:#e8edf5;
+    transform:translateY(-2px);
+}
+
+.servicio-card i {
+    font-size:22px;
+    color:#1565C0;
+    margin-bottom:6px;
+}
+
+.servicio-card p {
+    font-size:11px;
+    color:#555;
+    font-weight:500;
+}
+
+.btn-servicios {
+    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    color:#fff;
+    padding:11px;
+    border-radius:25px;
+    text-align:center;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.3s;
+    font-size:13px;
+    width:100%;
+}
+
+.btn-servicios:hover {
+    transform:scale(1.02);
+    box-shadow:0 3px 12px rgba(21,101,192,0.3);
+}
+
+.recomendaciones {
+    margin-top:22px;
+    margin-bottom:10px;
+}
+
+.recomendaciones h2 {
+    font-size:17px;
+    color:#333;
+    margin-bottom:12px;
+}
+
+.recomendacion-item {
+    background:#fff;
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    border-left:4px solid #1565C0;
+    transition:all 0.3s;
+    cursor:pointer;
+}
+
+.recomendacion-item:hover {
+    transform:translateX(3px);
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.recomendacion-item p {
+    font-size:13px;
+    color:#333;
+    margin-bottom:8px;
+}
+
+.recomendacion-item .btn-cerrar {
+    color:#1565C0;
+    font-weight:bold;
+    font-size:12px;
+    cursor:pointer;
+    display:inline-block;
+}
+
+.recomendacion-item .btn-cerrar:hover {
+    text-decoration:underline;
+}
+
+/* Slider */
+.slide-container {
+    overflow:hidden;
+    position:relative;
+}
+
+.slide-track {
+    display:flex;
+    transition:transform 0.5s ease;
+}
+
+.slide {
+    min-width:100%;
+    padding:0 3px;
+}
+
+.fima-box, .dolar-box {
+    background:rgba(255,255,255,0.12);
+    border-radius:10px;
+    padding:10px 14px;
+    margin:12px 0 5px;
+    backdrop-filter:blur(5px);
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.fima-box h4, .dolar-box h4 {
+    font-size:13px;
+    color:#fff;
+}
+
+.fima-box p, .dolar-box p {
+    font-size:11px;
+    opacity:0.9;
+    color:#fff;
+    margin-top:2px;
+}
+
+.btn-fima, .btn-dolar {
+    background:#fff;
+    color:#0D47A1;
+    padding:5px 22px;
+    border-radius:18px;
+    font-weight:bold;
+    font-size:12px;
+    cursor:pointer;
+    border:none;
+    margin-top:6px;
+    transition:all 0.3s;
+}
+
+.btn-fima:hover, .btn-dolar:hover {
+    transform:scale(1.05);
+    box-shadow:0 3px 12px rgba(0,0,0,0.2);
+}
+
 /* ===== TARJETAS ===== */
 .page-tarjetas {
     min-height:100vh;
     padding:0 0 80px;
 }
 
+/* Header azul */
 .tarjetas-header {
     background:linear-gradient(135deg, #1565C0, #0D47A1);
     color:#fff;
@@ -317,11 +520,13 @@ body{
     flex:1;
 }
 
+/* Sección azul - tarjetas y botones */
 .seccion-azul {
     background:linear-gradient(135deg, #1565C0, #0D47A1);
     padding:0 18px 20px;
 }
 
+/* SLIDER DE TARJETAS */
 .tarjetas-slider-container {
     overflow:hidden;
     position:relative;
@@ -338,6 +543,7 @@ body{
     padding:0 2px;
 }
 
+/* Tarjeta VISA - Blanca */
 .tarjeta-item.visa {
     background:#fff;
     border-radius:16px;
@@ -369,6 +575,10 @@ body{
     cursor:pointer;
 }
 
+.tarjeta-item.visa .tipo .mostrar-datos:hover {
+    text-decoration:underline;
+}
+
 .tarjeta-item.visa .numero {
     font-size:20px;
     color:#333;
@@ -395,6 +605,11 @@ body{
     margin-bottom:3px;
 }
 
+.tarjeta-item.visa .datos .codigo {
+    color:#333;
+}
+
+/* Tarjeta Débito - Salmón */
 .tarjeta-item.debito {
     background:linear-gradient(135deg, #f5a623, #e88a1e);
     border-radius:16px;
@@ -427,6 +642,11 @@ body{
     opacity:0.8;
 }
 
+.tarjeta-item.debito .tipo .mostrar-datos:hover {
+    opacity:1;
+    text-decoration:underline;
+}
+
 .tarjeta-item.debito .numero {
     font-size:20px;
     color:#fff;
@@ -453,6 +673,11 @@ body{
     margin-bottom:3px;
 }
 
+.tarjeta-item.debito .datos .codigo {
+    color:#fff;
+}
+
+/* Indicadores del slider de tarjetas */
 .tarjetas-indicators {
     display:flex;
     justify-content:center;
@@ -474,6 +699,7 @@ body{
     background:#fff;
 }
 
+/* Acciones tarjeta */
 .acciones-tarjeta {
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -505,6 +731,7 @@ body{
     margin-bottom:4px;
 }
 
+/* Sección blanca - total e información */
 .seccion-blanca {
     background:#f5f7fa;
     padding:18px;
@@ -783,39 +1010,11 @@ body{
 <i class="fa-solid fa-chevron-right"></i>
 </div>
 
-<!-- 5 ACCESOS DIRECTOS -->
 <div class="cards">
-    <!-- 1. Pedí tu préstamo -->
-    <div class="card" onclick="alert('Solicitando préstamo con tasa del 40%...')">
-        <i class="fa-solid fa-hand-holding-dollar"></i>
-        <h3>Pedí tu préstamo</h3>
-        <p>Tasa 40%</p>
-    </div>
-
-    <!-- 2. Generar Token -->
-    <div class="card" onclick="alert('Generando Token...')">
-        <i class="fa-solid fa-shield-halved"></i>
-        <h3>Generar Token</h3>
-    </div>
-
-    <!-- 3. Agregar / Retirar -->
-    <div class="card" onclick="alert('Agregar / Retirar dinero...')">
-        <i class="fa-solid fa-building-columns"></i>
-        <h3>Agregar / Retirar</h3>
-    </div>
-
-    <!-- 4. Comprar / Vender -->
-    <div class="card" onclick="alert('Comprar / Vender...')">
-        <i class="fa-solid fa-money-bill-transfer"></i>
-        <h3>Comprar / Vender</h3>
-    </div>
-
-    <!-- 5. Inversiones -->
-    <div class="card big" onclick="alert('Ver inversiones...')">
-        <i class="fa-solid fa-chart-line"></i>
-        <h3>Inversiones</h3>
-        <p>Hacé rendir tu dinero</p>
-    </div>
+<div class="card big"><i class="fa-solid fa-file-invoice-dollar"></i><h3>Pagá o agregá tus servicios</h3></div>
+<div class="card"><i class="fa-solid fa-building-columns"></i><h3>Agregar / Retirar</h3></div>
+<div class="card"><i class="fa-solid fa-money-bill-transfer"></i><h3>Comprar / Vender</h3></div>
+<div class="card"><i class="fa-solid fa-shield-halved"></i><h3>Generar Token</h3></div>
 </div>
 
 <!-- Beneficios -->
