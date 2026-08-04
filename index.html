@@ -58,36 +58,75 @@ body{
     min-height:360px;
 }
 
-/* NUBE ARRIBA DERECHA */
+/* NUBE ARRIBA DERECHA - Estilo mancha */
 .nube-arriba {
     position:absolute;
-    top:-20px;
-    right:-169px;
-    width:450px;
-    height:263px;
-    opacity:0.5;
+    top:-130px;
+    right:-120px;
+    width:520px;
+    height:320px;
+    background:#06285d;
+    opacity:0.45;
+    border-radius:52% 48% 62% 38% / 38% 54% 46% 62%;
+    transform:rotate(-8deg);
     z-index:0;
 }
 
-.nube-arriba svg {
-    width:100%;
-    height:100%;
+.nube-arriba::before {
+    content:"";
+    position:absolute;
+    width:240px;
+    height:240px;
+    background:#06285d;
+    border-radius:50%;
+    left:-70px;
+    top:40px;
 }
 
-/* NUBE ABAJO IZQUIERDA */
+.nube-arriba::after {
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:#06285d;
+    border-radius:50%;
+    right:-30px;
+    bottom:-40px;
+}
+
+/* NUBE ABAJO IZQUIERDA - Estilo mancha */
 .nube-abajo {
     position:absolute;
-    bottom:5px;
-    left:-126px;
-    width:456px;
-    height:237px;
-    opacity:0.4;
+    left:-180px;
+    bottom:-180px;
+    width:620px;
+    height:430px;
+    background:#06285d;
+    opacity:0.45;
+    border-radius:60% 40% 52% 48% / 48% 56% 44% 52%;
     z-index:0;
 }
 
-.nube-abajo svg {
-    width:100%;
-    height:100%;
+.nube-abajo::before {
+    content:"";
+    position:absolute;
+    width:210px;
+    height:210px;
+    border-radius:50%;
+    background:#06285d;
+    top:-120px;
+    left:40px;
+}
+
+.nube-abajo::after {
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:#06285d;
+    right:-30px;
+    bottom:20px;
 }
 
 .top{
@@ -579,6 +618,7 @@ body{
     color:#fff;
     padding:16px 18px 20px;
     position:relative;
+    overflow:hidden;
 }
 
 .tarjetas-header .top-tarjetas {
@@ -970,25 +1010,11 @@ body{
 
 <div class="header">
 
-    <!-- NUBE ARRIBA DERECHA -->
-    <div class="nube-arriba">
-        <svg viewBox="0 0 450 263" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M400 175 C440 215 455 180 445 145 C475 110 440 80 395 92 C368 50 315 35 275 65 C235 30 175 18 138 52 C95 25 40 38 20 75 C-5 75 -18 102 -2 125 C-18 155 5 180 38 168 L400 168 C440 155 445 125 400 175Z" 
-                  fill="#032B5C" opacity="0.7"/>
-            <path d="M365 145 C400 180 415 150 408 120 C430 92 400 72 365 82 C342 48 295 35 260 60 C225 32 175 22 145 50 C108 30 65 40 50 68 C32 60 10 65 5 85 C-5 85 -12 102 0 120 C-8 135 8 150 25 145 L365 145 C400 135 405 110 365 145Z" 
-                  fill="#032B5C" opacity="0.35"/>
-        </svg>
-    </div>
+    <!-- NUBE ARRIBA DERECHA - Estilo mancha -->
+    <div class="nube-arriba"></div>
 
-    <!-- NUBE ABAJO IZQUIERDA -->
-    <div class="nube-abajo">
-        <svg viewBox="0 0 456 237" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M82 175 C60 200 35 175 40 152 C25 125 55 105 80 115 C95 90 125 78 150 100 C175 75 215 75 235 100 C265 85 300 92 312 125 C335 125 345 148 330 175 C345 198 320 218 290 205 L82 205 C60 195 60 170 82 175Z" 
-                  fill="#032B5C" opacity="0.6"/>
-            <path d="M150 148 C132 170 110 150 115 130 C102 108 132 92 155 100 C170 80 198 72 220 90 C242 72 278 72 292 90 C318 80 345 86 355 110 C375 110 382 130 368 150 C382 168 355 185 325 178 L150 178 C132 170 132 150 150 148Z" 
-                  fill="#032B5C" opacity="0.3"/>
-        </svg>
-    </div>
+    <!-- NUBE ABAJO IZQUIERDA - Estilo mancha -->
+    <div class="nube-abajo"></div>
 
     <div class="top">
         <div class="logo">
