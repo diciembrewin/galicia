@@ -847,13 +847,18 @@ body{
     width:32px;
     height:32px;
     border-radius:50%;
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
-    color:#fff;
+    background:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:14px;
-    font-weight:bold;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.footer-m .m-icon img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 /* Responsive */
@@ -1182,7 +1187,11 @@ body{
     <div class="item" data-page="tarjetas" onclick="showPage('tarjetas')">
         <i class="fa-regular fa-credit-card"></i>Tarjetas
     </div>
-    <div class="footer-m"><div class="m-icon">M</div></div>
+    <div class="footer-m">
+        <div class="m-icon">
+            <img src="m.jpeg" alt="M">
+        </div>
+    </div>
     <div class="item" data-page="transferencias" onclick="showPage('transferencias')">
         <i class="fa-solid fa-arrow-right-arrow-left"></i>Transferencia...
     </div>
