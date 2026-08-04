@@ -526,7 +526,7 @@ body{
 .tarjetas-slider-container {
     overflow:hidden;
     position:relative;
-    margin-bottom:12px;
+    margin-bottom:16px;
 }
 
 .tarjetas-slider-track {
@@ -536,10 +536,10 @@ body{
 
 .tarjeta-slide {
     min-width:100%;
-    padding:0 2px;
+    padding:0 3px;
 }
 
-/* Tarjeta VISA - Blanca - más ancha */
+/* Tarjeta VISA - Blanca - más grande */
 .tarjeta-item.visa {
     background:#fff;
     border-radius:16px;
@@ -549,7 +549,6 @@ body{
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    width:100%;
 }
 
 .tarjeta-item.visa .tipo {
@@ -605,7 +604,7 @@ body{
     color:#333;
 }
 
-/* Tarjeta Débito - Salmón - más ancha */
+/* Tarjeta Débito - Salmón - más grande */
 .tarjeta-item.debito {
     background:linear-gradient(135deg, #f5a623, #e88a1e);
     border-radius:16px;
@@ -615,7 +614,6 @@ body{
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    width:100%;
 }
 
 .tarjeta-item.debito .tipo {
@@ -678,7 +676,7 @@ body{
     display:flex;
     justify-content:center;
     gap:8px;
-    margin:6px 0 0;
+    margin:8px 0 0;
 }
 
 .tarjetas-indicators span {
@@ -695,21 +693,21 @@ body{
     background:#fff;
 }
 
-/* Acciones tarjeta - botones más pequeños */
+/* Acciones tarjeta - botones sobre fondo azul */
 .acciones-tarjeta {
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-top:14px;
+    gap:10px;
+    margin-top:16px;
 }
 
 .acciones-tarjeta .btn-accion {
     background:rgba(255,255,255,0.15);
     color:#fff;
-    padding:8px 4px;
-    border-radius:10px;
+    padding:12px 6px;
+    border-radius:12px;
     text-align:center;
-    font-size:10px;
+    font-size:11px;
     font-weight:bold;
     cursor:pointer;
     transition:all 0.3s;
@@ -723,8 +721,8 @@ body{
 
 .acciones-tarjeta .btn-accion i {
     display:block;
-    font-size:16px;
-    margin-bottom:3px;
+    font-size:20px;
+    margin-bottom:4px;
 }
 
 /* Sección blanca - total e información */
@@ -989,9 +987,9 @@ body{
 
 <div class="slider-indicators" id="indicators">
     <span class="active" data-index="0"></span>
-    <span class="active" data-index="1"></span>
-    <span class="active" data-index="2"></span>
-    <span class="active" data-index="3"></span>
+    <span data-index="1"></span>
+    <span data-index="2"></span>
+    <span data-index="3"></span>
 </div>
 
 </div>
@@ -1120,7 +1118,7 @@ body{
         <span data-index="1"></span>
     </div>
 
-    <!-- Acciones tarjeta - botones más pequeños -->
+    <!-- Acciones tarjeta - sobre fondo azul -->
     <div class="acciones-tarjeta">
         <div class="btn-accion" onclick="alert('Blanqueando PIN...')">
             <i class="fa-solid fa-key"></i>
