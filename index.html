@@ -55,33 +55,39 @@ body{
     flex-shrink:0;
     position:relative;
     overflow:hidden;
+    min-height:360px;
 }
 
-/* Nubes / Ondas */
-.header::before {
-    content: '';
+/* NUBE ARRIBA DERECHA */
+.nube-arriba {
     position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    height:80px;
-    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.65C48.72,100.77,109.17,106,160,106C234.52,106,266.89,69.65,321.39,56.44Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
-    background-size:cover;
-    background-position:bottom;
-    z-index:1;
+    top:-10px;
+    right:-20px;
+    width:180px;
+    height:120px;
+    opacity:0.15;
+    z-index:0;
 }
 
-.header::after {
-    content: '';
+.nube-arriba svg {
+    width:100%;
+    height:100%;
+}
+
+/* NUBE ABAJO IZQUIERDA */
+.nube-abajo {
     position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    height:60px;
-    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86C321.39,69.65,289.52,106,216,106C165.17,106,104.72,100.77,56,95.65V120H1200V95.65C1123.39,118.7,1056.66,111.31,985.66,92.83Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E");
-    background-size:cover;
-    background-position:bottom;
-    z-index:1;
+    bottom:30px;
+    left:-30px;
+    width:200px;
+    height:130px;
+    opacity:0.12;
+    z-index:0;
+}
+
+.nube-abajo svg {
+    width:100%;
+    height:100%;
 }
 
 .top{
@@ -574,19 +580,6 @@ body{
     overflow:hidden;
 }
 
-.tarjetas-header::before {
-    content: '';
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    height:80px;
-    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.65C48.72,100.77,109.17,106,160,106C234.52,106,266.89,69.65,321.39,56.44Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
-    background-size:cover;
-    background-position:bottom;
-    z-index:1;
-}
-
 .tarjetas-header .top-tarjetas {
     display:flex;
     align-items:center;
@@ -613,19 +606,6 @@ body{
     padding:0 18px 20px;
     position:relative;
     overflow:hidden;
-}
-
-.seccion-azul::before {
-    content: '';
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    height:60px;
-    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86C321.39,69.65,289.52,106,216,106C165.17,106,104.72,100.77,56,95.65V120H1200V95.65C1123.39,118.7,1056.66,111.31,985.66,92.83Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E");
-    background-size:cover;
-    background-position:bottom;
-    z-index:1;
 }
 
 .tarjetas-slider-container {
@@ -990,174 +970,188 @@ body{
 
 <div class="header">
 
-<div class="top">
-<div class="logo">
-    <img src="logo.jpg" alt="Logo">
-</div>
-<div class="icons">
-<i class="fa-regular fa-eye" id="toggleBalance" style="cursor:pointer;"></i>
-<i class="fa-regular fa-circle-question"></i>
-<i class="fa-regular fa-bell"></i>
-</div>
-</div>
+    <!-- NUBE ARRIBA DERECHA -->
+    <div class="nube-arriba">
+        <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M180 80 C190 90 200 80 195 70 C200 55 190 45 180 50 C175 35 160 30 150 40 C140 25 120 25 115 40 C100 30 85 35 80 50 C70 45 55 50 55 65 C45 65 40 75 45 85 C40 95 50 105 60 100 L180 100 C190 95 190 85 180 80Z" fill="#0d2247" opacity="0.6"/>
+        </svg>
+    </div>
 
-<div class="btn-ir-cuentas">Ir a Cuentas</div>
+    <!-- NUBE ABAJO IZQUIERDA -->
+    <div class="nube-abajo">
+        <svg viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 100 C30 110 20 100 25 90 C20 75 30 65 40 70 C45 55 60 50 70 60 C80 45 100 45 105 60 C120 50 135 55 140 70 C150 65 165 70 165 85 C175 85 180 95 175 105 C180 115 170 125 160 120 L40 120 C30 115 30 105 40 100Z" fill="#0d2247" opacity="0.5"/>
+        </svg>
+    </div>
 
-<div class="slide-container">
-<div class="slide-track" id="slideTrack">
+    <div class="top">
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo">
+        </div>
+        <div class="icons">
+            <i class="fa-regular fa-eye" id="toggleBalance" style="cursor:pointer;"></i>
+            <i class="fa-regular fa-circle-question"></i>
+            <i class="fa-regular fa-bell"></i>
+        </div>
+    </div>
 
-<!-- SLIDE 1 -->
-<div class="slide active" data-slide="0">
-    <div class="account">
-        <h3>Caja de ahorro en pesos</h3>
-        <div class="balance" id="balanceDisplay">$ 0<sup>00</sup></div>
-        <div class="number">★ Nº 4070450-4 028-4</div>
-    </div>
-    <div class="actions">
-        <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
-        <div class="action"><div class="circle"><i class="fa-solid fa-arrow-down-left"></i></div><p>Ingresar</p></div>
-        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
-        <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
-    </div>
-</div>
+    <div class="btn-ir-cuentas">Ir a Cuentas</div>
 
-<!-- SLIDE 2 -->
-<div class="slide" data-slide="1">
-    <div class="account">
-        <h3>Caja de ahorro en pesos</h3>
-        <div class="balance" id="balanceDisplay2">$ 0<sup>00</sup></div>
-        <div class="number">★ Nº 4070450-4 028-4</div>
-    </div>
-    <div class="fima-box">
-        <h4>💰 Activa Cuenta FIMA y hace rendir tus pesos un 16,6% anual</h4>
-        <button class="btn-fima" onclick="alert('Activando cuenta FIMA...')">Activar Cuenta FIMA</button>
-    </div>
-    <div class="actions">
-        <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
-        <div class="action"><div class="circle"><i class="fa-solid fa-arrow-down-left"></i></div><p>Ingresar</p></div>
-        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
-        <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
-    </div>
-</div>
+    <div class="slide-container">
+        <div class="slide-track" id="slideTrack">
 
-<!-- SLIDE 3 -->
-<div class="slide" data-slide="2">
-    <div class="account">
-        <h3>Caja de ahorro en dólares</h3>
-        <div class="balance" id="balanceDisplay3">USD 0<sup>00</sup></div>
-        <div class="number">★ Nº 4057434-1 028-6</div>
-    </div>
-    <div class="dolar-box">
-        <h4>💵 MEP USD</h4>
-        <p>Operá Dólar MEP desde tu cuenta</p>
-        <button class="btn-dolar" onclick="alert('Activando cuenta remunerada...')">ACTIVAR CUENTA REMUNERADA</button>
-    </div>
-    <div class="actions">
-        <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
-        <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Operar Dólar MEP</p></div>
-        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
-        <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
-    </div>
-</div>
+            <!-- SLIDE 1 -->
+            <div class="slide active" data-slide="0">
+                <div class="account">
+                    <h3>Caja de ahorro en pesos</h3>
+                    <div class="balance" id="balanceDisplay">$ 0<sup>00</sup></div>
+                    <div class="number">★ Nº 4070450-4 028-4</div>
+                </div>
+                <div class="actions">
+                    <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
+                    <div class="action"><div class="circle"><i class="fa-solid fa-arrow-down-left"></i></div><p>Ingresar</p></div>
+                    <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
+                    <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
+                </div>
+            </div>
 
-<!-- SLIDE 4 -->
-<div class="slide" data-slide="3">
-    <div class="account">
-        <h3>Caja de ahorro en pesos</h3>
-        <div class="balance" id="balanceDisplay4">$ ****</div>
-        <div class="number">★ Nº 4070450-4 028-4</div>
+            <!-- SLIDE 2 -->
+            <div class="slide" data-slide="1">
+                <div class="account">
+                    <h3>Caja de ahorro en pesos</h3>
+                    <div class="balance" id="balanceDisplay2">$ 0<sup>00</sup></div>
+                    <div class="number">★ Nº 4070450-4 028-4</div>
+                </div>
+                <div class="fima-box">
+                    <h4>💰 Activa Cuenta FIMA y hace rendir tus pesos un 16,6% anual</h4>
+                    <button class="btn-fima" onclick="alert('Activando cuenta FIMA...')">Activar Cuenta FIMA</button>
+                </div>
+                <div class="actions">
+                    <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
+                    <div class="action"><div class="circle"><i class="fa-solid fa-arrow-down-left"></i></div><p>Ingresar</p></div>
+                    <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
+                    <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3 -->
+            <div class="slide" data-slide="2">
+                <div class="account">
+                    <h3>Caja de ahorro en dólares</h3>
+                    <div class="balance" id="balanceDisplay3">USD 0<sup>00</sup></div>
+                    <div class="number">★ Nº 4057434-1 028-6</div>
+                </div>
+                <div class="dolar-box">
+                    <h4>💵 MEP USD</h4>
+                    <p>Operá Dólar MEP desde tu cuenta</p>
+                    <button class="btn-dolar" onclick="alert('Activando cuenta remunerada...')">ACTIVAR CUENTA REMUNERADA</button>
+                </div>
+                <div class="actions">
+                    <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
+                    <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Operar Dólar MEP</p></div>
+                    <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
+                    <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
+                </div>
+            </div>
+
+            <!-- SLIDE 4 -->
+            <div class="slide" data-slide="3">
+                <div class="account">
+                    <h3>Caja de ahorro en pesos</h3>
+                    <div class="balance" id="balanceDisplay4">$ ****</div>
+                    <div class="number">★ Nº 4070450-4 028-4</div>
+                </div>
+                <div class="actions">
+                    <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
+                    <div class="action"><div class="circle"><i class="fa-solid fa-arrow-down-left"></i></div><p>Ingresar</p></div>
+                    <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
+                    <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div class="actions">
-        <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
-        <div class="action"><div class="circle"><i class="fa-solid fa-arrow-down-left"></i></div><p>Ingresar</p></div>
-        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
-        <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
+
+    <div class="slider-indicators" id="indicators">
+        <span class="active" data-index="0"></span>
+        <span data-index="1"></span>
+        <span data-index="2"></span>
+        <span data-index="3"></span>
     </div>
-</div>
 
-</div>
-</div>
-
-<div class="slider-indicators" id="indicators">
-    <span class="active" data-index="0"></span>
-    <span data-index="1"></span>
-    <span data-index="2"></span>
-    <span data-index="3"></span>
-</div>
-
-<!-- PEDIR PLATA AL TOQUE -->
-<div class="pedir-plata" onclick="alert('Solicitando préstamo...')">
-    <i class="fa-solid fa-bolt"></i>
-    <span>PEDIR PLATA AL TOQUE</span>
-</div>
+    <!-- PEDIR PLATA AL TOQUE -->
+    <div class="pedir-plata" onclick="alert('Solicitando préstamo...')">
+        <i class="fa-solid fa-bolt"></i>
+        <span>PEDIR PLATA AL TOQUE</span>
+    </div>
 
 </div>
 
 <div class="content">
 
-<div class="title">
-<h1>Accesos directos</h1>
-<i class="fa-solid fa-chevron-right"></i>
-</div>
+    <div class="title">
+        <h1>Accesos directos</h1>
+        <i class="fa-solid fa-chevron-right"></i>
+    </div>
 
-<div class="cards">
-    <div class="card" onclick="alert('Pagá o agregá tus servicios...')">
-        <i class="fa-solid fa-file-invoice-dollar"></i>
-        <h3>Pagá o agregá tus servicios</h3>
+    <div class="cards">
+        <div class="card" onclick="alert('Pagá o agregá tus servicios...')">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <h3>Pagá o agregá tus servicios</h3>
+        </div>
+        <div class="card" onclick="alert('FIMA...')">
+            <i class="fa-solid fa-piggy-bank"></i>
+            <h3>FIMA</h3>
+        </div>
+        <div class="card" onclick="alert('Agregar / Retirar dinero...')">
+            <i class="fa-solid fa-building-columns"></i>
+            <h3>Agregar / Retirar</h3>
+        </div>
+        <div class="card" onclick="alert('Comprar / Vender...')">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            <h3>Comprar / Vender</h3>
+        </div>
+        <div class="card big" style="grid-column: span 2;" onclick="alert('Ver inversiones...')">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Inversiones</h3>
+            <p>Hacé rendir tu dinero</p>
+        </div>
     </div>
-    <div class="card" onclick="alert('FIMA...')">
-        <i class="fa-solid fa-piggy-bank"></i>
-        <h3>FIMA</h3>
-    </div>
-    <div class="card" onclick="alert('Agregar / Retirar dinero...')">
-        <i class="fa-solid fa-building-columns"></i>
-        <h3>Agregar / Retirar</h3>
-    </div>
-    <div class="card" onclick="alert('Comprar / Vender...')">
-        <i class="fa-solid fa-money-bill-transfer"></i>
-        <h3>Comprar / Vender</h3>
-    </div>
-    <div class="card big" style="grid-column: span 2;" onclick="alert('Ver inversiones...')">
-        <i class="fa-solid fa-chart-line"></i>
-        <h3>Inversiones</h3>
-        <p>Hacé rendir tu dinero</p>
-    </div>
-</div>
 
-<!-- Beneficios -->
-<div class="nueva-seccion">
-    <h2>Beneficios</h2>
-    <div class="item">
-        <h3>Sección Tus Viajes</h3>
-        <p>Todo lo que necesitas, en un sólo lugar.</p>
-        <span class="btn-link">Conocer más</span>
+    <!-- Beneficios -->
+    <div class="nueva-seccion">
+        <h2>Beneficios</h2>
+        <div class="item">
+            <h3>Sección Tus Viajes</h3>
+            <p>Todo lo que necesitas, en un sólo lugar.</p>
+            <span class="btn-link">Conocer más</span>
+        </div>
+        <div class="item">
+            <h3>Todo para tu show</h3>
+            <p>Beneficios exclusivos en recitales</p>
+            <span class="btn-link">Conocer más</span>
+        </div>
     </div>
-    <div class="item">
-        <h3>Todo para tu show</h3>
-        <p>Beneficios exclusivos en recitales</p>
-        <span class="btn-link">Conocer más</span>
-    </div>
-</div>
 
-<!-- Servicios -->
-<div class="nueva-seccion">
-    <h2>Servicios y recargas</h2>
-    <div class="servicios-grid">
-        <div class="servicio-card"><i class="fa-solid fa-mobile-screen-button"></i><p>Recargar celular</p></div>
-        <div class="servicio-card"><i class="fa-solid fa-bus"></i><p>Recargar transporte</p></div>
-        <div class="servicio-card"><i class="fa-solid fa-file-invoice"></i><p>Pagar ARCA</p></div>
+    <!-- Servicios -->
+    <div class="nueva-seccion">
+        <h2>Servicios y recargas</h2>
+        <div class="servicios-grid">
+            <div class="servicio-card"><i class="fa-solid fa-mobile-screen-button"></i><p>Recargar celular</p></div>
+            <div class="servicio-card"><i class="fa-solid fa-bus"></i><p>Recargar transporte</p></div>
+            <div class="servicio-card"><i class="fa-solid fa-file-invoice"></i><p>Pagar ARCA</p></div>
+        </div>
+        <div class="btn-servicios">Pagá o agregá tus servicios</div>
     </div>
-    <div class="btn-servicios">Pagá o agregá tus servicios</div>
-</div>
 
-<!-- Recomendaciones -->
-<div class="recomendaciones">
-    <h2>Recomendaciones</h2>
-    <div class="recomendacion-item">
-        <p>Protegé tu casa aunque estés lejos, activalo ahora</p>
-        <span class="btn-cerrar">Cerrar sesión</span>
+    <!-- Recomendaciones -->
+    <div class="recomendaciones">
+        <h2>Recomendaciones</h2>
+        <div class="recomendacion-item">
+            <p>Protegé tu casa aunque estés lejos, activalo ahora</p>
+            <span class="btn-cerrar">Cerrar sesión</span>
+        </div>
     </div>
-</div>
 
 </div>
 
