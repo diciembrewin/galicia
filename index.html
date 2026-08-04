@@ -329,7 +329,7 @@ body{
     transform:scale(1.02);
 }
 
-/* INDICADORES DEL SLIDER DE ACCESOS - DEBAJO DE TOQUE (estilo como los del home) */
+/* INDICADORES DEL SLIDER DE ACCESOS - DEBAJO DE TOQUE */
 .accesos-indicators {
     display:flex;
     justify-content:center;
@@ -817,7 +817,7 @@ body{
     font-size:14px;
 }
 
-/* ===== FOOTER ===== */
+/* ===== FOOTER CON IMAGEN M MÁS GRANDE ===== */
 .footer{
     position:fixed;
     bottom:0;
@@ -863,12 +863,12 @@ body{
     align-items:center;
     justify-content:center;
     flex:0 0 auto;
-    padding:0 5px;
+    padding:0 8px;
 }
 
 .footer-m .m-icon {
-    width:40px;
-    height:40px;
+    width:55px;
+    height:55px;
     border-radius:50%;
     background:#fff;
     display:flex;
@@ -1021,7 +1021,6 @@ body{
         </div>
     </div>
 
-    <!-- INDICADORES DEL SLIDER HOME -->
     <div class="slider-indicators" id="indicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
@@ -1029,10 +1028,8 @@ body{
         <span data-index="3"></span>
     </div>
 
-    <!-- IMAGEN TOQUE -->
     <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
 
-    <!-- INDICADORES DEL SLIDER DE ACCESOS (DEBAJO DE TOQUE) - ESTILO COMO LOS DEL HOME -->
     <div class="accesos-indicators" id="accesosIndicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
@@ -1047,7 +1044,6 @@ body{
         <i class="fa-solid fa-chevron-right"></i>
     </div>
 
-    <!-- SLIDER DE ACCESOS DIRECTOS -->
     <div class="slider-accesos">
         <div class="slider-accesos-track" id="sliderAccesosTrack">
             <img src="directos.jpeg" alt="Accesos directos 1" onclick="alert('Accesos directos 1...')">
@@ -1055,13 +1051,11 @@ body{
         </div>
     </div>
 
-    <!-- BENEFICIOS CON TÍTULO -->
     <div class="beneficios-section">
         <h2>Beneficios</h2>
         <img src="benefi.jpeg" alt="Beneficios" class="img-beneficios" onclick="alert('Beneficios...')">
     </div>
 
-    <!-- RECOMENDACIONES CON TÍTULO -->
     <div class="recomendaciones">
         <h2>Recomendaciones</h2>
         <img src="recomen.jpeg" alt="Recomendaciones" class="img-recomen" onclick="alert('Recomendaciones...')">
@@ -1184,7 +1178,7 @@ body{
 
 </div><!-- end page-tarjetas -->
 
-<!-- ===== FOOTER ===== -->
+<!-- ===== FOOTER CON IMAGEN M MÁS GRANDE ===== -->
 <div class="footer">
     <div class="item active" data-page="home" onclick="showPage('home')">
         <i class="fa-solid fa-house"></i>Inicio
