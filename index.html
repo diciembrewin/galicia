@@ -49,16 +49,48 @@ body{
 
 /* ===== HOME ===== */
 .header{
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    background:linear-gradient(180deg, #0a1628 0%, #1a2a5e 40%, #1a3a7a 70%, #2a5a9a 100%);
     color:#fff;
-    padding:16px 18px;
+    padding:16px 18px 20px;
     flex-shrink:0;
+    position:relative;
+    overflow:hidden;
+    min-height:350px;
+}
+
+/* Nubes / Ondas */
+.header::before {
+    content: '';
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:80px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.65C48.72,100.77,109.17,106,160,106C234.52,106,266.89,69.65,321.39,56.44Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
+    background-size:cover;
+    background-position:bottom;
+    z-index:1;
+}
+
+.header::after {
+    content: '';
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:60px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86C321.39,69.65,289.52,106,216,106C165.17,106,104.72,100.77,56,95.65V120H1200V95.65C1123.39,118.7,1056.66,111.31,985.66,92.83Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E");
+    background-size:cover;
+    background-position:bottom;
+    z-index:1;
 }
 
 .top{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    position:relative;
+    z-index:2;
 }
 
 .logo{
@@ -84,6 +116,8 @@ body{
     gap:16px;
     font-size:20px;
     color:#fff;
+    position:relative;
+    z-index:2;
 }
 
 .icons i{
@@ -98,7 +132,7 @@ body{
 .btn-ir-cuentas{
     margin:12px auto 8px;
     width:160px;
-    background:rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.15);
     color:#fff;
     padding:8px 12px;
     border-radius:25px;
@@ -107,17 +141,21 @@ body{
     cursor:pointer;
     font-size:13px;
     backdrop-filter:blur(5px);
-    border:1px solid rgba(255,255,255,0.3);
+    border:1px solid rgba(255,255,255,0.2);
+    position:relative;
+    z-index:2;
 }
 
 .btn-ir-cuentas:hover{
-    background:rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.25);
     transform:scale(1.05);
 }
 
 .account{
     text-align:center;
     margin-top:5px;
+    position:relative;
+    z-index:2;
 }
 
 .account h3{
@@ -150,6 +188,8 @@ body{
     grid-template-columns:repeat(4,1fr);
     gap:8px;
     margin-top:16px;
+    position:relative;
+    z-index:2;
 }
 
 .action{
@@ -166,7 +206,7 @@ body{
     width:50px;
     height:50px;
     border-radius:50%;
-    background:rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.12);
     margin:0 auto;
     display:flex;
     justify-content:center;
@@ -174,11 +214,11 @@ body{
     font-size:20px;
     color:#fff;
     transition:all 0.3s;
-    border:1px solid rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.08);
 }
 
 .action:hover .circle{
-    background:rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.2);
     transform:scale(1.1);
 }
 
@@ -189,11 +229,44 @@ body{
     color:#fff;
 }
 
+/* PEDIR PLATA AL TOQUE */
+.pedir-plata {
+    background:rgba(255,215,0,0.15);
+    border:1px solid rgba(255,215,0,0.3);
+    border-radius:12px;
+    padding:10px 16px;
+    margin-top:12px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    z-index:2;
+    transition:all 0.3s;
+}
+
+.pedir-plata:hover {
+    background:rgba(255,215,0,0.25);
+    transform:scale(1.02);
+}
+
+.pedir-plata span {
+    color:#ffd700;
+    font-weight:bold;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+.pedir-plata i {
+    color:#ffd700;
+    margin-right:8px;
+}
+
 .slider-indicators{
     display:flex;
     justify-content:center;
     gap:8px;
     margin:14px 0 0;
+    position:relative;
+    z-index:2;
 }
 
 .slider-indicators span{
@@ -258,13 +331,13 @@ body{
 }
 
 .big{
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    background:linear-gradient(135deg, #1a2a5e, #2a5a9a);
     color:#fff;
 }
 
 .card i{
     font-size:28px;
-    color:#1565C0;
+    color:#1a2a5e;
     margin-bottom:10px;
 }
 
@@ -286,226 +359,39 @@ body{
     color:rgba(255,255,255,0.8);
 }
 
-/* Secciones home */
-.nueva-seccion {
-    margin-top:22px;
-}
-
-.nueva-seccion h2 {
-    font-size:17px;
-    color:#333;
-    margin-bottom:12px;
-}
-
-.nueva-seccion .item {
-    background:#fff;
-    border-radius:12px;
-    padding:16px;
-    margin-bottom:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-    border-left:4px solid #1565C0;
-    transition:all 0.3s;
-    cursor:pointer;
-}
-
-.nueva-seccion .item:hover {
-    transform:translateX(3px);
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
-}
-
-.nueva-seccion .item h3 {
-    font-size:15px;
-    color:#333;
-    margin-bottom:4px;
-}
-
-.nueva-seccion .item p {
-    font-size:13px;
-    color:#666;
-    margin-bottom:6px;
-}
-
-.nueva-seccion .item .btn-link {
-    color:#1565C0;
-    font-weight:bold;
-    font-size:12px;
-    cursor:pointer;
-}
-
-.nueva-seccion .item .btn-link:hover {
-    text-decoration:underline;
-}
-
-.servicios-grid {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin:12px 0;
-}
-
-.servicio-card {
-    background:#fff;
-    border-radius:10px;
-    padding:14px 10px;
-    text-align:center;
-    transition:all 0.3s;
-    cursor:pointer;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-}
-
-.servicio-card:hover {
-    background:#e8edf5;
-    transform:translateY(-2px);
-}
-
-.servicio-card i {
-    font-size:22px;
-    color:#1565C0;
-    margin-bottom:6px;
-}
-
-.servicio-card p {
-    font-size:11px;
-    color:#555;
-    font-weight:500;
-}
-
-.btn-servicios {
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
-    color:#fff;
-    padding:11px;
-    border-radius:25px;
-    text-align:center;
-    font-weight:bold;
-    cursor:pointer;
-    transition:all 0.3s;
-    font-size:13px;
-    width:100%;
-}
-
-.btn-servicios:hover {
-    transform:scale(1.02);
-    box-shadow:0 3px 12px rgba(21,101,192,0.3);
-}
-
-.recomendaciones {
-    margin-top:22px;
-    margin-bottom:10px;
-}
-
-.recomendaciones h2 {
-    font-size:17px;
-    color:#333;
-    margin-bottom:12px;
-}
-
-.recomendacion-item {
-    background:#fff;
-    border-radius:12px;
-    padding:16px;
-    margin-bottom:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-    border-left:4px solid #1565C0;
-    transition:all 0.3s;
-    cursor:pointer;
-}
-
-.recomendacion-item:hover {
-    transform:translateX(3px);
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
-}
-
-.recomendacion-item p {
-    font-size:13px;
-    color:#333;
-    margin-bottom:8px;
-}
-
-.recomendacion-item .btn-cerrar {
-    color:#1565C0;
-    font-weight:bold;
-    font-size:12px;
-    cursor:pointer;
-    display:inline-block;
-}
-
-.recomendacion-item .btn-cerrar:hover {
-    text-decoration:underline;
-}
-
-/* Slider */
-.slide-container {
-    overflow:hidden;
-    position:relative;
-}
-
-.slide-track {
-    display:flex;
-    transition:transform 0.5s ease;
-}
-
-.slide {
-    min-width:100%;
-    padding:0 3px;
-}
-
-.fima-box, .dolar-box {
-    background:rgba(255,255,255,0.12);
-    border-radius:10px;
-    padding:10px 14px;
-    margin:12px 0 5px;
-    backdrop-filter:blur(5px);
-    text-align:center;
-    border:1px solid rgba(255,255,255,0.1);
-}
-
-.fima-box h4, .dolar-box h4 {
-    font-size:13px;
-    color:#fff;
-}
-
-.fima-box p, .dolar-box p {
-    font-size:11px;
-    opacity:0.9;
-    color:#fff;
-    margin-top:2px;
-}
-
-.btn-fima, .btn-dolar {
-    background:#fff;
-    color:#0D47A1;
-    padding:5px 22px;
-    border-radius:18px;
-    font-weight:bold;
-    font-size:12px;
-    cursor:pointer;
-    border:none;
-    margin-top:6px;
-    transition:all 0.3s;
-}
-
-.btn-fima:hover, .btn-dolar:hover {
-    transform:scale(1.05);
-    box-shadow:0 3px 12px rgba(0,0,0,0.2);
-}
-
 /* ===== TARJETAS ===== */
 .page-tarjetas {
     min-height:100vh;
     padding:0 0 80px;
 }
 
-/* Header azul */
 .tarjetas-header {
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    background:linear-gradient(180deg, #0a1628 0%, #1a2a5e 40%, #1a3a7a 70%, #2a5a9a 100%);
     color:#fff;
     padding:16px 18px 20px;
+    position:relative;
+    overflow:hidden;
+}
+
+.tarjetas-header::before {
+    content: '';
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:80px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.65C48.72,100.77,109.17,106,160,106C234.52,106,266.89,69.65,321.39,56.44Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
+    background-size:cover;
+    background-position:bottom;
+    z-index:1;
 }
 
 .tarjetas-header .top-tarjetas {
     display:flex;
     align-items:center;
     gap:15px;
+    position:relative;
+    z-index:2;
 }
 
 .tarjetas-header .back-btn {
@@ -521,17 +407,31 @@ body{
     flex:1;
 }
 
-/* Sección azul - tarjetas y botones */
 .seccion-azul {
-    background:linear-gradient(135deg, #1565C0, #0D47A1);
+    background:linear-gradient(180deg, #0a1628 0%, #1a2a5e 40%, #1a3a7a 70%, #2a5a9a 100%);
     padding:0 18px 20px;
+    position:relative;
+    overflow:hidden;
 }
 
-/* SLIDER DE TARJETAS */
+.seccion-azul::before {
+    content: '';
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:60px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86C321.39,69.65,289.52,106,216,106C165.17,106,104.72,100.77,56,95.65V120H1200V95.65C1123.39,118.7,1056.66,111.31,985.66,92.83Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E");
+    background-size:cover;
+    background-position:bottom;
+    z-index:1;
+}
+
 .tarjetas-slider-container {
     overflow:hidden;
     position:relative;
     margin-bottom:12px;
+    z-index:2;
 }
 
 .tarjetas-slider-track {
@@ -544,7 +444,6 @@ body{
     padding:0 2px;
 }
 
-/* Tarjeta VISA - Blanca */
 .tarjeta-item.visa {
     background:#fff;
     border-radius:16px;
@@ -576,10 +475,6 @@ body{
     cursor:pointer;
 }
 
-.tarjeta-item.visa .tipo .mostrar-datos:hover {
-    text-decoration:underline;
-}
-
 .tarjeta-item.visa .numero {
     font-size:20px;
     color:#333;
@@ -606,11 +501,6 @@ body{
     margin-bottom:3px;
 }
 
-.tarjeta-item.visa .datos .codigo {
-    color:#333;
-}
-
-/* Tarjeta Débito - Salmón */
 .tarjeta-item.debito {
     background:linear-gradient(135deg, #f5a623, #e88a1e);
     border-radius:16px;
@@ -643,11 +533,6 @@ body{
     opacity:0.8;
 }
 
-.tarjeta-item.debito .tipo .mostrar-datos:hover {
-    opacity:1;
-    text-decoration:underline;
-}
-
 .tarjeta-item.debito .numero {
     font-size:20px;
     color:#fff;
@@ -674,16 +559,13 @@ body{
     margin-bottom:3px;
 }
 
-.tarjeta-item.debito .datos .codigo {
-    color:#fff;
-}
-
-/* Indicadores del slider de tarjetas */
 .tarjetas-indicators {
     display:flex;
     justify-content:center;
     gap:8px;
     margin:6px 0 0;
+    z-index:2;
+    position:relative;
 }
 
 .tarjetas-indicators span {
@@ -700,16 +582,17 @@ body{
     background:#fff;
 }
 
-/* Acciones tarjeta */
 .acciones-tarjeta {
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:8px;
     margin-top:14px;
+    z-index:2;
+    position:relative;
 }
 
 .acciones-tarjeta .btn-accion {
-    background:rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.12);
     color:#fff;
     padding:10px 6px;
     border-radius:12px;
@@ -718,11 +601,11 @@ body{
     font-weight:bold;
     cursor:pointer;
     transition:all 0.3s;
-    border:1px solid rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.08);
 }
 
 .acciones-tarjeta .btn-accion:hover {
-    background:rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.2);
     transform:scale(1.02);
 }
 
@@ -732,7 +615,6 @@ body{
     margin-bottom:4px;
 }
 
-/* Sección blanca - total e información */
 .seccion-blanca {
     background:#f5f7fa;
     padding:18px;
@@ -933,7 +815,7 @@ body{
     <div class="actions">
         <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
         <div class="action"><div class="circle"><i class="fa-solid fa-arrow-down-left"></i></div><p>Ingresar</p></div>
-        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Copiar CBU</p></div>
+        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
         <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
     </div>
 </div>
@@ -952,7 +834,7 @@ body{
     <div class="actions">
         <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
         <div class="action"><div class="circle"><i class="fa-solid fa-arrow-down-left"></i></div><p>Ingresar</p></div>
-        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Copiar CBU</p></div>
+        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
         <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
     </div>
 </div>
@@ -972,7 +854,7 @@ body{
     <div class="actions">
         <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
         <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Operar Dólar MEP</p></div>
-        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Copiar CBU</p></div>
+        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
         <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
     </div>
 </div>
@@ -987,7 +869,7 @@ body{
     <div class="actions">
         <div class="action"><div class="circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></div><p>Transferir</p></div>
         <div class="action"><div class="circle"><i class="fa-solid fa-arrow-down-left"></i></div><p>Ingresar</p></div>
-        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Copiar CBU</p></div>
+        <div class="action"><div class="circle"><i class="fa-regular fa-copy"></i></div><p>Alias/CBU</p></div>
         <div class="action"><div class="circle"><i class="fa-solid fa-dollar-sign"></i></div><p>Comprar/Vender</p></div>
     </div>
 </div>
@@ -997,9 +879,15 @@ body{
 
 <div class="slider-indicators" id="indicators">
     <span class="active" data-index="0"></span>
-    <span data-index="1"></span>
-    <span data-index="2"></span>
-    <span data-index="3"></span>
+    <span class="active" data-index="1"></span>
+    <span class="active" data-index="2"></span>
+    <span class="active" data-index="3"></span>
+</div>
+
+<!-- PEDIR PLATA AL TOQUE -->
+<div class="pedir-plata" onclick="alert('Solicitando préstamo...')">
+    <i class="fa-solid fa-bolt"></i>
+    <span>PEDIR PLATA AL TOQUE</span>
 </div>
 
 </div>
@@ -1013,17 +901,16 @@ body{
 
 <!-- 5 ACCESOS DIRECTOS -->
 <div class="cards">
-    <!-- 1. Pedí tu préstamo -->
-    <div class="card" onclick="alert('Solicitando préstamo con tasa del 40%...')">
-        <i class="fa-solid fa-hand-holding-dollar"></i>
-        <h3>Pedí tu préstamo</h3>
-        <p>Tasa 40%</p>
+    <!-- 1. Pagá o agregá tus servicios -->
+    <div class="card" onclick="alert('Pagá o agregá tus servicios...')">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <h3>Pagá o agregá tus servicios</h3>
     </div>
 
-    <!-- 2. Generar Token -->
-    <div class="card" onclick="alert('Generando Token...')">
-        <i class="fa-solid fa-shield-halved"></i>
-        <h3>Generar Token</h3>
+    <!-- 2. FIMA -->
+    <div class="card" onclick="alert('FIMA...')">
+        <i class="fa-solid fa-piggy-bank"></i>
+        <h3>FIMA</h3>
     </div>
 
     <!-- 3. Agregar / Retirar -->
@@ -1090,7 +977,7 @@ body{
 
 <div class="page-tarjetas">
 
-<!-- Header azul -->
+<!-- Header azul con nubes -->
 <div class="tarjetas-header">
     <div class="top-tarjetas">
         <span class="back-btn" onclick="showPage('home')">
@@ -1100,14 +987,12 @@ body{
     </div>
 </div>
 
-<!-- Sección azul: tarjetas + botones -->
+<!-- Sección azul con nubes -->
 <div class="seccion-azul">
 
-    <!-- SLIDER DE TARJETAS -->
     <div class="tarjetas-slider-container">
         <div class="tarjetas-slider-track" id="tarjetasSlideTrack">
             
-            <!-- Slide 1: VISA -->
             <div class="tarjeta-slide active" data-slide="0">
                 <div class="tarjeta-item visa">
                     <div class="tipo">
@@ -1128,7 +1013,6 @@ body{
                 </div>
             </div>
 
-            <!-- Slide 2: Débito -->
             <div class="tarjeta-slide" data-slide="1">
                 <div class="tarjeta-item debito">
                     <div class="tipo">
@@ -1152,13 +1036,11 @@ body{
         </div>
     </div>
 
-    <!-- Indicadores del slider de tarjetas -->
     <div class="tarjetas-indicators" id="tarjetasIndicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
     </div>
 
-    <!-- Acciones tarjeta -->
     <div class="acciones-tarjeta">
         <div class="btn-accion" onclick="alert('Blanqueando PIN...')">
             <i class="fa-solid fa-key"></i>
@@ -1180,7 +1062,6 @@ body{
 
 </div>
 
-<!-- Sección blanca: total + información -->
 <div class="seccion-blanca">
 
     <div class="movimientos-total">
