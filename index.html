@@ -522,37 +522,51 @@ body{
     padding:0 18px 20px;
 }
 
-/* Grid de tarjetas - una al lado de la otra */
-.tarjetas-grid {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+/* SLIDER DE TARJETAS */
+.tarjetas-slider-container {
+    overflow:hidden;
+    position:relative;
+    margin-bottom:16px;
 }
 
-/* Tarjeta VISA - Blanca */
+.tarjetas-slider-track {
+    display:flex;
+    transition:transform 0.5s ease;
+}
+
+.tarjeta-slide {
+    min-width:100%;
+    padding:0 3px;
+}
+
+/* Tarjeta VISA - Blanca - más grande */
 .tarjeta-item.visa {
     background:#fff;
-    border-radius:14px;
-    padding:14px;
+    border-radius:16px;
+    padding:24px 20px;
     box-shadow:0 4px 15px rgba(0,0,0,.25);
+    min-height:170px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
 .tarjeta-item.visa .tipo {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:5px;
+    margin-bottom:8px;
 }
 
 .tarjeta-item.visa .tipo h3 {
-    font-size:14px;
+    font-size:18px;
     color:#333;
 }
 
 .tarjeta-item.visa .tipo .mostrar-datos {
     color:#1565C0;
     font-weight:bold;
-    font-size:9px;
+    font-size:11px;
     cursor:pointer;
 }
 
@@ -561,18 +575,18 @@ body{
 }
 
 .tarjeta-item.visa .numero {
-    font-size:14px;
+    font-size:20px;
     color:#333;
-    letter-spacing:2px;
-    margin:4px 0;
+    letter-spacing:3px;
+    margin:10px 0;
 }
 
 .tarjeta-item.visa .datos {
     display:flex;
-    gap:10px;
-    font-size:9px;
+    gap:20px;
+    font-size:12px;
     color:#333;
-    margin-top:3px;
+    margin-top:5px;
 }
 
 .tarjeta-item.visa .datos div {
@@ -581,39 +595,43 @@ body{
 
 .tarjeta-item.visa .datos div span {
     display:block;
-    font-size:7px;
+    font-size:9px;
     color:#999;
-    margin-bottom:2px;
+    margin-bottom:3px;
 }
 
 .tarjeta-item.visa .datos .codigo {
     color:#333;
 }
 
-/* Tarjeta Débito - Salmón */
+/* Tarjeta Débito - Salmón - más grande */
 .tarjeta-item.debito {
     background:linear-gradient(135deg, #f5a623, #e88a1e);
-    border-radius:14px;
-    padding:14px;
+    border-radius:16px;
+    padding:24px 20px;
     box-shadow:0 4px 15px rgba(0,0,0,.25);
+    min-height:170px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
 .tarjeta-item.debito .tipo {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:5px;
+    margin-bottom:8px;
 }
 
 .tarjeta-item.debito .tipo h3 {
-    font-size:14px;
+    font-size:18px;
     color:#fff;
 }
 
 .tarjeta-item.debito .tipo .mostrar-datos {
     color:#fff;
     font-weight:bold;
-    font-size:9px;
+    font-size:11px;
     cursor:pointer;
     opacity:0.8;
 }
@@ -624,18 +642,18 @@ body{
 }
 
 .tarjeta-item.debito .numero {
-    font-size:14px;
+    font-size:20px;
     color:#fff;
-    letter-spacing:2px;
-    margin:4px 0;
+    letter-spacing:3px;
+    margin:10px 0;
 }
 
 .tarjeta-item.debito .datos {
     display:flex;
-    gap:10px;
-    font-size:9px;
+    gap:20px;
+    font-size:12px;
     color:#fff;
-    margin-top:3px;
+    margin-top:5px;
 }
 
 .tarjeta-item.debito .datos div {
@@ -644,13 +662,35 @@ body{
 
 .tarjeta-item.debito .datos div span {
     display:block;
-    font-size:7px;
+    font-size:9px;
     color:rgba(255,255,255,0.6);
-    margin-bottom:2px;
+    margin-bottom:3px;
 }
 
 .tarjeta-item.debito .datos .codigo {
     color:#fff;
+}
+
+/* Indicadores del slider de tarjetas */
+.tarjetas-indicators {
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin:8px 0 0;
+}
+
+.tarjetas-indicators span {
+    width:10px;
+    height:10px;
+    background:rgba(255,255,255,0.3);
+    border-radius:20px;
+    transition:all 0.3s;
+    cursor:pointer;
+}
+
+.tarjetas-indicators span.active {
+    width:35px;
+    background:#fff;
 }
 
 /* Acciones tarjeta - botones sobre fondo azul */
@@ -664,7 +704,7 @@ body{
 .acciones-tarjeta .btn-accion {
     background:rgba(255,255,255,0.15);
     color:#fff;
-    padding:10px 6px;
+    padding:12px 6px;
     border-radius:12px;
     text-align:center;
     font-size:11px;
@@ -681,7 +721,7 @@ body{
 
 .acciones-tarjeta .btn-accion i {
     display:block;
-    font-size:18px;
+    font-size:20px;
     margin-bottom:4px;
 }
 
@@ -1023,45 +1063,59 @@ body{
 <!-- Sección azul: tarjetas + botones -->
 <div class="seccion-azul">
 
-    <!-- Grid de tarjetas: VISA y Débito una al lado de la otra -->
-    <div class="tarjetas-grid">
-        <!-- Tarjeta VISA - Blanca -->
-        <div class="tarjeta-item visa">
-            <div class="tipo">
-                <h3>VISA</h3>
-                <span class="mostrar-datos">Mostrar datos</span>
-            </div>
-            <div class="numero">**** **** **** 3501</div>
-            <div class="datos">
-                <div>
-                    <span>Fecha de vencimiento</span>
-                    12/28
+    <!-- SLIDER DE TARJETAS -->
+    <div class="tarjetas-slider-container">
+        <div class="tarjetas-slider-track" id="tarjetasSlideTrack">
+            
+            <!-- Slide 1: VISA -->
+            <div class="tarjeta-slide active" data-slide="0">
+                <div class="tarjeta-item visa">
+                    <div class="tipo">
+                        <h3>VISA</h3>
+                        <span class="mostrar-datos">Mostrar datos</span>
+                    </div>
+                    <div class="numero">**** **** **** 3501</div>
+                    <div class="datos">
+                        <div>
+                            <span>Fecha de vencimiento</span>
+                            12/28
+                        </div>
+                        <div>
+                            <span>Código de seguridad</span>
+                            <span class="codigo">***</span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <span>Código de seguridad</span>
-                    <span class="codigo">***</span>
-                </div>
             </div>
-        </div>
 
-        <!-- Tarjeta Débito - Salmón -->
-        <div class="tarjeta-item debito">
-            <div class="tipo">
-                <h3>Débito</h3>
-                <span class="mostrar-datos">Mostrar datos</span>
-            </div>
-            <div class="numero">**** **** **** 3501</div>
-            <div class="datos">
-                <div>
-                    <span>Fecha de vencimiento</span>
-                    12/28
+            <!-- Slide 2: Débito -->
+            <div class="tarjeta-slide" data-slide="1">
+                <div class="tarjeta-item debito">
+                    <div class="tipo">
+                        <h3>Débito</h3>
+                        <span class="mostrar-datos">Mostrar datos</span>
+                    </div>
+                    <div class="numero">**** **** **** 3501</div>
+                    <div class="datos">
+                        <div>
+                            <span>Fecha de vencimiento</span>
+                            12/28
+                        </div>
+                        <div>
+                            <span>Código de seguridad</span>
+                            <span class="codigo">***</span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <span>Código de seguridad</span>
-                    <span class="codigo">***</span>
-                </div>
             </div>
+
         </div>
+    </div>
+
+    <!-- Indicadores del slider de tarjetas -->
+    <div class="tarjetas-indicators" id="tarjetasIndicators">
+        <span class="active" data-index="0"></span>
+        <span data-index="1"></span>
     </div>
 
     <!-- Acciones tarjeta - sobre fondo azul -->
@@ -1153,7 +1207,7 @@ function showPage(page) {
     window.scrollTo(0, 0);
 }
 
-// ===== SLIDER =====
+// ===== SLIDER HOME =====
 const slides = document.querySelectorAll('.slide');
 const indicators = document.querySelectorAll('.slider-indicators span');
 const slideTrack = document.getElementById('slideTrack');
@@ -1182,6 +1236,42 @@ document.querySelector('.slide-container').addEventListener('touchend', (e) => {
     if (Math.abs(diff) > 50) {
         if (diff > 0 && currentSlide < slides.length - 1) goToSlide(currentSlide + 1);
         else if (diff < 0 && currentSlide > 0) goToSlide(currentSlide - 1);
+    }
+}, {passive: true});
+
+// ===== SLIDER TARJETAS =====
+const tarjetasSlides = document.querySelectorAll('.tarjeta-slide');
+const tarjetasIndicators = document.querySelectorAll('.tarjetas-indicators span');
+const tarjetasSlideTrack = document.getElementById('tarjetasSlideTrack');
+let currentTarjetaSlide = 0;
+
+function goToTarjetaSlide(index) {
+    tarjetasSlides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+    tarjetasIndicators.forEach((ind, i) => ind.classList.toggle('active', i === index));
+    tarjetasSlideTrack.style.transform = `translateX(-${index * 100}%)`;
+    currentTarjetaSlide = index;
+}
+
+tarjetasIndicators.forEach(ind => {
+    ind.addEventListener('click', function() {
+        goToTarjetaSlide(parseInt(this.dataset.index));
+    });
+});
+
+// Touch para tarjetas
+let touchStartXTarjetas = 0;
+document.querySelector('.tarjetas-slider-container').addEventListener('touchstart', (e) => {
+    touchStartXTarjetas = e.changedTouches[0].screenX;
+}, {passive: true});
+
+document.querySelector('.tarjetas-slider-container').addEventListener('touchend', (e) => {
+    const diff = touchStartXTarjetas - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) {
+        if (diff > 0 && currentTarjetaSlide < tarjetasSlides.length - 1) {
+            goToTarjetaSlide(currentTarjetaSlide + 1);
+        } else if (diff < 0 && currentTarjetaSlide > 0) {
+            goToTarjetaSlide(currentTarjetaSlide - 1);
+        }
     }
 }, {passive: true});
 
