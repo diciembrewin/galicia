@@ -62,15 +62,14 @@ body{
 }
 
 .logo{
-    width:35px;
-    height:35px;
+    width:44px;
+    height:44px;
     border-radius:50%;
     background:#fff;
     display:flex;
     justify-content:center;
     align-items:center;
     overflow:hidden;
-    flex-shrink:0;
 }
 
 .logo img {
@@ -543,7 +542,7 @@ body{
     padding:0 2px;
 }
 
-/* Tarjeta VISA - Blanca */
+/* Tarjeta VISA - Blanca - más ancha */
 .tarjeta-item.visa {
     background:#fff;
     border-radius:16px;
@@ -609,7 +608,7 @@ body{
     color:#333;
 }
 
-/* Tarjeta Débito - Salmón */
+/* Tarjeta Débito - Salmón - más ancha */
 .tarjeta-item.debito {
     background:linear-gradient(135deg, #f5a623, #e88a1e);
     border-radius:16px;
@@ -699,7 +698,7 @@ body{
     background:#fff;
 }
 
-/* Acciones tarjeta */
+/* Acciones tarjeta - botones más pequeños */
 .acciones-tarjeta {
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -710,10 +709,10 @@ body{
 .acciones-tarjeta .btn-accion {
     background:rgba(255,255,255,0.15);
     color:#fff;
-    padding:10px 6px;
-    border-radius:12px;
+    padding:8px 4px;
+    border-radius:10px;
     text-align:center;
-    font-size:11px;
+    font-size:10px;
     font-weight:bold;
     cursor:pointer;
     transition:all 0.3s;
@@ -727,8 +726,8 @@ body{
 
 .acciones-tarjeta .btn-accion i {
     display:block;
-    font-size:18px;
-    margin-bottom:4px;
+    font-size:16px;
+    margin-bottom:3px;
 }
 
 /* Sección blanca - total e información */
@@ -737,6 +736,7 @@ body{
     padding:18px;
 }
 
+/* Total movimientos */
 .movimientos-total {
     background:#fff;
     border-radius:14px;
@@ -758,6 +758,7 @@ body{
     margin-top:5px;
 }
 
+/* Información tarjeta */
 .info-tarjeta {
     background:#fff;
     border-radius:14px;
@@ -843,8 +844,8 @@ body{
 }
 
 .footer-m .m-icon {
-    width:40px;
-    height:40px;
+    width:32px;
+    height:32px;
     border-radius:50%;
     background:#fff;
     display:flex;
@@ -907,9 +908,12 @@ body{
 <div class="header">
 
 <div class="top">
+
+<!-- LOGO CON IMAGEN -->
 <div class="logo">
-    <img src="logo.jpg" alt="Logo">
+    <img src="splash_icon.png" alt="Logo">
 </div>
+
 <div class="icons">
 <i class="fa-regular fa-eye" id="toggleBalance" style="cursor:pointer;"></i>
 <i class="fa-regular fa-circle-question"></i>
@@ -1059,8 +1063,6 @@ body{
 <!-- ===== PÁGINA TARJETAS ===== -->
 <div class="page" id="page-tarjetas">
 
-<div class="page-tarjetas">
-
 <!-- Header azul -->
 <div class="tarjetas-header">
     <div class="top-tarjetas">
@@ -1129,7 +1131,7 @@ body{
         <span data-index="1"></span>
     </div>
 
-    <!-- Acciones tarjeta -->
+    <!-- Acciones tarjeta - botones más pequeños -->
     <div class="acciones-tarjeta">
         <div class="btn-accion" onclick="alert('Blanqueando PIN...')">
             <i class="fa-solid fa-key"></i>
@@ -1154,11 +1156,13 @@ body{
 <!-- Sección blanca: total + información -->
 <div class="seccion-blanca">
 
+    <!-- Total movimientos -->
     <div class="movimientos-total">
         <p>El total de movimientos es de</p>
         <div class="total">$ 7.081.945,69 y USD 0</div>
     </div>
 
+    <!-- Información tarjeta -->
     <div class="info-tarjeta">
         <h3>Información de tu tarjeta</h3>
         <div class="info-item">
@@ -1170,8 +1174,6 @@ body{
             <span>$ 400.000</span>
         </div>
     </div>
-
-</div>
 
 </div>
 
@@ -1273,6 +1275,7 @@ tarjetasIndicators.forEach(ind => {
     });
 });
 
+// Touch para tarjetas
 let touchStartXTarjetas = 0;
 document.querySelector('.tarjetas-slider-container').addEventListener('touchstart', (e) => {
     touchStartXTarjetas = e.changedTouches[0].screenX;
