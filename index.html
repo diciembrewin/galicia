@@ -313,48 +313,20 @@ body{
     color:#fff;
 }
 
-/* SLIDER TOQUE - PEDIR PLATA AL TOQUE */
-.slider-toque {
-    position:relative;
-    overflow:hidden;
+/* IMAGEN TOQUE - SOLO IMAGEN ESTATICA */
+.img-toque {
+    width:100%;
     border-radius:12px;
     margin-top:6px;
-}
-
-.slider-toque-track {
-    display:flex;
-    transition:transform 0.8s ease;
-}
-
-.slider-toque-track img {
-    width:100%;
-    flex-shrink:0;
-    display:block;
     cursor:pointer;
-}
-
-/* INDICADORES DEL SLIDER TOQUE */
-.toque-indicators {
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    margin-top:8px;
+    transition:all 0.3s;
+    display:block;
     position:relative;
     z-index:2;
 }
 
-.toque-indicators span {
-    width:10px;
-    height:10px;
-    background:rgba(255,255,255,0.3);
-    border-radius:20px;
-    transition:all 0.3s;
-    cursor:pointer;
-}
-
-.toque-indicators span.active {
-    width:35px;
-    background:#fff;
+.img-toque:hover {
+    transform:scale(1.02);
 }
 
 .slider-indicators{
@@ -1005,6 +977,7 @@ body{
         </div>
     </div>
 
+    <!-- INDICADORES DEL SLIDER HOME -->
     <div class="slider-indicators" id="indicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
@@ -1012,19 +985,8 @@ body{
         <span data-index="3"></span>
     </div>
 
-    <!-- SLIDER TOQUE - SOLO ESTE SLIDER -->
-    <div class="slider-toque">
-        <div class="slider-toque-track" id="sliderToqueTrack">
-            <img src="toque.jpeg" alt="Pedir plata al toque 1" onclick="alert('Pedir plata al toque...')">
-            <img src="toque2.jpeg" alt="Pedir plata al toque 2" onclick="alert('Pedir plata al toque 2...')">
-        </div>
-    </div>
-
-    <!-- INDICADORES DEL SLIDER TOQUE -->
-    <div class="toque-indicators" id="toqueIndicators">
-        <span class="active" data-index="0"></span>
-        <span data-index="1"></span>
-    </div>
+    <!-- IMAGEN TOQUE - SOLO IMAGEN ESTATICA, SIN SLIDER -->
+    <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
 
 </div>
 
@@ -1282,58 +1244,6 @@ document.querySelector('.tarjetas-slider-container').addEventListener('touchend'
         }
     }
 }, {passive: true});
-
-// ===== SLIDER TOQUE =====
-const sliderToqueTrack = document.getElementById('sliderToqueTrack');
-const toqueIndicators = document.querySelectorAll('#toqueIndicators span');
-let currentToqueSlide = 0;
-const totalToqueSlides = 2;
-let intervaloToque;
-
-function goToToqueSlide(index) {
-    if (index >= totalToqueSlides) index = 0;
-    if (index < 0) index = totalToqueSlides - 1;
-    
-    sliderToqueTrack.style.transform = `translateX(-${index * 100}%)`;
-    
-    toqueIndicators.forEach((ind, i) => {
-        ind.classList.toggle('active', i === index);
-    });
-    
-    currentToqueSlide = index;
-}
-
-function nextToqueSlide() {
-    goToToqueSlide(currentToqueSlide + 1);
-}
-
-function iniciarSliderToque() {
-    if (intervaloToque) clearInterval(intervaloToque);
-    intervaloToque = setInterval(nextToqueSlide, 4000);
-}
-
-function reiniciarSliderToque() {
-    clearInterval(intervaloToque);
-    iniciarSliderToque();
-}
-
-toqueIndicators.forEach(ind => {
-    ind.addEventListener('click', function() {
-        const index = parseInt(this.dataset.index);
-        goToToqueSlide(index);
-        reiniciarSliderToque();
-    });
-});
-
-document.querySelector('.slider-toque').addEventListener('mouseenter', () => {
-    clearInterval(intervaloToque);
-});
-
-document.querySelector('.slider-toque').addEventListener('mouseleave', () => {
-    iniciarSliderToque();
-});
-
-iniciarSliderToque();
 
 // ===== OJITO =====
 let balanceVisible = true;
