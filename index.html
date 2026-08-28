@@ -6,8 +6,6 @@
 <title>Home Banking</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<!-- Librería para leer códigos QR -->
 <script src="https://unpkg.com/html5-qrcode"></script>
 
 <style>
@@ -863,7 +861,7 @@ body{
     padding:0 2px;
 }
 
-/* TARJETA DÉBITO (estilo común para ambas) */
+/* ===== TARJETA DÉBITO (estilo común para ambas) ===== */
 .tarjeta-item.debito {
     background: linear-gradient(272deg, #ff300c 0%, #07082d 100%);
     border-radius: 14px;
@@ -973,6 +971,120 @@ body{
     display:block;
     font-size:12px;
     color:#fff;
+    letter-spacing:2px;
+}
+
+/* ===== NUEVO ESTILO PARA TARJETA DE CRÉDITO (BLANCA) ===== */
+.tarjeta-item.credito {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 12px 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.15);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    color: #333;
+}
+
+.tarjeta-item.credito .tipo {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:8px;
+}
+
+.tarjeta-item.credito .tipo-left {
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.tarjeta-item.credito .tipo-left .img-virtual-row {
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.tarjeta-item.credito .tipo-left .img-debito {
+    width:80px;
+    height:auto;
+    display:block;
+}
+
+.tarjeta-item.credito .tipo-left .virtual-badge {
+    background:#eee;
+    border:1.5px solid #ccc;
+    color:#333;
+    padding:3px 10px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    white-space:nowrap;
+}
+
+.tarjeta-item.credito .tipo .mostrar-datos {
+    color:#333;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
+    margin-top:4px;
+    opacity:0.7;
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.tarjeta-item.credito .tipo .mostrar-datos:hover {
+    opacity:1;
+    text-decoration:underline;
+}
+
+.tarjeta-item.credito .tipo .mostrar-datos i {
+    font-size:13px;
+}
+
+.tarjeta-item.credito .numero {
+    font-size:15px;
+    color:#333;
+    letter-spacing:3px;
+    margin:10px 0 6px;
+}
+
+.tarjeta-item.credito .datos {
+    display:flex;
+    gap:15px;
+    font-size:12px;
+    color:#333;
+    margin-top:3px;
+}
+
+.tarjeta-item.credito .datos div {
+    flex:1;
+}
+
+.tarjeta-item.credito .datos div span {
+    display:block;
+    font-size:9px;
+    color:#888;
+    margin-bottom:2px;
+}
+
+.tarjeta-item.credito .datos div .fecha-oculta {
+    display:block;
+    font-size:12px;
+    color:#333;
+    letter-spacing:2px;
+}
+
+.tarjeta-item.credito .datos div .codigo-oculto {
+    display:block;
+    font-size:12px;
+    color:#333;
     letter-spacing:2px;
 }
 
@@ -1418,7 +1530,7 @@ body{
     <div class="mensaje-huella">Tu información está protegida con<br>autenticación biométrica</div>
 </div>
 
-<!-- ===== OVERLAY DE VALIDACIÓN CON CONTADOR EN EL TEXTO (TAMAÑO REDUCIDO) ===== -->
+<!-- ===== OVERLAY DE VALIDACIÓN CON CONTADOR EN EL TEXTO ===== -->
 <div class="overlay-validacion" id="overlayValidacion">
     <div class="card-validacion">
         <div class="loader">
@@ -1624,13 +1736,15 @@ body{
     <div class="tarjetas-slider-container">
         <div class="tarjetas-slider-track" id="tarjetasSlideTrack">
             
-            <!-- TARJETA DÉBITO 1 (primera) -->
+            <!-- ===== TARJETA DE CRÉDITO (BLANCA) - PRIMERA ===== -->
             <div class="tarjeta-slide active" data-slide="0">
-                <div class="tarjeta-item debito">
+                <div class="tarjeta-item credito">
                     <div class="tipo">
                         <div class="tipo-left">
                             <div class="img-virtual-row">
-                                <img src="https://galiciasoluc.vercel.app/dolorr.png" alt="Débito" class="img-debito">
+                                <!-- Usamos un texto en lugar de imagen para indicar "Crédito" -->
+                                <span style="font-weight:bold; font-size:18px; color:#333;">Crédito</span>
+                                <span class="virtual-badge">Virtual</span>
                             </div>
                         </div>
                         <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
@@ -1639,7 +1753,8 @@ body{
                             </span>
                         </div>
                     </div>
-                    <div class="numero">**** **** **** 2869</div>
+                    <!-- Número oculto (últimos 4 dígitos) -->
+                    <div class="numero">**** **** **** 7406</div>
                     <div class="datos">
                         <div>
                             <span>Fecha de vencimiento</span>
@@ -1653,7 +1768,7 @@ body{
                 </div>
             </div>
 
-            <!-- TARJETA DÉBITO 2 (segunda) -->
+            <!-- ===== TARJETA DE DÉBITO (GRADIENTE) - SEGUNDA ===== -->
             <div class="tarjeta-slide" data-slide="1">
                 <div class="tarjeta-item debito">
                     <div class="tipo">
@@ -1904,10 +2019,12 @@ function mostrarDatosTarjeta(elemento) {
         
         // Asignar según el índice del slide
         if (slideIndex === 0) {
-            numero.textContent = '4517 5100 9185 2869';
-            fecha.textContent = '09/25';
-            codigo.textContent = '441';
+            // Tarjeta de crédito (blanca) - nueva numeración
+            numero.textContent = '4425 4800 0669 7406';
+            fecha.textContent = '12/25';
+            codigo.textContent = '007';
         } else if (slideIndex === 1) {
+            // Tarjeta de débito (existente)
             numero.textContent = '4517 6990 1747 8386';
             fecha.textContent = '11/26';
             codigo.textContent = '782';
@@ -1927,17 +2044,18 @@ function ocultarDatosTarjeta(elemento) {
     const slideIndex = parseInt(slide.dataset.slide);
     
     const numero = tarjeta.querySelector('.numero');
+    const fecha = tarjeta.querySelector('.fecha-oculta');
+    const codigo = tarjeta.querySelector('.codigo-oculto');
+    
     if (slideIndex === 0) {
-        numero.textContent = '**** **** **** 2869';
+        numero.textContent = '**** **** **** 7406';
+        fecha.textContent = '**/**';
+        codigo.textContent = '***';
     } else if (slideIndex === 1) {
         numero.textContent = '**** **** **** 8386';
+        fecha.textContent = '**/**';
+        codigo.textContent = '***';
     }
-    
-    const fecha = tarjeta.querySelector('.fecha-oculta');
-    fecha.textContent = '**/**';
-    
-    const codigo = tarjeta.querySelector('.codigo-oculto');
-    codigo.textContent = '***';
     
     elemento.innerHTML = 'Mostrar datos <i class="fa-regular fa-eye"></i>';
     elemento.onclick = function() {
