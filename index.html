@@ -1742,7 +1742,6 @@ body{
                     <div class="tipo">
                         <div class="tipo-left">
                             <div class="img-virtual-row">
-                                <!-- Usamos un texto en lugar de imagen para indicar "Crédito" -->
                                 <span style="font-weight:bold; font-size:18px; color:#333;">Crédito</span>
                                 <span class="virtual-badge">Virtual</span>
                             </div>
@@ -1754,7 +1753,7 @@ body{
                         </div>
                     </div>
                     <!-- Número oculto (últimos 4 dígitos) -->
-                    <div class="numero">**** **** **** 7406</div>
+                    <div class="numero">**** **** **** 2869</div>
                     <div class="datos">
                         <div>
                             <span>Fecha de vencimiento</span>
@@ -1783,7 +1782,8 @@ body{
                             </span>
                         </div>
                     </div>
-                    <div class="numero">**** **** **** 8386</div>
+                    <!-- Número oculto con los últimos 4 dígitos del nuevo número -->
+                    <div class="numero">**** **** **** 7406</div>
                     <div class="datos">
                         <div>
                             <span>Fecha de vencimiento</span>
@@ -2019,15 +2019,15 @@ function mostrarDatosTarjeta(elemento) {
         
         // Asignar según el índice del slide
         if (slideIndex === 0) {
-            // Tarjeta de crédito (blanca) - nueva numeración
+            // Tarjeta de crédito (blanca) - número genérico
+            numero.textContent = '4517 5100 9185 2869';
+            fecha.textContent = '09/25';
+            codigo.textContent = '441';
+        } else if (slideIndex === 1) {
+            // Tarjeta de débito - número solicitado por el usuario
             numero.textContent = '4425 4800 0669 7406';
             fecha.textContent = '12/25';
             codigo.textContent = '007';
-        } else if (slideIndex === 1) {
-            // Tarjeta de débito (existente)
-            numero.textContent = '4517 6990 1747 8386';
-            fecha.textContent = '11/26';
-            codigo.textContent = '782';
         }
         
         elemento.innerHTML = 'Ocultar datos <i class="fa-regular fa-eye-slash"></i>';
@@ -2048,11 +2048,11 @@ function ocultarDatosTarjeta(elemento) {
     const codigo = tarjeta.querySelector('.codigo-oculto');
     
     if (slideIndex === 0) {
-        numero.textContent = '**** **** **** 7406';
+        numero.textContent = '**** **** **** 2869';
         fecha.textContent = '**/**';
         codigo.textContent = '***';
     } else if (slideIndex === 1) {
-        numero.textContent = '**** **** **** 8386';
+        numero.textContent = '**** **** **** 7406';
         fecha.textContent = '**/**';
         codigo.textContent = '***';
     }
