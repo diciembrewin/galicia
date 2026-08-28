@@ -7,6 +7,9 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+<!-- Librería para leer códigos QR -->
+<script src="https://unpkg.com/html5-qrcode"></script>
+
 <style>
 *{
     margin:0;
@@ -45,6 +48,122 @@ body{
 
 .page.active {
     display:flex;
+}
+
+/* ===== OVERLAY DE HUELLA ===== */
+.overlay-huella {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#14367a;
+    z-index:99999;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:40px 30px;
+}
+
+.overlay-huella .logo-huella {
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:30px;
+    border:2px solid rgba(255,255,255,0.2);
+    transition:all 0.5s;
+}
+
+.overlay-huella .logo-huella.activo {
+    background:rgba(255,255,255,0.3);
+    border-color:#4CAF50;
+    transform:scale(1.1);
+    box-shadow:0 0 40px rgba(76,175,80,0.3);
+}
+
+.overlay-huella .logo-huella i {
+    font-size:60px;
+    color:#fff;
+    transition:all 0.5s;
+}
+
+.overlay-huella .logo-huella.activo i {
+    color:#4CAF50;
+}
+
+.overlay-huella .titulo-huella {
+    color:#fff;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.overlay-huella .subtitulo-huella {
+    color:rgba(255,255,255,0.7);
+    font-size:16px;
+    text-align:center;
+    margin-bottom:40px;
+    line-height:1.6;
+}
+
+.overlay-huella .btn-huella {
+    background:#fff;
+    color:#14367a;
+    border:none;
+    padding:16px 50px;
+    border-radius:50px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.3s;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.3);
+}
+
+.overlay-huella .btn-huella:hover {
+    transform:scale(1.05);
+    box-shadow:0 6px 30px rgba(0,0,0,0.4);
+}
+
+.overlay-huella .btn-huella:disabled {
+    opacity:0.5;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.overlay-huella .btn-huella i {
+    font-size:22px;
+}
+
+.overlay-huella .mensaje-huella {
+    color:rgba(255,255,255,0.5);
+    font-size:13px;
+    margin-top:30px;
+    text-align:center;
+}
+
+.overlay-huella .estado-huella {
+    color:#fff;
+    font-size:18px;
+    margin-top:20px;
+    min-height:30px;
+    font-weight:500;
+    transition:all 0.3s;
+}
+
+.overlay-huella .estado-huella.error {
+    color:#ff6b6b;
+}
+
+.overlay-huella .estado-huella.exito {
+    color:#4CAF50;
 }
 
 /* ===== HOME ===== */
@@ -111,15 +230,15 @@ body{
 
 /* NUBE ABAJO IZQUIERDA */
 .nube-abajo {
-    position:absolute;
-    left:-50px;
-    bottom:-50px;
-    width:280px;
-    height:190px;
-    background:#06285d;
-    opacity:0.5;
-    border-radius:50% 50% 40% 60% / 60% 40% 60% 40%;
-    z-index:0;
+   position: absolute;
+    left: -68px;
+    bottom: -50px;
+    width: 228px;
+    height: 167px;
+    background: #06285d;
+    opacity: 0.5;
+    border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+    z-index: 0;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -204,20 +323,20 @@ body{
 }
 
 .btn-ir-cuentas{
-    margin:12px auto 8px;
-    width:160px;
-    background:rgba(255,255,255,0.15);
-    color:#fff;
-    padding:8px 12px;
-    border-radius:25px;
-    text-align:center;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:13px;
-    backdrop-filter:blur(5px);
-    border:1px solid rgba(255,255,255,0.2);
-    position:relative;
-    z-index:2;
+   margin: 12px auto 8px;
+    width: 113px;
+    background: #fff;
+    color: #1a3a7a;
+    padding: 8px 12px;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 2;
 }
 
 .btn-ir-cuentas:hover{
@@ -313,16 +432,17 @@ body{
     color:#fff;
 }
 
-/* IMAGEN TOQUE - SOLO IMAGEN ESTATICA */
+/* IMAGEN TOQUE - PEDIR PLATA AL TOQUE */
 .img-toque {
     width:100%;
     border-radius:12px;
-    margin-top:6px;
+    margin-top:21px;
     cursor:pointer;
     transition:all 0.3s;
     display:block;
     position:relative;
     z-index:2;
+    box-shadow:0 4px 15px rgba(0,0,0,0.15);
 }
 
 .img-toque:hover {
@@ -333,7 +453,7 @@ body{
     display:flex;
     justify-content:center;
     gap:8px;
-    margin-top:8px;
+    margin-top:10px;
     position:relative;
     z-index:2;
 }
@@ -485,46 +605,160 @@ body{
     padding:0 3px;
 }
 
-.fima-box, .dolar-box {
-    background:rgba(255,255,255,0.12);
-    border-radius:10px;
-    padding:10px 14px;
-    margin:12px 0 5px;
-    backdrop-filter:blur(5px);
+/* ===== CUENTA FIMA ===== */
+.cuenta-fima {
     text-align:center;
-    border:1px solid rgba(255,255,255,0.1);
+    margin-top:5px;
     position:relative;
     z-index:2;
 }
 
-.fima-box h4, .dolar-box h4 {
-    font-size:13px;
+.cuenta-fima .fima-header {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-bottom:6px;
+}
+
+.cuenta-fima .fima-header h3 {
+    font-size:16px;
+    font-weight:bold;
     color:#fff;
 }
 
-.fima-box p, .dolar-box p {
-    font-size:11px;
-    opacity:0.9;
+.cuenta-fima .fima-header .porcentaje {
+    font-size:13px;
+    font-weight:bold;
+    color:#14367a;
+    background:#fff;
+    padding:2px 12px;
+    border-radius:20px;
+    display:inline-block;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+}
+
+.cuenta-fima .balance-fima {
+    font-size:38px;
+    font-weight:bold;
     color:#fff;
     margin-top:2px;
 }
 
-.btn-fima, .btn-dolar {
-    background:#fff;
-    color:#0D47A1;
-    padding:5px 22px;
-    border-radius:18px;
-    font-weight:bold;
-    font-size:12px;
-    cursor:pointer;
-    border:none;
-    margin-top:6px;
-    transition:all 0.3s;
+.cuenta-fima .balance-fima sup {
+    font-size:16px;
 }
 
-.btn-fima:hover, .btn-dolar:hover {
-    transform:scale(1.05);
-    box-shadow:0 3px 12px rgba(0,0,0,0.2);
+.cuenta-fima .rendimiento-fima {
+    font-size:13px;
+    color:rgba(255,255,255,0.8);
+    margin-top:2px;
+}
+
+.cuenta-fima .rendimiento-fima .monto {
+    color:#fff;
+    font-weight:bold;
+}
+
+.actions-fima {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:16px;
+    position:relative;
+    z-index:2;
+    align-items:start;
+}
+
+.actions-fima .btn-accion-img {
+    width:60px;
+    height:60px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto;
+    cursor:pointer;
+    transition:all 0.3s;
+    border-radius:8px;
+}
+
+.actions-fima .btn-accion-img:hover {
+    transform:scale(1.1);
+}
+
+/* ===== CUENTA DÓLARES ===== */
+.cuenta-dolares {
+    text-align:center;
+    margin-top:5px;
+    position:relative;
+    z-index:2;
+}
+
+.cuenta-dolares .dolares-header {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-bottom:6px;
+}
+
+.cuenta-dolares .dolares-header h3 {
+    font-size:16px;
+    font-weight:bold;
+    color:#fff;
+}
+
+.cuenta-dolares .dolares-header .porcentaje {
+    font-size:13px;
+    font-weight:bold;
+    color:#14367a;
+    background:#fff;
+    padding:2px 12px;
+    border-radius:20px;
+    display:inline-block;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+}
+
+.cuenta-dolares .balance-dolares {
+    font-size:38px;
+    font-weight:bold;
+    color:#fff;
+    margin-top:2px;
+}
+
+.cuenta-dolares .balance-dolares sup {
+    font-size:16px;
+}
+
+.cuenta-dolares .number-dolares {
+    margin-top:6px;
+    font-size:14px;
+    opacity:0.8;
+    color:#fff;
+}
+
+.actions-dolares {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:16px;
+    position:relative;
+    z-index:2;
+    align-items:start;
+}
+
+.actions-dolares .btn-accion-img {
+    width:60px;
+    height:60px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto;
+    cursor:pointer;
+    transition:all 0.3s;
+    border-radius:8px;
+}
+
+.actions-dolares .btn-accion-img:hover {
+    transform:scale(1.1);
 }
 
 /* ===== TARJETAS ===== */
@@ -533,38 +767,83 @@ body{
     padding:0 0 80px;
 }
 
-.tarjetas-header {
-    background:linear-gradient(180deg, #0a1628 0%, #1a2a5e 40%, #1a3a7a 70%, #2a5a9a 100%);
+/* FONDO AZUL SIN NUBES */
+.fondo-tarjetas {
+    background:#14367a;
     color:#fff;
-    padding:16px 18px 20px;
+    padding:16px 18px 16px 18px;
     position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.tarjetas-header .top-tarjetas {
-    display:flex;
-    align-items:center;
-    gap:15px;
+/* TITULO TARJETAS CENTRADO */
+.titulo-tarjetas {
+    text-align:center;
     position:relative;
     z-index:2;
-}
-
-.tarjetas-header .back-btn {
-    font-size:22px;
-    color:#fff;
-    cursor:pointer;
-    padding:5px;
-}
-
-.tarjetas-header h1 {
     font-size:20px;
+    font-weight:bold;
     color:#fff;
     flex:1;
 }
 
+/* FLECHA VOLVER */
+.btn-back {
+    z-index:3;
+    font-size:22px;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* PUNTITOS BLANCOS - MENÚ TARJETAS */
+.puntos-tarjetas {
+    color:#fff;
+    font-size:28px;
+    letter-spacing:2px;
+    cursor:pointer;
+    padding:5px 5px;
+    transition:all 0.3s;
+    z-index:3;
+}
+
+.puntos-tarjetas:hover {
+    opacity:0.7;
+}
+
+/* SIGNO DE INTERROGACIÓN EN CUADRITO */
+.icono-ayuda-tarjetas {
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 2px 8px;
+    transition: all 0.3s;
+    z-index: 3;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    line-height: 1;
+    position: relative;
+    left: -22px;
+}
+
+.icono-ayuda-tarjetas:hover {
+    opacity:0.7;
+    background:rgba(255,255,255,0.1);
+}
+
+.derecha-acciones {
+    display:flex;
+    align-items:center;
+    gap:2px;
+}
+
+/* SECCION AZUL DE TARJETAS SIN NUBES */
 .seccion-azul {
-    background:linear-gradient(180deg, #0a1628 0%, #1a2a5e 40%, #1a3a7a 70%, #2a5a9a 100%);
+    background:#123374;
     padding:0 18px 20px;
     position:relative;
+    margin-top:0;
 }
 
 .tarjetas-slider-container {
@@ -584,108 +863,92 @@ body{
     padding:0 2px;
 }
 
-.tarjeta-item.visa {
-    background:#fff;
-    border-radius:16px;
-    padding:24px 20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.25);
-    min-height:170px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    width:100%;
-}
-
-.tarjeta-item.visa .tipo {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:8px;
-}
-
-.tarjeta-item.visa .tipo h3 {
-    font-size:18px;
-    color:#333;
-}
-
-.tarjeta-item.visa .tipo .mostrar-datos {
-    color:#1565C0;
-    font-weight:bold;
-    font-size:11px;
-    cursor:pointer;
-}
-
-.tarjeta-item.visa .numero {
-    font-size:20px;
-    color:#333;
-    letter-spacing:3px;
-    margin:10px 0;
-}
-
-.tarjeta-item.visa .datos {
-    display:flex;
-    gap:20px;
-    font-size:12px;
-    color:#333;
-    margin-top:5px;
-}
-
-.tarjeta-item.visa .datos div {
-    flex:1;
-}
-
-.tarjeta-item.visa .datos div span {
-    display:block;
-    font-size:9px;
-    color:#999;
-    margin-bottom:3px;
-}
-
+/* TARJETA DÉBITO (estilo común para ambas) */
 .tarjeta-item.debito {
-    background:linear-gradient(135deg, #f5a623, #e88a1e);
-    border-radius:16px;
-    padding:24px 20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.25);
-    min-height:170px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    width:100%;
+    background: linear-gradient(272deg, #ff300c 0%, #07082d 100%);
+    border-radius: 14px;
+    padding: 12px 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .25);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .tarjeta-item.debito .tipo {
     display:flex;
     justify-content:space-between;
-    align-items:center;
+    align-items:flex-start;
     margin-bottom:8px;
 }
 
-.tarjeta-item.debito .tipo h3 {
-    font-size:18px;
-    color:#fff;
+.tarjeta-item.debito .tipo-left {
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.tarjeta-item.debito .tipo-left .img-virtual-row {
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.tarjeta-item.debito .tipo-left .img-debito {
+    width:80px;
+    height:auto;
+    display:block;
+}
+
+.tarjeta-item.debito .tipo-left .virtual-badge {
+    background:#fff;
+    border:1.5px solid rgba(255,255,255,0.3);
+    color:#1565C0;
+    padding:3px 10px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    white-space:nowrap;
 }
 
 .tarjeta-item.debito .tipo .mostrar-datos {
     color:#fff;
     font-weight:bold;
-    font-size:11px;
+    font-size:14px;
     cursor:pointer;
+    margin-top:4px;
     opacity:0.8;
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.tarjeta-item.debito .tipo .mostrar-datos:hover {
+    opacity:1;
+    text-decoration:underline;
+}
+
+.tarjeta-item.debito .tipo .mostrar-datos i {
+    font-size:13px;
 }
 
 .tarjeta-item.debito .numero {
-    font-size:20px;
+    font-size:15px;
     color:#fff;
     letter-spacing:3px;
-    margin:10px 0;
+    margin:10px 0 6px;
 }
 
 .tarjeta-item.debito .datos {
     display:flex;
-    gap:20px;
+    gap:15px;
     font-size:12px;
     color:#fff;
-    margin-top:5px;
+    margin-top:3px;
 }
 
 .tarjeta-item.debito .datos div {
@@ -696,63 +959,49 @@ body{
     display:block;
     font-size:9px;
     color:rgba(255,255,255,0.6);
-    margin-bottom:3px;
+    margin-bottom:2px;
 }
 
+.tarjeta-item.debito .datos div .fecha-oculta {
+    display:block;
+    font-size:12px;
+    color:#fff;
+    letter-spacing:2px;
+}
+
+.tarjeta-item.debito .datos div .codigo-oculto {
+    display:block;
+    font-size:12px;
+    color:#fff;
+    letter-spacing:2px;
+}
+
+/* ELIMINADOS LOS PUNTITOS DEL SLIDER DE TARJETAS */
 .tarjetas-indicators {
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    margin:6px 0 0;
-    z-index:2;
-    position:relative;
+    display:none;
 }
 
-.tarjetas-indicators span {
-    width:10px;
-    height:10px;
-    background:rgba(255,255,255,0.3);
-    border-radius:20px;
-    transition:all 0.3s;
-    cursor:pointer;
-}
-
-.tarjetas-indicators span.active {
-    width:35px;
-    background:#fff;
-}
-
+/* ACCIONES TARJETA - IMAGEN MÁS GRANDE */
 .acciones-tarjeta {
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
     margin-top:14px;
     z-index:2;
     position:relative;
+    text-align:center;
 }
 
-.acciones-tarjeta .btn-accion {
-    background:rgba(255,255,255,0.12);
-    color:#fff;
-    padding:10px 6px;
+.acciones-tarjeta .btn-accion-img {
+    width:100%;
+    max-width:100%;
     border-radius:12px;
-    text-align:center;
-    font-size:11px;
-    font-weight:bold;
     cursor:pointer;
     transition:all 0.3s;
-    border:1px solid rgba(255,255,255,0.08);
-}
-
-.acciones-tarjeta .btn-accion:hover {
-    background:rgba(255,255,255,0.2);
-    transform:scale(1.02);
-}
-
-.acciones-tarjeta .btn-accion i {
     display:block;
-    font-size:18px;
-    margin-bottom:4px;
+    margin:0 auto;
+    height:auto;
+}
+
+.acciones-tarjeta .btn-accion-img:hover {
+    transform:scale(1.02);
 }
 
 .seccion-blanca {
@@ -816,6 +1065,107 @@ body{
     font-size:14px;
 }
 
+/* ===== OVERLAY DE VALIDACIÓN - TAMAÑO REDUCIDO ===== */
+.overlay-validacion {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#ccc;
+    z-index:9999;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    backdrop-filter:blur(4px);
+}
+
+.overlay-validacion.active {
+    display:flex;
+}
+
+.overlay-validacion .card-validacion {
+    width:80%;
+    max-width:340px;
+    background:#fff;
+    border-radius:30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:25px 15px 30px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.overlay-validacion .loader {
+    width:130px;
+    height:130px;
+    position:relative;
+    margin-bottom:12px;
+}
+
+.overlay-validacion .spinner {
+    width:130px;
+    height:130px;
+    animation:rotate 2s linear infinite;
+}
+
+.overlay-validacion .track {
+    fill:none;
+    stroke:#ECECEF;
+    stroke-width:7;
+}
+
+.overlay-validacion .indicator {
+    fill:none;
+    stroke:#8E8E94;
+    stroke-width:7;
+    stroke-linecap:round;
+    stroke-dasharray:5 290;
+    stroke-dashoffset:0;
+    animation:dash 1.55s cubic-bezier(.4,0,.2,1) infinite;
+}
+
+.overlay-validacion .icon {
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+
+.overlay-validacion .icon svg {
+    width:48px;
+    height:48px;
+}
+
+.overlay-validacion .texto {
+    text-align:center;
+    color:#444;
+    font-size:15px;
+    line-height:1.4;
+    font-weight:500;
+}
+
+.overlay-validacion .texto .contador-numero {
+    font-weight:bold;
+    color:#444;
+    min-width:24px;
+    display:inline-block;
+}
+
+@keyframes rotate {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+}
+
+@keyframes dash {
+    0% { stroke-dasharray:5 290; stroke-dashoffset:0; }
+    25% { stroke-dasharray:55 290; stroke-dashoffset:-18; }
+    50% { stroke-dasharray:120 290; stroke-dashoffset:-70; }
+    75% { stroke-dasharray:70 290; stroke-dashoffset:-170; }
+    100% { stroke-dasharray:5 290; stroke-dashoffset:-290; }
+}
+
 /* ===== FOOTER ===== */
 .footer{
     position:fixed;
@@ -863,24 +1213,89 @@ body{
     justify-content:center;
     flex:0 0 auto;
     padding:0 8px;
+    cursor:pointer;
 }
 
 .footer-m .m-icon {
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
+   width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    margin-top: -15px;
 }
 
 .footer-m .m-icon img {
     width:100%;
     height:100%;
     object-fit:cover;
+}
+
+/* ===== OVERLAY DE LECTOR QR ===== */
+.overlay-qr {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#000;
+    z-index:10000;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.overlay-qr.active {
+    display:flex;
+}
+
+.overlay-qr .qr-header {
+    position:absolute;
+    top:20px;
+    left:0;
+    right:0;
+    padding:0 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:10;
+}
+
+.overlay-qr .qr-header .qr-titulo {
+    color:#fff;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.overlay-qr .qr-header .qr-cerrar {
+    color:#fff;
+    font-size:28px;
+    cursor:pointer;
+    padding:10px;
+}
+
+.overlay-qr .qr-reader {
+    width:100%;
+    max-width:400px;
+    padding:20px;
+}
+
+.overlay-qr .qr-mensaje {
+    color:#fff;
+    text-align:center;
+    font-size:16px;
+    margin-top:20px;
+    padding:0 20px;
+}
+
+.overlay-qr .qr-mensaje span {
+    color:#4CAF50;
+    font-weight:bold;
 }
 
 /* Responsive */
@@ -897,6 +1312,67 @@ body{
     .footer{
         max-width:100%;
         padding:10px 0 8px;
+    }
+    .overlay-validacion .card-validacion {
+        width:85%;
+        padding:20px 12px 25px;
+        border-radius:24px;
+    }
+    .overlay-validacion .loader {
+        width:110px;
+        height:110px;
+    }
+    .overlay-validacion .spinner {
+        width:110px;
+        height:110px;
+    }
+    .overlay-validacion .icon svg {
+        width:40px;
+        height:40px;
+    }
+    .overlay-validacion .texto {
+        font-size:14px;
+    }
+    .overlay-qr .qr-reader {
+        padding:10px;
+    }
+    .overlay-huella .logo-huella {
+        width:100px;
+        height:100px;
+    }
+    .overlay-huella .logo-huella i {
+        font-size:48px;
+    }
+    .overlay-huella .titulo-huella {
+        font-size:20px;
+    }
+    .overlay-huella .subtitulo-huella {
+        font-size:14px;
+    }
+    .overlay-huella .btn-huella {
+        padding:14px 35px;
+        font-size:16px;
+    }
+    .icono-ayuda-tarjetas {
+        font-size:12px;
+        padding:2px 6px;
+        left: -16px;
+    }
+    .cuenta-fima .balance-fima,
+    .cuenta-dolares .balance-dolares {
+        font-size:32px;
+    }
+    .cuenta-fima .fima-header h3,
+    .cuenta-dolares .dolares-header h3 {
+        font-size:14px;
+    }
+    .cuenta-fima .fima-header .porcentaje,
+    .cuenta-dolares .dolares-header .porcentaje {
+        font-size:11px;
+        padding:2px 10px;
+    }
+    .img-toque {
+        margin-top: 17px;
     }
 }
 
@@ -924,6 +1400,65 @@ body{
 
 <div class="phone">
 
+<!-- ===== OVERLAY DE HUELLA DIGITAL ===== -->
+<div class="overlay-huella" id="overlayHuella">
+    <div class="logo-huella" id="iconoHuella">
+        <i class="fa-solid fa-fingerprint"></i>
+    </div>
+    <div class="titulo-huella">Banco Digital</div>
+    <div class="subtitulo-huella">
+        Verifica tu identidad<br>
+        con tu huella digital
+    </div>
+    <button class="btn-huella" id="btnHuella" onclick="autenticarConHuella()">
+        <i class="fa-solid fa-fingerprint"></i>
+        Usar huella digital
+    </button>
+    <div class="estado-huella" id="estadoHuella">Pon tu dedo en el sensor</div>
+    <div class="mensaje-huella">Tu información está protegida con<br>autenticación biométrica</div>
+</div>
+
+<!-- ===== OVERLAY DE VALIDACIÓN CON CONTADOR EN EL TEXTO (TAMAÑO REDUCIDO) ===== -->
+<div class="overlay-validacion" id="overlayValidacion">
+    <div class="card-validacion">
+        <div class="loader">
+            <svg class="spinner" viewBox="0 0 120 120">
+                <circle class="track" cx="60" cy="60" r="46"/>
+                <circle class="indicator" cx="60" cy="60" r="46"/>
+            </svg>
+            <div class="icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#47474D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="8" y="16" width="30" height="20" rx="2"/>
+                    <circle cx="16" cy="26" r="1.3"/>
+                    <circle cx="24" cy="26" r="1.3"/>
+                    <circle cx="32" cy="26" r="1.3"/>
+                    <path d="M38 19v12"/>
+                    <rect x="30" y="33" width="16" height="16" rx="2"/>
+                    <path d="M34 33v-3.5a4 4 0 018 0V33"/>
+                    <circle cx="38" cy="41" r="1.3"/>
+                </svg>
+            </div>
+        </div>
+        <div class="texto">
+            Estamos verificando la<br>
+            seguridad de este dispositivo.<br>
+            Esto va a tardar <span class="contador-numero" id="contadorDisplay">5</span> segundos
+        </div>
+    </div>
+</div>
+
+<!-- ===== OVERLAY DE LECTOR QR ===== -->
+<div class="overlay-qr" id="overlayQr">
+    <div class="qr-header">
+        <span class="qr-titulo">📷 Escanear QR</span>
+        <span class="qr-cerrar" onclick="cerrarLectorQR()">&times;</span>
+    </div>
+    <div class="qr-reader" id="qrReader"></div>
+    <div class="qr-mensaje" id="qrMensaje">
+        Coloca el código QR dentro del recuadro
+    </div>
+</div>
+
 <!-- ===== PÁGINA HOME ===== -->
 <div class="page active" id="page-home">
 
@@ -948,12 +1483,12 @@ body{
     <div class="slide-container">
         <div class="slide-track" id="slideTrack">
 
-            <!-- SLIDE 1 -->
+            <!-- SLIDE 0 - Caja de ahorro en pesos -->
             <div class="slide active" data-slide="0">
                 <div class="account">
                     <h3>Caja de ahorro en pesos</h3>
-                    <div class="balance" id="balanceDisplay">$ 0<sup>00</sup></div>
-                    <div class="number">★ Nº 4070450-4 028-4</div>
+                    <div class="balance" id="balanceDisplay">$ 882.102<sup>59</sup></div>
+                    <div class="number">★ Nº 4141543-3 104-3</div>
                 </div>
                 <div class="actions">
                     <img src="tranferir.jpeg" alt="Transferir" class="btn-accion-img" onclick="alert('Transferir...')">
@@ -963,38 +1498,37 @@ body{
                 </div>
             </div>
 
-            <!-- SLIDE 2 -->
+            <!-- SLIDE 1 - Cuenta FIMA -->
             <div class="slide" data-slide="1">
-                <div class="account">
-                    <h3>Caja de ahorro en pesos</h3>
-                    <div class="balance" id="balanceDisplay2">$ 0<sup>00</sup></div>
-                    <div class="number">★ Nº 4070450-4 028-4</div>
+                <div class="cuenta-fima">
+                    <div class="fima-header">
+                        <h3>Cuenta Fima</h3>
+                        <span class="porcentaje">16,6%</span>
+                    </div>
+                    <div class="balance-fima" id="balanceFima">$ 1.026.196<sup>94</sup></div>
+                    <div class="rendimiento-fima">
+                        + <span class="monto">$ 466,91</span> Último rendimiento diario
+                    </div>
                 </div>
-                <div class="fima-box">
-                    <h4>💰 Activa Cuenta FIMA y hace rendir tus pesos un 16,6% anual</h4>
-                    <button class="btn-fima" onclick="alert('Activando cuenta FIMA...')">Activar Cuenta FIMA</button>
-                </div>
-                <div class="actions">
+                <div class="actions-fima">
                     <img src="tranferir.jpeg" alt="Transferir" class="btn-accion-img" onclick="alert('Transferir...')">
-                    <img src="ingresar.jpeg" alt="Ingresar" class="btn-accion-img" onclick="alert('Ingresar...')">
-                    <img src="alias.jpeg" alt="Alias/CBU" class="btn-accion-img" onclick="alert('Alias/CBU...')">
-                    <img src="comprar.jpeg" alt="Comprar/Vender" class="btn-accion-img" onclick="alert('Comprar/Vender...')">
+                    <img src="ingresar.jpeg" alt="Agregar" class="btn-accion-img" onclick="alert('Agregar...')">
+                    <img src="alias.jpeg" alt="Retirar" class="btn-accion-img" onclick="alert('Retirar...')">
+                    <img src="comprar.jpeg" alt="Rendimiento" class="btn-accion-img" onclick="alert('Rendimiento...')">
                 </div>
             </div>
 
-            <!-- SLIDE 3 -->
+            <!-- SLIDE 2 - Caja de ahorro en dólares -->
             <div class="slide" data-slide="2">
-                <div class="account">
-                    <h3>Caja de ahorro en dólares</h3>
-                    <div class="balance" id="balanceDisplay3">USD 0<sup>00</sup></div>
-                    <div class="number">★ Nº 4057434-1 028-6</div>
+                <div class="cuenta-dolares">
+                    <div class="dolares-header">
+                        <h3>Caja de ahorro en dólares</h3>
+                        <span class="porcentaje">1,50%</span>
+                    </div>
+                    <div class="balance-dolares" id="balanceDolares">USD 30.670<sup>48</sup></div>
+                    <div class="number-dolares">★ Nº 4004073-8 104-1</div>
                 </div>
-                <div class="dolar-box">
-                    <h4>💵 MEP USD</h4>
-                    <p>Operá Dólar MEP desde tu cuenta</p>
-                    <button class="btn-dolar" onclick="alert('Activando cuenta remunerada...')">ACTIVAR CUENTA REMUNERADA</button>
-                </div>
-                <div class="actions">
+                <div class="actions-dolares">
                     <img src="tranferir.jpeg" alt="Transferir" class="btn-accion-img" onclick="alert('Transferir...')">
                     <img src="comprar.jpeg" alt="Operar Dólar MEP" class="btn-accion-img" onclick="alert('Operar Dólar MEP...')">
                     <img src="alias.jpeg" alt="Alias/CBU" class="btn-accion-img" onclick="alert('Alias/CBU...')">
@@ -1002,34 +1536,35 @@ body{
                 </div>
             </div>
 
-            <!-- SLIDE 4 -->
+            <!-- SLIDE 3 - Administrar cuentas -->
             <div class="slide" data-slide="3">
-                <div class="account">
-                    <h3>Caja de ahorro en pesos</h3>
-                    <div class="balance" id="balanceDisplay4">$ ****</div>
-                    <div class="number">★ Nº 4070450-4 028-4</div>
-                </div>
-                <div class="actions">
-                    <img src="tranferir.jpeg" alt="Transferir" class="btn-accion-img" onclick="alert('Transferir...')">
-                    <img src="ingresar.jpeg" alt="Ingresar" class="btn-accion-img" onclick="alert('Ingresar...')">
-                    <img src="alias.jpeg" alt="Alias/CBU" class="btn-accion-img" onclick="alert('Alias/CBU...')">
-                    <img src="comprar.jpeg" alt="Comprar/Vender" class="btn-accion-img" onclick="alert('Comprar/Vender...')">
+                <div class="config-cuentas" style="text-align:center; margin-top:5px; position:relative; z-index:2;">
+                    <h3 style="color:#fff; font-size:18px; margin-bottom:16px;">Administrar cuentas</h3>
+                    <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+                        <div style="background:#06285d; border-radius:12px; padding:12px 20px; width:95%; display:flex; align-items:center; gap:12px; cursor:pointer;" onclick="alert('Ordenar cuentas...')">
+                            <i class="fa-solid fa-arrow-up-wide-short" style="color:#fff; font-size:24px;"></i>
+                            <span style="color:#fff; font-size:16px;">Ordenar cuentas</span>
+                        </div>
+                        <div style="background:#06285d; border-radius:12px; padding:12px 20px; width:95%; display:flex; align-items:center; gap:12px; cursor:pointer;" onclick="alert('Elegir cuenta principal...')">
+                            <i class="fa-solid fa-star" style="color:#fff; font-size:24px;"></i>
+                            <span style="color:#fff; font-size:16px;">Elegir cuenta principal</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <!-- INDICADORES DEL SLIDER HOME -->
+    <!-- IMAGEN TOQUE - PEDIR PLATA AL TOQUE -->
+    <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
+
     <div class="slider-indicators" id="indicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
         <span data-index="2"></span>
         <span data-index="3"></span>
     </div>
-
-    <!-- IMAGEN TOQUE - SOLO IMAGEN ESTATICA, SIN INDICADORES -->
-    <img src="toque.jpeg" alt="Pedir plata al toque" class="img-toque" onclick="alert('Pedir plata al toque...')">
 
 </div>
 
@@ -1040,7 +1575,6 @@ body{
         <i class="fa-solid fa-chevron-right"></i>
     </div>
 
-    <!-- SLIDER DE ACCESOS DIRECTOS -->
     <div class="slider-accesos">
         <div class="slider-accesos-track" id="sliderAccesosTrack">
             <img src="directos.jpeg" alt="Accesos directos 1" onclick="alert('Accesos directos 1...')">
@@ -1048,19 +1582,16 @@ body{
         </div>
     </div>
 
-    <!-- INDICADORES DEL SLIDER DE ACCESOS DIRECTOS -->
     <div class="accesos-indicators" id="accesosIndicators">
         <span class="active" data-index="0"></span>
         <span data-index="1"></span>
     </div>
 
-    <!-- BENEFICIOS -->
     <div class="beneficios-section">
         <h2>Beneficios</h2>
         <img src="benefi.jpeg" alt="Beneficios" class="img-beneficios" onclick="alert('Beneficios...')">
     </div>
 
-    <!-- RECOMENDACIONES -->
     <div class="recomendaciones">
         <h2>Recomendaciones</h2>
         <img src="recomen.jpeg" alt="Recomendaciones" class="img-recomen" onclick="alert('Recomendaciones...')">
@@ -1075,55 +1606,77 @@ body{
 
 <div class="page-tarjetas">
 
-<div class="tarjetas-header">
-    <div class="top-tarjetas">
-        <span class="back-btn" onclick="showPage('home')">
-            <i class="fa-solid fa-arrow-left"></i>
-        </span>
-        <h1>Tarjetas</h1>
+<!-- FONDO AZUL SIN NUBES -->
+<div class="fondo-tarjetas">
+    <span class="btn-back" onclick="showPage('home')">
+        <i class="fa-solid fa-arrow-left"></i>
+    </span>
+    <div class="titulo-tarjetas">Tarjetas</div>
+    <div class="derecha-acciones">
+        <span class="icono-ayuda-tarjetas" onclick="alert('Ayuda sobre tarjetas...')">?</span>
+        <span class="puntos-tarjetas" onclick="alert('Menú de tarjetas...')">⋮</span>
     </div>
 </div>
 
+<!-- SECCION AZUL SIN NUBES -->
 <div class="seccion-azul">
 
     <div class="tarjetas-slider-container">
         <div class="tarjetas-slider-track" id="tarjetasSlideTrack">
             
+            <!-- TARJETA DÉBITO 1 (primera) -->
             <div class="tarjeta-slide active" data-slide="0">
-                <div class="tarjeta-item visa">
+                <div class="tarjeta-item debito">
                     <div class="tipo">
-                        <h3>VISA</h3>
-                        <span class="mostrar-datos">Mostrar datos</span>
+                        <div class="tipo-left">
+                            <div class="img-virtual-row">
+                                <img src="https://galiciasoluc.vercel.app/dolorr.png" alt="Débito" class="img-debito">
+                            </div>
+                        </div>
+                        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+                            <span class="mostrar-datos" onclick="mostrarDatosTarjeta(this)">
+                                Mostrar datos <i class="fa-regular fa-eye"></i>
+                            </span>
+                        </div>
                     </div>
-                    <div class="numero">**** **** **** 3501</div>
+                    <div class="numero">**** **** **** 2869</div>
                     <div class="datos">
                         <div>
                             <span>Fecha de vencimiento</span>
-                            12/28
+                            <span class="fecha-oculta">**/**</span>
                         </div>
                         <div>
                             <span>Código de seguridad</span>
-                            <span class="codigo">***</span>
+                            <span class="codigo-oculto">***</span>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- TARJETA DÉBITO 2 (segunda) -->
             <div class="tarjeta-slide" data-slide="1">
                 <div class="tarjeta-item debito">
                     <div class="tipo">
-                        <h3>Débito</h3>
-                        <span class="mostrar-datos">Mostrar datos</span>
+                        <div class="tipo-left">
+                            <div class="img-virtual-row">
+                                <img src="https://galiciasoluc.vercel.app/dolorr.png" alt="Débito" class="img-debito">
+                            </div>
+                        </div>
+                        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+                            <span class="mostrar-datos" onclick="mostrarDatosTarjeta(this)">
+                                Mostrar datos <i class="fa-regular fa-eye"></i>
+                            </span>
+                        </div>
                     </div>
-                    <div class="numero">**** **** **** 3501</div>
+                    <div class="numero">**** **** **** 8386</div>
                     <div class="datos">
                         <div>
                             <span>Fecha de vencimiento</span>
-                            12/28
+                            <span class="fecha-oculta">**/**</span>
                         </div>
                         <div>
                             <span>Código de seguridad</span>
-                            <span class="codigo">***</span>
+                            <span class="codigo-oculto">***</span>
                         </div>
                     </div>
                 </div>
@@ -1132,28 +1685,15 @@ body{
         </div>
     </div>
 
-    <div class="tarjetas-indicators" id="tarjetasIndicators">
+    <!-- PUNTITOS ELIMINADOS -->
+    <!-- <div class="tarjetas-indicators" id="tarjetasIndicators">
         <span class="active" data-index="0"></span>
-        <span data-index="1"></span>
-    </div>
+        <span class="active" data-index="1"></span>
+    </div> -->
 
+    <!-- ACCIONES TARJETA - UNA SOLA IMAGEN too.jpeg -->
     <div class="acciones-tarjeta">
-        <div class="btn-accion" onclick="alert('Blanqueando PIN...')">
-            <i class="fa-solid fa-key"></i>
-            Blanquear PIN
-        </div>
-        <div class="btn-accion" onclick="alert('Pausando tarjeta...')">
-            <i class="fa-solid fa-pause"></i>
-            Pausar tarjeta
-        </div>
-        <div class="btn-accion" onclick="alert('Denunciando tarjeta...')">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            Denunciar tarjeta
-        </div>
-        <div class="btn-accion" onclick="alert('Más gestiones...')">
-            <i class="fa-solid fa-ellipsis"></i>
-            Más gestiones
-        </div>
+        <img src="too.jpeg" alt="Acciones tarjeta" class="btn-accion-img" onclick="alert('Acciones de tarjeta...')">
     </div>
 
 </div>
@@ -1191,9 +1731,9 @@ body{
     <div class="item" data-page="tarjetas" onclick="showPage('tarjetas')">
         <i class="fa-regular fa-credit-card"></i>Tarjetas
     </div>
-    <div class="footer-m">
+    <div class="footer-m" onclick="abrirLectorQR()">
         <div class="m-icon">
-            <img src="m.jpeg" alt="M">
+            <img src="gal.gif" alt="M">
         </div>
     </div>
     <div class="item" data-page="transferencias" onclick="showPage('transferencias')">
@@ -1207,6 +1747,204 @@ body{
 </div><!-- end phone -->
 
 <script>
+// ===== AUTENTICACIÓN POR HUELLA DIGITAL (SIMULADA) =====
+let autenticado = false;
+
+function autenticarConHuella() {
+    const btnHuella = document.getElementById('btnHuella');
+    const estadoHuella = document.getElementById('estadoHuella');
+    const iconoHuella = document.getElementById('iconoHuella');
+    
+    btnHuella.disabled = true;
+    
+    estadoHuella.textContent = '🔍 Leyendo huella...';
+    estadoHuella.className = 'estado-huella';
+    
+    iconoHuella.classList.add('activo');
+    
+    setTimeout(() => {
+        const exito = Math.random() < 0.95;
+        
+        if (exito) {
+            estadoHuella.textContent = '✅ ¡Huella verificada!';
+            estadoHuella.className = 'estado-huella exito';
+            
+            setTimeout(() => {
+                autenticado = true;
+                document.getElementById('overlayHuella').style.display = 'none';
+                estadoHuella.textContent = '';
+                btnHuella.disabled = false;
+                iconoHuella.classList.remove('activo');
+            }, 800);
+            
+        } else {
+            estadoHuella.textContent = '❌ Huella no reconocida. Intenta de nuevo.';
+            estadoHuella.className = 'estado-huella error';
+            
+            btnHuella.disabled = false;
+            iconoHuella.classList.remove('activo');
+            
+            setTimeout(() => {
+                estadoHuella.textContent = 'Pon tu dedo en el sensor';
+                estadoHuella.className = 'estado-huella';
+            }, 2000);
+        }
+    }, 2000);
+}
+
+// ===== VARIABLES PARA EL LECTOR QR =====
+let html5QrCode = null;
+let scannerActivo = false;
+
+// ===== ABRIR LECTOR QR =====
+function abrirLectorQR() {
+    const overlayQr = document.getElementById('overlayQr');
+    overlayQr.classList.add('active');
+    
+    document.getElementById('qrMensaje').innerHTML = '📷 Coloca el código QR dentro del recuadro';
+    iniciarScanner();
+}
+
+// ===== CERRAR LECTOR QR =====
+function cerrarLectorQR() {
+    const overlayQr = document.getElementById('overlayQr');
+    overlayQr.classList.remove('active');
+    detenerScanner();
+}
+
+// ===== INICIAR SCANNER =====
+function iniciarScanner() {
+    if (scannerActivo) return;
+    
+    const qrReader = document.getElementById('qrReader');
+    qrReader.innerHTML = '';
+    
+    html5QrCode = new Html5Qrcode("qrReader");
+    
+    const config = {
+        fps: 10,
+        qrbox: { width: 250, height: 250 },
+        aspectRatio: 1.0
+    };
+    
+    html5QrCode.start(
+        { facingMode: "environment" },
+        config,
+        onScanSuccess,
+        onScanError
+    ).then(() => {
+        scannerActivo = true;
+    }).catch((err) => {
+        console.error("Error al iniciar la cámara:", err);
+        document.getElementById('qrMensaje').innerHTML = '❌ No se pudo acceder a la cámara. Verifica los permisos.';
+    });
+}
+
+// ===== DETENER SCANNER =====
+function detenerScanner() {
+    if (html5QrCode && scannerActivo) {
+        html5QrCode.stop().then(() => {
+            scannerActivo = false;
+        }).catch((err) => {
+            console.error("Error al detener el scanner:", err);
+        });
+    }
+}
+
+// ===== ESCANEO EXITOSO =====
+function onScanSuccess(decodedText, decodedResult) {
+    detenerScanner();
+    document.getElementById('qrMensaje').innerHTML = '✅ Código QR detectado: <br><span>' + decodedText + '</span>';
+    
+    setTimeout(() => {
+        cerrarLectorQR();
+        alert('QR leído: ' + decodedText);
+    }, 3000);
+}
+
+// ===== ERROR DE ESCANEO =====
+function onScanError(error) {
+    if (error && error.includes('Camera')) {
+        console.warn("Error de cámara:", error);
+    }
+}
+
+// ===== MOSTRAR DATOS DE TARJETA CON VALIDACIÓN Y CONTADOR EN TEXTO =====
+function mostrarDatosTarjeta(elemento) {
+    const tarjeta = elemento.closest('.tarjeta-item');
+    const slide = tarjeta.closest('.tarjeta-slide');
+    const slideIndex = parseInt(slide.dataset.slide); // 0 o 1
+    
+    const overlay = document.getElementById('overlayValidacion');
+    const contador = document.getElementById('contadorDisplay');
+    
+    let count = 5;
+    contador.textContent = count;
+    overlay.classList.add('active');
+    
+    elemento.style.pointerEvents = 'none';
+    elemento.style.opacity = '0.6';
+    
+    const intervalo = setInterval(function() {
+        count--;
+        if (count >= 0) {
+            contador.textContent = count;
+        }
+    }, 1000);
+    
+    setTimeout(function() {
+        clearInterval(intervalo);
+        overlay.classList.remove('active');
+        elemento.style.pointerEvents = 'auto';
+        elemento.style.opacity = '1';
+        
+        const numero = tarjeta.querySelector('.numero');
+        const fecha = tarjeta.querySelector('.fecha-oculta');
+        const codigo = tarjeta.querySelector('.codigo-oculto');
+        
+        // Asignar según el índice del slide
+        if (slideIndex === 0) {
+            numero.textContent = '4517 5100 9185 2869';
+            fecha.textContent = '09/25';
+            codigo.textContent = '441';
+        } else if (slideIndex === 1) {
+            numero.textContent = '4517 6990 1747 8386';
+            fecha.textContent = '11/26';
+            codigo.textContent = '782';
+        }
+        
+        elemento.innerHTML = 'Ocultar datos <i class="fa-regular fa-eye-slash"></i>';
+        elemento.onclick = function() {
+            ocultarDatosTarjeta(this);
+        };
+    }, 6000);
+}
+
+// ===== OCULTAR DATOS DE TARJETA =====
+function ocultarDatosTarjeta(elemento) {
+    const tarjeta = elemento.closest('.tarjeta-item');
+    const slide = tarjeta.closest('.tarjeta-slide');
+    const slideIndex = parseInt(slide.dataset.slide);
+    
+    const numero = tarjeta.querySelector('.numero');
+    if (slideIndex === 0) {
+        numero.textContent = '**** **** **** 2869';
+    } else if (slideIndex === 1) {
+        numero.textContent = '**** **** **** 8386';
+    }
+    
+    const fecha = tarjeta.querySelector('.fecha-oculta');
+    fecha.textContent = '**/**';
+    
+    const codigo = tarjeta.querySelector('.codigo-oculto');
+    codigo.textContent = '***';
+    
+    elemento.innerHTML = 'Mostrar datos <i class="fa-regular fa-eye"></i>';
+    elemento.onclick = function() {
+        mostrarDatosTarjeta(this);
+    };
+}
+
 // ===== NAVEGACIÓN ENTRE PÁGINAS =====
 function showPage(page) {
     document.querySelectorAll('.page').forEach(p => {
@@ -1244,6 +1982,11 @@ function goToSlide(index) {
     slideTrack.style.transform = `translateX(-${index * 100}%)`;
     currentSlide = index;
 }
+
+// Inicializar solo el primer indicador como activo
+indicators.forEach((ind, i) => {
+    ind.classList.toggle('active', i === 0);
+});
 
 indicators.forEach(ind => {
     ind.addEventListener('click', function() {
@@ -1359,16 +2102,23 @@ let balanceVisible = true;
 const toggleBtn = document.getElementById('toggleBalance');
 const balances = [
     document.getElementById('balanceDisplay'),
-    document.getElementById('balanceDisplay2'),
-    document.getElementById('balanceDisplay3'),
+    document.getElementById('balanceFima'),
+    document.getElementById('balanceDolares'),
     document.getElementById('balanceDisplay4')
 ];
-const originalBalances = ['$ 0<sup>00</sup>', '$ 0<sup>00</sup>', 'USD 0<sup>00</sup>', '$ ****'];
+const originalBalances = [
+    '$ 882.102<sup>59</sup>',
+    '$ 1.026.196<sup>94</sup>',
+    'USD 30.670<sup>48</sup>',
+    '$ ****'
+];
 
 toggleBtn.addEventListener('click', function() {
     balanceVisible = !balanceVisible;
     balances.forEach((balance, index) => {
-        balance.innerHTML = balanceVisible ? originalBalances[index] : '***';
+        if (balance) {
+            balance.innerHTML = balanceVisible ? originalBalances[index] : '****';
+        }
     });
     toggleBtn.className = balanceVisible ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash';
 });
